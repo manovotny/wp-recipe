@@ -26,6 +26,7 @@
 
     1. Access
     2. Plugin
+    3. Updates
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
@@ -48,3 +49,19 @@ require_once __DIR__ . '/classes/class-wp-recipes.php';
 
 // Load plugin.
 add_action( 'plugins_loaded', array( 'WP_Recipes', 'get_instance' ) );
+
+/* Updates
+---------------------------------------------------------------------------------- */
+
+add_filter( 'site_transient_update_plugins', 'wp_recipe_disable_wordpress_org_plugin_update' );
+
+function wp_recipe_disable_wordpress_org_plugin_update( $value ) {
+
+    $plugin_directory = trailingslashit( basename( dirname( __FILE__ ) ) );
+    $plugin_filename = basename( __FILE__ );
+
+    unset( $value->response[ $plugin_directory . $plugin_filename ] );
+
+    return $value;
+
+}
