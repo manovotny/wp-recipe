@@ -17,6 +17,7 @@
  * Author URI: http://manovotny.com
  * License: GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * GitHub Plugin URI: https://github.com/manovotny/wp-recipes
  */
 
 
