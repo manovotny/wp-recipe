@@ -1,0 +1,17 @@
+{
+  "name": "wp-recipes",
+  "version": "0.1.0",
+  "description": "Add recipes to WordPress.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manovotny/wp-recipes.git"
+  },
+  "keywords": [
+    "food",
+    "recipes",
+    "wordpress"
+  ],
+  "authors": [
+    { "name": "Michael Novotny", "email": "manovotny@gmail.com"," homepage": "http://manovotny.com" }
+  ]
+}
