@@ -8,18 +8,12 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'inc',
         'js',
         'bump'
     ]);
 
     grunt.registerTask('bump', [
         'replace'
-    ]);
-
-    grunt.registerTask('inc', [
-        'clean',
-        'copy'
     ]);
 
     grunt.registerTask('js', [

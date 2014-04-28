@@ -1,16 +1,14 @@
 {
-  "name": "wp-recipes",
+  "name": "wp-taxonomy-util",
   "version": "0.2.0",
-  "description": "Add recipes to WordPress.",
+  "description": "A taxonomy utility for WordPress.",
   "author": "Michael Novotny <http://manovotny.com/>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/manovotny/wp-recipes/"
+    "url": "https://github.com/manovotny/wp-taxonomy-util/"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-jslint": "~1.1.8",
     "grunt-text-replace": "~0.3.11",

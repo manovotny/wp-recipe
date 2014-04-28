@@ -4,5 +4,14 @@
   "description": "Add recipes to WordPress.",
   "type": "library",
   "homepage": "https://github.com/manovotny/wp-recipes/",
-  "license": "GPL-3.0+"
+  "license": "GPL-3.0+",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/manovotny/wp-taxonomy-util"
+    }
+  ],
+  "require-dev": {
+      "manovotny/wp-taxonomy-util": "0.2.0"
+  }
 }

@@ -25,8 +25,9 @@
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ CONTENTS /\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\
 
     1. Access
-    2. Plugin
-    3. Updates
+    2. Includes
+    3. Plugin
+    4. Updates
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
@@ -34,34 +35,61 @@
 /* Access
 ---------------------------------------------------------------------------------- */
 
-// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 
     die;
 
-} // end if
+}
+
+/* Includes
+---------------------------------------------------------------------------------- */
+
+require_once __DIR__ . '/inc/wp-taxonomy-util/wp-taxonomy-util.php';
 
 /* Plugin
 ---------------------------------------------------------------------------------- */
 
-// Include plugin classes.
-require_once __DIR__ . '/classes/class-wp-recipes.php';
+if ( ! class_exists( 'WP_Recipes_Post_Type' ) ) {
 
-// Load plugin.
-add_action( 'plugins_loaded', array( 'WP_Recipes', 'get_instance' ) );
+    require_once __DIR__ . '/classes/class-wp-recipes-post-type.php';
+
+    add_action( 'plugins_loaded', array( 'WP_Recipes_Post_Type', 'get_instance' ) );
+}
+
+if ( ! class_exists( 'WP_Recipes_Shortcode' ) ) {
+
+    require_once __DIR__ . '/classes/class-wp-recipes-shortcode.php';
+
+    add_action( 'plugins_loaded', array( 'WP_Recipes_Shortcode', 'get_instance' ) );
+
+}
+
+if ( ! class_exists( 'WP_Recipes_Taxonomies' ) ) {
+
+    require_once __DIR__ . '/classes/class-wp-recipes-taxonomies.php';
+
+    add_action( 'plugins_loaded', array( 'WP_Recipes_Taxonomies', 'get_instance' ) );
+
+}
 
 /* Updates
 ---------------------------------------------------------------------------------- */
 
-add_filter( 'site_transient_update_plugins', 'wp_recipe_disable_wordpress_org_plugin_update' );
-
-function wp_recipe_disable_wordpress_org_plugin_update( $value ) {
+/**
+ * Disables WordPress.org plugin update for WP Recipe.
+ *
+ * @param stdClass $plugins List of plugins checked for updates and ones that need updating.
+ * @return mixed Filtered list of plugins checked for updates and ones that need updating.
+ */
+function wp_recipe_disable_wordpress_org_plugin_update( $plugins ) {
 
     $plugin_directory = trailingslashit( basename( dirname( __FILE__ ) ) );
     $plugin_filename = basename( __FILE__ );
 
-    unset( $value->response[ $plugin_directory . $plugin_filename ] );
+    unset( $plugins->response[ $plugin_directory . $plugin_filename ] );
 
-    return $value;
+    return $plugins;
 
 }
+
+add_filter( 'site_transient_update_plugins', 'wp_recipe_disable_wordpress_org_plugin_update' );
