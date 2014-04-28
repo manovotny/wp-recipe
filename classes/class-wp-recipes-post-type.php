@@ -1,6 +1,6 @@
 <?php
 /**
- * @package WP_Recipes
+ * @package WP_Recipe
  * @author Michael Novotny <manovotny@gmail.com>
  */
 
@@ -14,7 +14,7 @@
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
 
-class WP_Recipes_Post_Type {
+class WP_Recipe_Post_Type {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@ class WP_Recipes_Post_Type {
     private function __construct() {
 
         // Create post type.
-        add_action( 'init', array( $this, 'recipes_post_type' ) );
+        add_action( 'init', array( $this, 'recipe_post_type' ) );
 
     }
 
@@ -66,11 +66,11 @@ class WP_Recipes_Post_Type {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Creates recipes post type.
+     * Creates recipe post type.
      */
-    public function recipes_post_type() {
+    public function recipe_post_type() {
 
-        $domain = 'wp-recipes';
+        $domain = 'wp-recipe';
         
         // Create labels.
         $labels = array(

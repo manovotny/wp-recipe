@@ -1,9 +1,9 @@
 {
-  "name": "manovotny/wp-recipes",
+  "name": "manovotny/wp-recipe",
   "version": "0.3.0",
   "description": "Add recipes to WordPress.",
   "type": "library",
-  "homepage": "https://github.com/manovotny/wp-recipes/",
+  "homepage": "https://github.com/manovotny/wp-recipe/",
   "license": "GPL-3.0+",
   "repositories": [
     {

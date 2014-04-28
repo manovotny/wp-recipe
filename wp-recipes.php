@@ -2,22 +2,22 @@
 /**
  * Add recipes to WordPress.
  *
- * @package WP_Recipes
+ * @package WP_Recipe
  * @author Michael Novotny <manovotny@gmail.com>
  * @license GPL-3.0+
- * @link https://github.com/manovotny/wp-recipes
+ * @link https://github.com/manovotny/wp-recipe
  * @copyright 2014 Michael Novotny
  *
  * @wordpress-plugin
- * Plugin Name: WP Recipes
- * Plugin URI: https://github.com/manovotny/wp-recipes
+ * Plugin Name: WP Recipe
+ * Plugin URI: https://github.com/manovotny/wp-recipe
  * Description: Add recipes to WordPress.
  * Version: 0.3.0
  * Author: Michael Novotny
  * Author URI: http://manovotny.com
  * License: GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- * GitHub Plugin URI: https://github.com/manovotny/wp-recipes
+ * GitHub Plugin URI: https://github.com/manovotny/wp-recipe
  */
 
 
@@ -27,7 +27,6 @@
     1. Access
     2. Includes
     3. Plugin
-    4. Updates
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
@@ -49,47 +48,25 @@ require_once __DIR__ . '/inc/wp-taxonomy-util/wp-taxonomy-util.php';
 /* Plugin
 ---------------------------------------------------------------------------------- */
 
-if ( ! class_exists( 'WP_Recipes_Post_Type' ) ) {
+if ( ! class_exists( 'WP_Recipe_Post_Type' ) ) {
 
-    require_once __DIR__ . '/classes/class-wp-recipes-post-type.php';
+    require_once __DIR__ . '/classes/class-wp-recipe-post-type.php';
 
-    add_action( 'plugins_loaded', array( 'WP_Recipes_Post_Type', 'get_instance' ) );
+    add_action( 'plugins_loaded', array( 'WP_Recipe_Post_Type', 'get_instance' ) );
 }
 
-if ( ! class_exists( 'WP_Recipes_Shortcode' ) ) {
+if ( ! class_exists( 'WP_Recipe_Shortcode' ) ) {
 
-    require_once __DIR__ . '/classes/class-wp-recipes-shortcode.php';
+    require_once __DIR__ . '/classes/class-wp-recipe-shortcode.php';
 
-    add_action( 'plugins_loaded', array( 'WP_Recipes_Shortcode', 'get_instance' ) );
-
-}
-
-if ( ! class_exists( 'WP_Recipes_Taxonomies' ) ) {
-
-    require_once __DIR__ . '/classes/class-wp-recipes-taxonomies.php';
-
-    add_action( 'plugins_loaded', array( 'WP_Recipes_Taxonomies', 'get_instance' ) );
+    add_action( 'plugins_loaded', array( 'WP_Recipe_Shortcode', 'get_instance' ) );
 
 }
 
-/* Updates
----------------------------------------------------------------------------------- */
+if ( ! class_exists( 'WP_Recipe_Taxonomies' ) ) {
 
-/**
- * Disables WordPress.org plugin update for WP Recipe.
- *
- * @param stdClass $plugins List of plugins checked for updates and ones that need updating.
- * @return mixed Filtered list of plugins checked for updates and ones that need updating.
- */
-function wp_recipe_disable_wordpress_org_plugin_update( $plugins ) {
+    require_once __DIR__ . '/classes/class-wp-recipe-taxonomies.php';
 
-    $plugin_directory = trailingslashit( basename( dirname( __FILE__ ) ) );
-    $plugin_filename = basename( __FILE__ );
-
-    unset( $plugins->response[ $plugin_directory . $plugin_filename ] );
-
-    return $plugins;
+    add_action( 'plugins_loaded', array( 'WP_Recipe_Taxonomies', 'get_instance' ) );
 
 }
-
-add_filter( 'site_transient_update_plugins', 'wp_recipe_disable_wordpress_org_plugin_update' );

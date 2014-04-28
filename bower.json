@@ -1,13 +1,14 @@
 {
-  "name": "wp-recipes",
+  "name": "wp-recipe",
   "version": "0.3.0",
   "description": "Add recipes to WordPress.",
   "repository": {
     "type": "git",
-    "url": "git://github.com/manovotny/wp-recipes.git"
+    "url": "git://github.com/manovotny/wp-recipe.git"
   },
   "keywords": [
     "food",
+    "recipe",
     "recipes",
     "wordpress"
   ],

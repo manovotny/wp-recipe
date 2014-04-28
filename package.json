@@ -1,11 +1,11 @@
 {
-  "name": "wp-recipes",
+  "name": "wp-recipe",
   "version": "0.3.0",
   "description": "Add recipes to WordPress.",
   "author": "Michael Novotny <http://manovotny.com/>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/manovotny/wp-recipes/"
+    "url": "https://github.com/manovotny/wp-recipe/"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

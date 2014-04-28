@@ -1,6 +1,6 @@
 <?php
 /**
- * @package WP_Recipes
+ * @package WP_Recipe
  * @author Michael Novotny <manovotny@gmail.com>
  */
 
@@ -14,7 +14,7 @@
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
 
-class WP_Recipes_Taxonomies {
+class WP_Recipe_Taxonomies {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@ class WP_Recipes_Taxonomies {
     private function __construct() {
 
         // Create taxonomies.
-        add_action( 'init', array( $this, 'recipes_taxonomies' ) );
+        add_action( 'init', array( $this, 'recipe_taxonomies' ) );
 
     }
 
@@ -66,9 +66,9 @@ class WP_Recipes_Taxonomies {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Creates recipes taxonomies.
+     * Creates recipe taxonomies.
      */
-    function recipes_taxonomies() {
+    function recipe_taxonomies() {
 
         $post_type = 'recipe';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package WP_Recipes
+ * @package WP_Recipe
  * @author Michael Novotny <manovotny@gmail.com>
  */
 
@@ -14,7 +14,7 @@
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
 */
 
-class WP_Recipes_Shortcode {
+class WP_Recipe_Shortcode {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@ class WP_Recipes_Shortcode {
     private function __construct() {
 
         // Register shortcode.
-        add_shortcode( 'recipe', array( $this, 'recipes_shortcode' ) );
+        add_shortcode( 'recipe', array( $this, 'recipe_shortcode' ) );
 
     }
 
@@ -71,7 +71,7 @@ class WP_Recipes_Shortcode {
      * @param array $attributes Shortcode attributes.
      * @return string Rendered shortcode.
      */
-    public function recipes_shortcode( $attributes ) {
+    public function recipe_shortcode( $attributes ) {
 
         // Extract shortcode attributes.
         extract( shortcode_atts( array( 'id' => '' ), $attributes ) );
