@@ -51,22 +51,16 @@ require_once __DIR__ . '/inc/wp-taxonomy-util/wp-taxonomy-util.php';
 if ( ! class_exists( 'WP_Recipe_Post_Type' ) ) {
 
     require_once __DIR__ . '/classes/class-wp-recipe-post-type.php';
-
-    add_action( 'plugins_loaded', array( 'WP_Recipe_Post_Type', 'get_instance' ) );
 }
 
 if ( ! class_exists( 'WP_Recipe_Shortcode' ) ) {
 
     require_once __DIR__ . '/classes/class-wp-recipe-shortcode.php';
 
-    add_action( 'plugins_loaded', array( 'WP_Recipe_Shortcode', 'get_instance' ) );
-
 }
 
 if ( ! class_exists( 'WP_Recipe_Taxonomies' ) ) {
 
     require_once __DIR__ . '/classes/class-wp-recipe-taxonomies.php';
-
-    add_action( 'plugins_loaded', array( 'WP_Recipe_Taxonomies', 'get_instance' ) );
 
 }
