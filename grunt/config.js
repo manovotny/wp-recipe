@@ -5,8 +5,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         config: {
             version: {
-                from: '0.3.0',
-                to: '0.4.0'
+                from: '0.4.0',
+                to: '0.4.1'
             }
         }
     });
