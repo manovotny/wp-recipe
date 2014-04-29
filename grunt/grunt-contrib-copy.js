@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                     src: [
                         '**/*'
                     ],
-                    dest: 'inc/wp-taxonomy-util'
+                    dest: 'lib/wp-taxonomy-util'
                 }
             ]
         }

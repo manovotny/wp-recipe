@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'inc',
+        'lib',
         'js',
         'bump'
     ]);
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         'replace'
     ]);
 
-    grunt.registerTask('inc', [
+    grunt.registerTask('lib', [
         'clean',
         'copy'
     ]);

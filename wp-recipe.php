@@ -20,17 +20,6 @@
  * GitHub Plugin URI: https://github.com/manovotny/wp-recipe
  */
 
-
-/*
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ CONTENTS /\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\
-
-    1. Access
-    2. Includes
-    3. Plugin
-
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\
-*/
-
 /* Access
 ---------------------------------------------------------------------------------- */
 
@@ -40,27 +29,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 }
 
+/* Libraries
+---------------------------------------------------------------------------------- */
+
+require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';
+
 /* Includes
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/inc/wp-taxonomy-util/wp-taxonomy-util.php';
-
-/* Plugin
----------------------------------------------------------------------------------- */
-
-if ( ! class_exists( 'WP_Recipe_Post_Type' ) ) {
-
-    require_once __DIR__ . '/classes/class-wp-recipe-post-type.php';
-}
-
-if ( ! class_exists( 'WP_Recipe_Shortcode' ) ) {
-
-    require_once __DIR__ . '/classes/class-wp-recipe-shortcode.php';
-
-}
-
-if ( ! class_exists( 'WP_Recipe_Taxonomies' ) ) {
-
-    require_once __DIR__ . '/classes/class-wp-recipe-taxonomies.php';
-
-}
+require_once __DIR__ . '/inc/post-type.php';
+require_once __DIR__ . '/inc/shortcode.php';
+require_once __DIR__ . '/inc/taxonomies.php';

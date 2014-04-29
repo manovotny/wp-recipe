@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     grunt.config('clean', {
         inc: [
             'composer.lock',
-            'inc'
+            'lib'
         ]
     });
 
