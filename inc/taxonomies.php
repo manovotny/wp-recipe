@@ -17,6 +17,7 @@ function wp_recipe_taxonomies() {
         new WP_Taxonomy_Options( 'Cooking Method', 'Cooking Methods', 'cooking-methods', $post_type ),
         new WP_Taxonomy_Options( 'Course', 'Courses', 'courses', $post_type ),
         new WP_Taxonomy_Options( 'Cuisine', 'Cuisines', 'cuisines', $post_type ),
+        new WP_Taxonomy_Options( 'Ingredient', 'Ingredients', 'ingredients', $post_type, false ),
         new WP_Taxonomy_Options( 'Occasion', 'Occasions', 'occasions', $post_type )
     );
 

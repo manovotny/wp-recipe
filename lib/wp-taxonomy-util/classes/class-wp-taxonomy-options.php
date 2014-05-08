@@ -19,6 +19,37 @@ class WP_Taxonomy_Options {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
+    /* Hierarchical
+    ---------------------------------------------- */
+
+    /**
+     * If the taxonomy should be hierarchical (ie. categories) or flat (ie. tags).
+     *
+     * @var boolean
+     */
+    private $hierarchical = true;
+
+    /**
+     * Getter method for hierarchical.
+     *
+     * @return boolean Whether the taxonomy should be hierarchical or flat.
+     */
+    public function get_hierarchical() {
+
+        return $this->hierarchical;
+
+    }
+
+    /**
+     * Setter method for hierarchical.
+     *
+     * @param boolean $value Whether the taxonomy should be hierarchical or flat.
+     */
+    public function set_hierarchical( $value ) {
+
+        $this->hierarchical = $value;
+
+    }
     /* Plural Name
     ---------------------------------------------- */
 
@@ -153,13 +184,14 @@ class WP_Taxonomy_Options {
     /**
      * Initializes plugin.
      */
-    public function __construct( $singular = '', $plural = '', $slug = '', $post_type = '' ) {
+    public function __construct( $singular = '', $plural = '', $slug = '', $post_type = '', $hierarchical = true ) {
 
         // Set properties
         $this->singular_name = $singular;
         $this->plural_name = $plural;
         $this->slug = $slug;
         $this->post_type = $post_type;
+        $this->hierarchical = $hierarchical;
 
     }
 

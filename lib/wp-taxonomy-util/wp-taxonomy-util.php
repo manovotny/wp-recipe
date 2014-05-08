@@ -12,7 +12,7 @@
  * Plugin Name: WP Taxonomy Util
  * Plugin URI: https://github.com/manovotny/wp-taxonomy-util
  * Description: A taxonomy utility for WordPress.
- * Version: 0.2.1
+ * Version: 0.2.2
  * Author: Michael Novotny
  * Author URI: http://manovotny.com
  * License: GPL-3.0+

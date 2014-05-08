@@ -24,6 +24,16 @@ module.exports = function (grunt) {
                 from: '"version": "<%= config.version.from %>"',
                 to: '"version": "<%= config.version.to %>"'
             }]
+        },
+        plugin: {
+            src: [
+                'classes/**/*.php'
+            ],
+            overwrite: true,
+            replacements: [{
+                from: '$version = \'<%= config.version.from %>\'',
+                to: '$version = \'<%= config.version.to %>\''
+            }]
         }
     });
 

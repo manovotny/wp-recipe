@@ -7,11 +7,11 @@ module.exports = function (grunt) {
             files: [
                 {
                     expand: true,
-                    cwd: 'vendor/manovotny/wp-taxonomy-util',
+                    cwd: 'vendor/manovotny',
                     src: [
                         '**/*'
                     ],
-                    dest: 'lib/wp-taxonomy-util'
+                    dest: 'lib'
                 }
             ]
         }

@@ -112,7 +112,7 @@ class WP_Taxonomy_Util {
 
         // Create taxonomy arguments.
         $args = array(
-            'hierarchical'      => true,
+            'hierarchical'      => $options->get_hierarchical(),
             'labels'            => $labels,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => $options->get_slug() ),

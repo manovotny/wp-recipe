@@ -34,9 +34,22 @@ if ( ! defined( 'WPINC' ) ) {
 
 require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';
 
+/* Classes
+---------------------------------------------------------------------------------- */
+
+require_once __DIR__ . '/classes/class-wp-recipe.php';
+
 /* Includes
 ---------------------------------------------------------------------------------- */
 
+require_once __DIR__ . '/inc/admin-styles.php';
+require_once __DIR__ . '/inc/meta-box-description.php';
+require_once __DIR__ . '/inc/meta-box-yield.php';
+require_once __DIR__ . '/inc/meta-box-ingredients.php';
+require_once __DIR__ . '/inc/meta-box-directions.php';
+require_once __DIR__ . '/inc/meta-box-tips.php';
 require_once __DIR__ . '/inc/post-type.php';
 require_once __DIR__ . '/inc/shortcode.php';
+require_once __DIR__ . '/inc/remove-meta-box.php';
+require_once __DIR__ . '/inc/remove-post-type-support.php';
 require_once __DIR__ . '/inc/taxonomies.php';

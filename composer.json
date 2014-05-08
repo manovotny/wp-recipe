@@ -12,6 +12,6 @@
     }
   ],
   "require-dev": {
-      "manovotny/wp-taxonomy-util": "0.2.1"
+      "manovotny/wp-taxonomy-util": "0.2.2"
   }
 }
