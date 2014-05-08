@@ -1,0 +1,17 @@
+{
+  "name": "wp-url-util",
+  "version": "0.1.0",
+  "description": "A url utility for WordPress.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manovotny/wp-url-util.git"
+  },
+  "keywords": [
+    "url",
+    "utility",
+    "wordpress"
+  ],
+  "authors": [
+    { "name": "Michael Novotny", "email": "manovotny@gmail.com"," homepage": "http://manovotny.com" }
+  ]
+}

@@ -9,13 +9,16 @@ add_action( 'admin_enqueue_scripts', 'wp_recipe_admin_styles' );
 
 function wp_recipe_admin_styles() {
 
+    $wp_file_util = WP_File_Util::get_instance();
+    $wp_url_util = WP_URL_Util::get_instance();
+
     if ( is_wp_recipe_add_or_edit_screen() ) {
 
-        $file = get_file_url( '../admin/css/wp-recipe-editor.css' );
-
+        $path = $wp_file_util->get_absolute_path( __DIR__, '../admin/css/wp-recipe-editor.css' );
+        $url = $wp_url_util->convert_path_to_url( $path );
         $version = WP_Recipe::get_instance()->get_version();
 
-        wp_enqueue_style( 'wp-recipe-admin-styles', $file, null, $version );
+        wp_enqueue_style( 'wp-recipe-editor-styles', $url, null, $version );
 
     }
 
@@ -27,15 +30,4 @@ function is_wp_recipe_add_or_edit_screen() {
 
     return 'recipe' === $screen->post_type && ( 'add' === $screen->action || 'edit' === $_REQUEST[ 'action' ] );
 
-}
-
-function get_file_url( $relative_path ) {
-
-    $file = realpath( trailingslashit( __DIR__ ) . $relative_path );
-
-    $file = str_replace( WP_CONTENT_DIR, '', $file );
-
-    $file = content_url() . $file;
-
-    return $file;
 }

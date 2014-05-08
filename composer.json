@@ -8,10 +8,20 @@
   "repositories": [
     {
       "type": "vcs",
+      "url": "https://github.com/manovotny/wp-file-util"
+    },
+    {
+      "type": "vcs",
       "url": "https://github.com/manovotny/wp-taxonomy-util"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/manovotny/wp-url-util"
     }
   ],
   "require-dev": {
-      "manovotny/wp-taxonomy-util": "0.2.2"
+      "manovotny/wp-file-util": "0.1.0",
+      "manovotny/wp-taxonomy-util": "0.2.2",
+      "manovotny/wp-url-util": "0.1.0"
   }
 }
