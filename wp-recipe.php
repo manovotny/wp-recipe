@@ -44,11 +44,11 @@ require_once __DIR__ . '/classes/class-wp-recipe.php';
 /* Includes
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/inc/meta-boxes/meta-box-description.php';
-require_once __DIR__ . '/inc/meta-boxes/meta-box-yield.php';
-require_once __DIR__ . '/inc/meta-boxes/meta-box-ingredients.php';
-require_once __DIR__ . '/inc/meta-boxes/meta-box-directions.php';
-require_once __DIR__ . '/inc/meta-boxes/meta-box-tips.php';
+require_once __DIR__ . '/inc/meta-boxes/recipe-description.php';
+require_once __DIR__ . '/inc/meta-boxes/recipe-yield.php';
+require_once __DIR__ . '/inc/meta-boxes/recipe-ingredients.php';
+require_once __DIR__ . '/inc/meta-boxes/recipe-directions.php';
+require_once __DIR__ . '/inc/meta-boxes/recipe-tips.php';
 require_once __DIR__ . '/inc/post-type.php';
 require_once __DIR__ . '/inc/shortcode.php';
 require_once __DIR__ . '/inc/styles-editor.php';
