@@ -44,14 +44,14 @@ require_once __DIR__ . '/classes/class-wp-recipe.php';
 /* Includes
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/inc/meta-boxes/recipe-description.php';
-require_once __DIR__ . '/inc/meta-boxes/recipe-yield.php';
-require_once __DIR__ . '/inc/meta-boxes/recipe-ingredients.php';
-require_once __DIR__ . '/inc/meta-boxes/recipe-directions.php';
-require_once __DIR__ . '/inc/meta-boxes/recipe-tips.php';
-require_once __DIR__ . '/inc/recipe/post-type.php';
-require_once __DIR__ . '/inc/recipe/shortcode.php';
-require_once __DIR__ . '/inc/recipe/taxonomies.php';
-require_once __DIR__ . '/inc/remove-default-editor.php';
-require_once __DIR__ . '/inc/remove-default-discussion-meta-box.php';
-require_once __DIR__ . '/inc/styles-editor.php';
+require_once __DIR__ . '/inc/post-type.php';
+require_once __DIR__ . '/inc/shortcode.php';
+require_once __DIR__ . '/inc/taxonomies.php';
+require_once __DIR__ . '/inc/meta-boxes/description.php';
+require_once __DIR__ . '/inc/meta-boxes/yield.php';
+require_once __DIR__ . '/inc/meta-boxes/ingredients.php';
+require_once __DIR__ . '/inc/meta-boxes/directions.php';
+require_once __DIR__ . '/inc/meta-boxes/tips.php';
+require_once __DIR__ . '/inc/remove/default-editor.php';
+require_once __DIR__ . '/inc/remove/default-discussion-meta-box.php';
+require_once __DIR__ . '/inc/styles/editor.php';
