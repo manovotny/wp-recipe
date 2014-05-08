@@ -4,8 +4,10 @@ module.exports = function (grunt) {
 
     grunt.config('clean', {
         inc: [
+            'admin/css',
             'composer.lock',
-            'lib'
+            'lib',
+            'temp'
         ]
     });
 

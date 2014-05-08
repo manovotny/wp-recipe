@@ -9,12 +9,18 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'lib',
+        'css',
         'js',
         'bump'
     ]);
 
     grunt.registerTask('bump', [
         'replace'
+    ]);
+
+    grunt.registerTask('css', [
+        'sass',
+        'cssmin'
     ]);
 
     grunt.registerTask('lib', [
