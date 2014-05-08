@@ -25,9 +25,13 @@ function wp_recipe_yield_meta_box() {
 
     $html = '';
 
-    $html .= '<fieldset>';
-        $html .= '<label for="wp-recipe-yield">Yield</label>';
-        $html .= '<input id="wp-recipe-yield" name="wp-recipe-yield" type="text" value="' . 'VALUE' . '" />';
+    $html .= '<fieldset class="wp-recipe-yield">';
+        $html .= '<ul>';
+            $html .= '<li>';
+                $html .= '<label for="yield" class="item-label">Yield</label>';
+                $html .= '<input id="yield" class="item-input" name="yield" type="text" value="" />';
+            $html .= '</li>';
+        $html .= '</ul>';
     $html .= '</fieldset>';
 
     echo $html;
