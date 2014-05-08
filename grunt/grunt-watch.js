@@ -14,6 +14,14 @@ module.exports = function (grunt) {
             tasks: [
                 'js'
             ]
+        },
+        sass: {
+            files: [
+                'admin/**/*scss'
+            ],
+            tasks: [
+                'css'
+            ]
         }
     });
 
