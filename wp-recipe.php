@@ -52,6 +52,6 @@ require_once __DIR__ . '/inc/meta-boxes/recipe-tips.php';
 require_once __DIR__ . '/inc/post-type.php';
 require_once __DIR__ . '/inc/shortcode.php';
 require_once __DIR__ . '/inc/styles-editor.php';
-require_once __DIR__ . '/inc/remove-meta-box.php';
-require_once __DIR__ . '/inc/remove-post-type-support.php';
+require_once __DIR__ . '/inc/remove-default-editor.php';
+require_once __DIR__ . '/inc/remove-default-discussion-meta-box.php';
 require_once __DIR__ . '/inc/taxonomies.php';
