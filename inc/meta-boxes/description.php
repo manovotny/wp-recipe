@@ -5,7 +5,7 @@
  */
 
 // Register meta box.
-add_action( 'add_meta_boxes', 'wp_recipe_add_description_meta_box' );
+add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_description_meta_box' );
 //add_action( 'save_post', array( $this, 'save_pinterest_meta_box' ) );
 
 function wp_recipe_add_description_meta_box() {
