@@ -33,6 +33,6 @@ function is_wp_recipe_add_or_edit_screen() {
 
     $screen = get_current_screen();
 
-    return 'recipe' === $screen->post_type && ( 'add' === $screen->action || 'edit' === $_REQUEST[ 'action' ] );
+    return 'recipe' === $screen->post_type && ( 'add' === $screen->action || ( array_key_exists( 'action', $_REQUEST ) && 'edit' === $_REQUEST[ 'action' ] ) );
 
 }
