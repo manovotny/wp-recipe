@@ -26,11 +26,11 @@ function wp_recipe_ingredients_meta_box() {
     $html = '';
 
     $html .= '<fieldset class="wp-recipe-ingredients">';
-        $html .= '<ul>';
-            $html .= '<li>';
+        $html .= '<ul class="ingredients">';
+            $html .= '<li class="ingredient">';
                 $html .= '<label for="ingredient" class="item-label">Ingredient</label>';
-                $html .= '<input id="ingredient" class="item-input" name="ingredient" type="text" value="" />';
-                $html .= '<span class="asdf">';
+                $html .= '<input id="ingredient" class="item-control" name="ingredient" type="text" value="" />';
+                $html .= '<span class="item-action">';
                     $html .= '<button class="remove-ingredient button">Remove</button>';
                 $html .= '</span>';
             $html .= '</li>';

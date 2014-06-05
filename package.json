@@ -15,6 +15,7 @@
     "grunt-contrib-sass": "~0.7.3",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-jslint": "~1.1.8",
+    "grunt-scss-lint": "~0.1.11",
     "grunt-text-replace": "~0.3.11",
     "load-grunt-tasks": "~0.4.0",
     "time-grunt": "~0.3.1"

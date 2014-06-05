@@ -11,7 +11,7 @@
 
 .wp-recipe-yield {
 
-    .item-input {
+    .item-control {
 
         width: 100%;
 
@@ -21,33 +21,35 @@
 
 .wp-recipe-ingredients {
 
-    ul {
+    .ingredients {
 
         display: table;
         width: 100%;
 
-        li {
+    }
 
-            display: table-row;
-            width: 100%;
+    .ingredient {
 
-            input {
+        display: table-row;
+        width: 100%;
 
-                display: table-cell;
-                width: 98%;
+    }
 
-            }
 
-            .asdf {
+    .item-control {
 
-                display: table-cell;
-                margin: 0;
-                vertical-align: top;
-                width: 2%;
+        display: table-cell;
+        width: 98%;
 
-            }
+    }
 
-        }
+    .item-action {
+
+        display: table-cell;
+        margin: 0;
+        vertical-align: top;
+        width: 2%;
+
     }
 
     .add-ingredient {

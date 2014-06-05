@@ -13,6 +13,13 @@
     "wordpress"
   ],
   "authors": [
-    { "name": "Michael Novotny", "email": "manovotny@gmail.com"," homepage": "http://manovotny.com" }
-  ]
+    {
+      "name": "Michael Novotny",
+      "email": "manovotny@gmail.com",
+      "homepage": "http://manovotny.com"
+    }
+  ],
+  "devDependencies": {
+    "sass-lint-config": "git://github.com/manovotny/sass-lint-config.git#0.1.0"
+  }
 }
