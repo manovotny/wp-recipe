@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                 ]
             },
             src: [
-                'bower.js',
+                'bower.json',
                 'composer.json',
                 'Gruntfile.js',
                 'package.json',
