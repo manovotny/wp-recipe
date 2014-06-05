@@ -23,6 +23,7 @@
 
     .ingredients {
 
+        border-collapse: collapse;
         display: table;
         width: 100%;
 
@@ -30,7 +31,9 @@
 
     .ingredient {
 
+        border-bottom: solid transparent 10px;
         display: table-row;
+        margin-bottom: 10px;
         width: 100%;
 
     }

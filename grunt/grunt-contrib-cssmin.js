@@ -8,8 +8,8 @@ module.exports = function (grunt) {
                 keepSpecialComments: 0
             },
             files: {
-                'admin/css/recipe-editor.css': [
-                    'temp/admin/css/recipe-editor.css'
+                'admin/css/recipe-editor.min.css': [
+                    'admin/css/recipe-editor.css'
                 ]
             }
         }

@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.config('watch', {
-        js: {
+        automation: {
             files: [
                 'bower.json',
                 'composer.json',
@@ -15,9 +15,18 @@ module.exports = function (grunt) {
                 'js'
             ]
         },
+        js: {
+            files: [
+                'admin/js/**/*.js',
+                '!admin/js/**/*.min.js'
+            ],
+            tasks: [
+                'js'
+            ]
+        },
         sass: {
             files: [
-                'admin/**/*scss'
+                'admin/**/*.scss'
             ],
             tasks: [
                 'css'

@@ -1,1 +1,26 @@
-.wp-recipe-ingredients .item-label,.wp-recipe-yield .item-label{display:none}.wp-recipe-yield .item-control{width:100%}.wp-recipe-ingredients .ingredients{display:table;width:100%}.wp-recipe-ingredients .ingredient{display:table-row;width:100%}.wp-recipe-ingredients .item-control{display:table-cell;width:98%}.wp-recipe-ingredients .item-action{display:table-cell;margin:0;vertical-align:top;width:2%}.wp-recipe-ingredients .add-ingredient{float:right}
+.wp-recipe-ingredients .item-label,
+.wp-recipe-yield .item-label {
+  display: none; }
+
+.wp-recipe-yield .item-control {
+  width: 100%; }
+
+.wp-recipe-ingredients .ingredients {
+  border-collapse: collapse;
+  display: table;
+  width: 100%; }
+.wp-recipe-ingredients .ingredient {
+  border-bottom: solid transparent 10px;
+  display: table-row;
+  margin-bottom: 10px;
+  width: 100%; }
+.wp-recipe-ingredients .item-control {
+  display: table-cell;
+  width: 98%; }
+.wp-recipe-ingredients .item-action {
+  display: table-cell;
+  margin: 0;
+  vertical-align: top;
+  width: 2%; }
+.wp-recipe-ingredients .add-ingredient {
+  float: right; }

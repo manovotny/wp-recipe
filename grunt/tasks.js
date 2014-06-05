@@ -19,18 +19,22 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('css', [
+        'clean:css',
         'scsslint',
         'sass',
         'cssmin'
     ]);
 
     grunt.registerTask('lib', [
-        'clean',
+        'clean:lib',
         'copy'
     ]);
 
     grunt.registerTask('js', [
-        'jslint'
+        'clean:js',
+        'jslint',
+        'concat',
+        'uglify'
     ]);
 
 };
