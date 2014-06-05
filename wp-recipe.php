@@ -54,5 +54,5 @@ require_once __DIR__ . '/inc/meta-boxes/directions.php';
 require_once __DIR__ . '/inc/meta-boxes/tips.php';
 require_once __DIR__ . '/inc/remove/default-editor.php';
 require_once __DIR__ . '/inc/remove/default-discussion-meta-box.php';
-require_once __DIR__ . '/inc/scripts/editor.php';
-require_once __DIR__ . '/inc/styles/editor.php';
+require_once __DIR__ . '/inc/scripts/recipe-editor.php';
+require_once __DIR__ . '/inc/styles/recipe-editor.php';
