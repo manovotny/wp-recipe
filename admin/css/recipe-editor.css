@@ -1,1 +1,1 @@
-.wp-recipe-yield .item-label{display:none}.wp-recipe-yield .item-input{width:100%}
+.wp-recipe-ingredients .item-label,.wp-recipe-yield .item-label{display:none}.wp-recipe-yield .item-input{width:100%}.wp-recipe-ingredients ul{display:table;width:100%}.wp-recipe-ingredients ul li{display:table-row;width:100%}.wp-recipe-ingredients ul li input{display:table-cell;width:98%}.wp-recipe-ingredients ul li .asdf{display:table-cell;margin:0;vertical-align:top;width:2%}.wp-recipe-ingredients .add-ingredient{float:right}

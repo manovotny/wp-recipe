@@ -25,6 +25,19 @@ function wp_recipe_ingredients_meta_box() {
 
     $html = '';
 
-    echo 'INGREDIENTS';
+    $html .= '<fieldset class="wp-recipe-ingredients">';
+        $html .= '<ul>';
+            $html .= '<li>';
+                $html .= '<label for="ingredient" class="item-label">Ingredient</label>';
+                $html .= '<input id="ingredient" class="item-input" name="ingredient" type="text" value="" />';
+                $html .= '<span class="asdf">';
+                    $html .= '<button class="remove-ingredient button">Remove</button>';
+                $html .= '</span>';
+            $html .= '</li>';
+        $html .= '</ul>';
+        $html .= '<button class="add-ingredient button">Add</button>';
+    $html .= '</fieldset>';
+
+    echo $html;
 
 }

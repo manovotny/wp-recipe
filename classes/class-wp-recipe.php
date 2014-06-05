@@ -15,14 +15,14 @@ class WP_Recipe {
     /**
      * Instance of the class.
      *
-     * @var WP_Image_Util
+     * @var WP_Recipe
      */
     protected static $instance = null;
 
     /**
      * Get accessor method for instance property.
      *
-     * @return WP_Image_Util Instance of the WP_Image_Util class.
+     * @return WP_Recipe Instance of the class.
      */
     public static function get_instance() {
 
