@@ -1,6 +1,13 @@
 .wp-recipe-ingredients,
 .wp-recipe-yield {
 
+    .list,
+    .list-item {
+
+        margin: 0;
+
+    }
+
     .item-label {
 
         display: none;
@@ -33,8 +40,19 @@
 
         border-bottom: solid transparent 10px;
         display: table-row;
-        margin-bottom: 10px;
         width: 100%;
+
+        &:first-child {
+
+            border-top: solid transparent 10px;
+
+        }
+
+        &:last-child {
+
+            border-bottom-width: 0;
+
+        }
 
     }
 
@@ -52,12 +70,6 @@
         margin: 0;
         vertical-align: top;
         width: 2%;
-
-    }
-
-    .add-ingredient {
-
-        float: right;
 
     }
 

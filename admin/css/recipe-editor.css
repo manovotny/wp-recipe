@@ -1,3 +1,8 @@
+.wp-recipe-ingredients .list,
+.wp-recipe-ingredients .list-item,
+.wp-recipe-yield .list,
+.wp-recipe-yield .list-item {
+  margin: 0; }
 .wp-recipe-ingredients .item-label,
 .wp-recipe-yield .item-label {
   display: none; }
@@ -12,8 +17,11 @@
 .wp-recipe-ingredients .ingredient {
   border-bottom: solid transparent 10px;
   display: table-row;
-  margin-bottom: 10px;
   width: 100%; }
+  .wp-recipe-ingredients .ingredient:first-child {
+    border-top: solid transparent 10px; }
+  .wp-recipe-ingredients .ingredient:last-child {
+    border-bottom-width: 0; }
 .wp-recipe-ingredients .item-control {
   display: table-cell;
   width: 98%; }
@@ -22,5 +30,3 @@
   margin: 0;
   vertical-align: top;
   width: 2%; }
-.wp-recipe-ingredients .add-ingredient {
-  float: right; }
