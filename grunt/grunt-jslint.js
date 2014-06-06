@@ -6,7 +6,9 @@ module.exports = function (grunt) {
         admin: {
             directives: {
                 browser: true,
+                nomen: true,
                 predef: [
+                    '_',
                     'jQuery'
                 ]
             },
