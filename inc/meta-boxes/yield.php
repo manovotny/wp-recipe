@@ -24,7 +24,7 @@ function wp_recipe_add_yield_meta_box() {
 }
 
 /**
- * Displays ingredients meta box.
+ * Displays yield meta box.
  */
 function wp_recipe_display_yield_meta_box() {
 
