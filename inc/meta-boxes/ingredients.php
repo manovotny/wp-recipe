@@ -8,14 +8,14 @@ add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_ingredients_meta_box' );
 add_action( 'save_post', 'wp_recipe_save_ingredients_meta_box' );
 
 /**
- * Registers ingredients meta box.
+ * Adds ingredients meta box.
  */
 function wp_recipe_add_ingredients_meta_box() {
 
     add_meta_box(
         'wp-recipe-ingredients',
         'Ingredients',
-        'wp_recipe_ingredients_meta_box',
+        'wp_recipe_display_ingredients_meta_box',
         'recipe',
         'normal',
         'high'
@@ -24,9 +24,9 @@ function wp_recipe_add_ingredients_meta_box() {
 }
 
 /**
- * Renders ingredients meta box.
+ * Displays ingredients meta box.
  */
-function wp_recipe_ingredients_meta_box() {
+function wp_recipe_display_ingredients_meta_box() {
 
     global $post;
 
@@ -65,6 +65,12 @@ function wp_recipe_ingredients_meta_box() {
  * @param string $post_id Post id.
  */
 function wp_recipe_save_ingredients_meta_box( $post_id ) {
+
+    if ( 'recipe' !== $_POST[ 'post_type' ] ) {
+
+        return;
+
+    }
 
     $wp_recipe = WP_Recipe::get_instance();
 
