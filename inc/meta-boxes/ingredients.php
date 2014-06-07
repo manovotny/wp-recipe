@@ -40,15 +40,19 @@ function wp_recipe_display_ingredients_meta_box() {
         $html .= '<button class="add-ingredient button">Add</button>';
         $html .= '<ul class="list ingredients">';
 
-            foreach ( $ingredients as $ingredient ) {
+            if ( ! empty( $ingredients ) ) {
 
-                $html .= '<li class="ingredient">';
-                    $html .= '<label class="item-label">Ingredient</label>';
-                    $html .= '<input class="item-control" name="wp-recipe-ingredient[]" type="text" value="' . $ingredient . '" />';
-                    $html .= '<span class="item-action">';
-                        $html .= '<button class="remove-ingredient button">Remove</button>';
-                    $html .= '</span>';
-                $html .= '</li>';
+                foreach ( $ingredients as $ingredient ) {
+
+                    $html .= '<li class="ingredient">';
+                        $html .= '<label class="item-label">Ingredient</label>';
+                        $html .= '<input class="item-control" name="wp-recipe-ingredient[]" type="text" value="' . $ingredient . '" />';
+                        $html .= '<span class="item-action">';
+                            $html .= '<button class="remove-ingredient button">Remove</button>';
+                        $html .= '</span>';
+                    $html .= '</li>';
+
+                }
 
             }
 
@@ -66,7 +70,7 @@ function wp_recipe_display_ingredients_meta_box() {
  */
 function wp_recipe_save_ingredients_meta_box( $post_id ) {
 
-    if ( 'recipe' !== $_POST[ 'post_type' ] ) {
+    if ( empty( $_POST ) || 'recipe' !== $_POST[ 'post_type' ] ) {
 
         return;
 

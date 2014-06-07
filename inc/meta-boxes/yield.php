@@ -56,7 +56,7 @@ function wp_recipe_display_yield_meta_box() {
  */
 function wp_recipe_save_yield_meta_box( $post_id ) {
 
-    if ( 'recipe' !== $_POST[ 'post_type' ] ) {
+    if ( empty( $_POST ) || 'recipe' !== $_POST[ 'post_type' ] ) {
 
         return;
 
