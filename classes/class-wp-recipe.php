@@ -73,4 +73,35 @@ class WP_Recipe {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Determines whether or not the current user has the ability to save meta data
+     * associated with this post.
+     *
+     * @param int $post_id The id of the post being saved.
+     * @param string $action The feature's action.
+     * @param string $nonce The feature's nonce.
+     * @return boolean Whether the user can save or not.
+     */
+    public function can_user_save( $post_id, $action, $nonce ) {
+
+        $is_autosave = wp_is_post_autosave( $post_id );
+        $is_revision = wp_is_post_revision( $post_id );
+        $is_valid_nonce = ( isset( $_POST[ $nonce ] ) && wp_verify_nonce( $_POST[ $nonce ], $action ) );
+
+        // Return true if the user is able to save; otherwise, false.
+        return ! ( $is_autosave || $is_revision ) && $is_valid_nonce;
+
+    } // end user_can_save
+
 }

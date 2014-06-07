@@ -4,10 +4,12 @@
  * @author Michael Novotny <manovotny@gmail.com>
  */
 
-// Register meta box.
 add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_ingredients_meta_box' );
-//add_action( 'save_post', array( $this, 'save_pinterest_meta_box' ) );
+add_action( 'save_post', 'wp_recipe_save_ingredients_meta_box' );
 
+/**
+ * Registers ingredients meta box.
+ */
 function wp_recipe_add_ingredients_meta_box() {
 
     add_meta_box(
@@ -21,23 +23,59 @@ function wp_recipe_add_ingredients_meta_box() {
 
 }
 
+/**
+ * Renders ingredients meta box.
+ */
 function wp_recipe_ingredients_meta_box() {
+
+    global $post;
+
+    wp_nonce_field( 'wp-recipe-ingredients', 'wp-recipe-ingredients-nonce' );
+
+    $ingredients = maybe_unserialize( get_post_meta( $post->ID, 'wp-recipe-ingredients', true ) );
 
     $html = '';
 
     $html .= '<fieldset class="wp-recipe-ingredients">';
         $html .= '<button class="add-ingredient button">Add</button>';
         $html .= '<ul class="list ingredients">';
-//            $html .= '<li class="ingredient">';
-//                $html .= '<label for="ingredient" class="item-label">Ingredient</label>';
-//                $html .= '<input id="ingredient" class="item-control" name="ingredient" type="text" value="" />';
-//                $html .= '<span class="item-action">';
-//                    $html .= '<button class="remove-ingredient button">Remove</button>';
-//                $html .= '</span>';
-//            $html .= '</li>';
+
+            foreach ( $ingredients as $ingredient ) {
+
+                $html .= '<li class="ingredient">';
+                    $html .= '<label class="item-label">Ingredient</label>';
+                    $html .= '<input class="item-control" name="wp-recipe-ingredient[]" type="text" value="' . $ingredient . '" />';
+                    $html .= '<span class="item-action">';
+                        $html .= '<button class="remove-ingredient button">Remove</button>';
+                    $html .= '</span>';
+                $html .= '</li>';
+
+            }
+
         $html .= '</ul>';
     $html .= '</fieldset>';
 
     echo $html;
+
+}
+
+/**
+ * Saves ingredients.
+ *
+ * @param string $post_id Post id.
+ */
+function wp_recipe_save_ingredients_meta_box( $post_id ) {
+
+    $wp_recipe = WP_Recipe::get_instance();
+
+    if ( $wp_recipe->can_user_save( $post_id, 'wp-recipe-ingredients', 'wp-recipe-ingredients-nonce' ) ) {
+
+        if ( ! empty( $_POST[ 'wp-recipe-ingredient' ] ) && 0 < count( $_POST[ 'wp-recipe-ingredient' ] ) ) {
+
+            update_post_meta( $post_id, 'wp-recipe-ingredients', $_POST[ 'wp-recipe-ingredient' ] );
+
+        }
+
+    }
 
 }
