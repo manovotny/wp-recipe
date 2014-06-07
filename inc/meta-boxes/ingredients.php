@@ -76,11 +76,7 @@ function wp_recipe_save_ingredients_meta_box( $post_id ) {
 
     if ( $wp_recipe->can_user_save( $post_id, 'wp-recipe-ingredients', 'wp-recipe-ingredients-nonce' ) ) {
 
-        if ( ! empty( $_POST[ 'wp-recipe-ingredient' ] ) && 0 < count( $_POST[ 'wp-recipe-ingredient' ] ) ) {
-
-            update_post_meta( $post_id, 'wp-recipe-ingredients', $_POST[ 'wp-recipe-ingredient' ] );
-
-        }
+        update_post_meta( $post_id, 'wp-recipe-ingredients', $_POST[ 'wp-recipe-ingredient' ] );
 
     }
 
