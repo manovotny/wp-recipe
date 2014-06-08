@@ -47,6 +47,7 @@ require_once __DIR__ . '/lib/wp-url-util/wp-url-util.php';
 require_once __DIR__ . '/classes/class-wp-recipe.php';
 require_once __DIR__ . '/classes/class-wp-recipe-description.php';
 require_once __DIR__ . '/classes/class-wp-recipe-directions.php';
+require_once __DIR__ . '/classes/class-wp-recipe-tips.php';
 
 /* Includes
 ---------------------------------------------------------------------------------- */
