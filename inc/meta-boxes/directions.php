@@ -24,7 +24,7 @@ function wp_recipe_add_directions_meta_box() {
 }
 
 /**
- * Displays tips meta box.
+ * Displays directions meta box.
  */
 function wp_recipe_display_directions_meta_box() {
 
