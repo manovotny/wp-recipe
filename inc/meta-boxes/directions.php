@@ -12,11 +12,14 @@ add_action( 'save_post', 'wp_recipe_save_directions_meta_box' );
  */
 function wp_recipe_add_directions_meta_box() {
 
+    $wp_recipe = WP_Recipe::get_instance();
+    $wp_recipe_directions = WP_Recipe_Directions::get_instance();
+
     add_meta_box(
-        'wp-recipe-directions',
+        $wp_recipe_directions->get_slug(),
         'Directions',
         'wp_recipe_display_directions_meta_box',
-        'recipe',
+        $wp_recipe->get_post_type(),
         'normal',
         'high'
     );
@@ -30,16 +33,18 @@ function wp_recipe_display_directions_meta_box() {
 
     global $post;
 
-    wp_nonce_field( 'wp-recipe-directions', 'wp-recipe-directions-nonce' );
+    $wp_recipe_directions = WP_Recipe_Directions::get_instance();
 
-    $directions = get_post_meta( $post->ID, 'wp-recipe-directions', true );
+    wp_nonce_field( $wp_recipe_directions->get_slug(), $wp_recipe_directions->get_nonce() );
+
+    $directions = get_post_meta( $post->ID, $wp_recipe_directions->get_slug(), true );
 
     $settings = array(
         'drag_drop_upload'  => true,
         'textarea_rows'     => 8
     );
 
-    wp_editor( $directions, 'wp_recipe_directions', $settings );
+    wp_editor( $directions, $wp_recipe_directions->get_id(), $settings );
 
 }
 
@@ -50,17 +55,19 @@ function wp_recipe_display_directions_meta_box() {
  */
 function wp_recipe_save_directions_meta_box( $post_id ) {
 
-    if ( empty( $_POST ) || 'recipe' !== $_POST[ 'post_type' ] ) {
+    $wp_recipe = WP_Recipe::get_instance();
+
+    if ( empty( $_POST ) || $wp_recipe->get_post_type() !== $_POST[ 'post_type' ] ) {
 
         return;
 
     }
 
-    $wp_recipe = WP_Recipe::get_instance();
+    $wp_recipe_directions = WP_Recipe_Directions::get_instance();
 
-    if ( $wp_recipe->can_user_save( $post_id, 'wp-recipe-directions', 'wp-recipe-directions-nonce' ) ) {
+    if ( $wp_recipe->can_user_save( $post_id, $wp_recipe_directions->get_slug(), $wp_recipe_directions->get_nonce() ) ) {
 
-        update_post_meta( $post_id, 'wp-recipe-directions', $_POST[ 'wp_recipe_directions' ] );
+        update_post_meta( $post_id, $wp_recipe_directions->get_slug(), $_POST[ $wp_recipe_directions->get_id() ] );
 
     }
 
