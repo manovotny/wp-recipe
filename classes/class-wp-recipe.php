@@ -36,6 +36,27 @@ class WP_Recipe {
 
     }
 
+    /* Post Type
+    ---------------------------------------------- */
+
+    /**
+     * Recipe post type.
+     *
+     * @var string
+     */
+    protected $post_type = 'recipe';
+
+    /**
+     * Getter method for post type.
+     *
+     * @return string Recipe post type.
+     */
+    public function get_post_type() {
+
+        return $this->post_type;
+
+    }
+
     /* Version
     ---------------------------------------------- */
 
