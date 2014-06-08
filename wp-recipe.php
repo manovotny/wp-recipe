@@ -48,6 +48,7 @@ require_once __DIR__ . '/classes/class-wp-recipe.php';
 require_once __DIR__ . '/classes/class-wp-recipe-description.php';
 require_once __DIR__ . '/classes/class-wp-recipe-directions.php';
 require_once __DIR__ . '/classes/class-wp-recipe-tips.php';
+require_once __DIR__ . '/classes/class-wp-recipe-yield.php';
 
 /* Includes
 ---------------------------------------------------------------------------------- */
