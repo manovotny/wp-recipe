@@ -13,13 +13,6 @@ class WP_Recipe_Ingredients {
     ---------------------------------------------- */
 
     /**
-     * Recipe ingredients id.
-     *
-     * @var string
-     */
-    protected $id = 'wp-recipe-ingredient';
-
-    /**
      * Getter method for id.
      *
      * @return string Recipe ingredients id.

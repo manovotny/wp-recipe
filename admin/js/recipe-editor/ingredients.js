@@ -5,7 +5,7 @@
     var ingredient =
         '<li class="ingredient">' +
         '<label class="item-label">Ingredient</label>' +
-        '<input class="item-control" name="wp-recipe-ingredient[]" type="text" value="" />' +
+        '<input class="item-control" name="wp-recipe-ingredients[]" type="text" value="" />' +
         '<span class="item-action">' +
         '<button class="remove-ingredient button">Remove</button>' +
         '</span>' +

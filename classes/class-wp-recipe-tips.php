@@ -13,20 +13,13 @@ class WP_Recipe_Tips {
     ---------------------------------------------- */
 
     /**
-     * Recipe tips id.
-     *
-     * @var string
-     */
-    protected $id = 'wp_recipe_tips';
-
-    /**
      * Getter method for id.
      *
      * @return string Recipe tips id.
      */
     public function get_id() {
 
-        return $this->id;
+        return str_replace( '-', '_', $this->slug );
 
     }
 
