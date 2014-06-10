@@ -97,7 +97,6 @@ class WP_Recipe_Ingredients {
 
         return array(
             'add'       => 'add-ingredient',
-            'id'        => $this->get_id(),
             'item'      => 'ingredient',
             'list'      => 'ingredients',
             'remove'    => 'remove-ingredient'
@@ -119,7 +118,7 @@ class WP_Recipe_Ingredients {
 
         $html .= '<li class="' . $classes[ 'item' ] . '">';
             $html .= '<label class="item-label">Ingredient</label>';
-            $html .= '<input class="item-control" name="' . $classes[ 'id' ] . '[]" type="text" value="' . $ingredient . '" />';
+            $html .= '<input class="item-control" name="' . $this->get_id() . '[]" type="text" value="' . $ingredient . '" />';
             $html .= '<span class="item-action">';
                 $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
             $html .= '</span>';

@@ -4,7 +4,7 @@
 
     var ingredient = {
             add: '.' + phpData.ingredient.classes.add,
-            id: phpData.ingredient.classes.id + '-',
+            id: phpData.ingredient.id + '-',
             item: '.' + phpData.ingredient.classes.item,
             list: '.' + phpData.ingredient.classes.list,
             markup: phpData.ingredient.markup,

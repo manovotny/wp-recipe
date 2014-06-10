@@ -29,6 +29,7 @@ function wp_recipe_editor_scripts() {
         $data = array(
             'ingredient' => array(
                 'classes' => $wp_recipe_ingredients->get_classes(),
+                'id' => $wp_recipe_ingredients->get_id(),
                 'markup' => $wp_recipe_ingredients->generate_markup()
             )
         );
