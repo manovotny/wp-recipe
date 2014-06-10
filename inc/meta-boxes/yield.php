@@ -61,9 +61,10 @@ function wp_recipe_display_yield_meta_box() {
  */
 function wp_recipe_save_yield_meta_box( $post_id ) {
 
+    $wp_post_type_util = WP_Post_Type_Util::get_instance();
     $wp_recipe = WP_Recipe::get_instance();
 
-    if ( empty( $_POST ) || $wp_recipe->get_post_type() !== $_POST[ 'post_type' ] ) {
+    if ( ! $wp_post_type_util->is_post_type_saving_post_meta( $wp_recipe->get_post_type() ) ) {
 
         return;
 
@@ -71,7 +72,7 @@ function wp_recipe_save_yield_meta_box( $post_id ) {
 
     $wp_recipe_yield = WP_Recipe_Yield::get_instance();
 
-    if ( $wp_recipe->can_user_save( $post_id, $wp_recipe_yield->get_slug(), $wp_recipe_yield->get_nonce() ) ) {
+    if ( $wp_post_type_util->can_save_post_meta( $post_id, $wp_recipe_yield->get_slug(), $wp_recipe_yield->get_nonce() ) ) {
 
         update_post_meta( $post_id, $wp_recipe_yield->get_slug(), $_POST[ $wp_recipe_yield->get_id() ] );
 

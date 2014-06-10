@@ -1,0 +1,22 @@
+{
+  "name": "wp-post-type-util",
+  "version": "0.3.0",
+  "description": "A lovely collection of post type utilities for WordPress.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manovotny/wp-post-type-util.git"
+  },
+  "keywords": [
+    "admin",
+    "php",
+    "utility",
+    "wordpress"
+  ],
+  "authors": [
+    {
+      "name": "Michael Novotny",
+      "email": "manovotny@gmail.com",
+      "homepage": "http://manovotny.com"
+    }
+  ]
+}

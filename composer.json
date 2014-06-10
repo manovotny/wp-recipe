@@ -12,6 +12,10 @@
     },
     {
       "type": "vcs",
+      "url": "https://github.com/manovotny/wp-post-type-util"
+    },
+    {
+      "type": "vcs",
       "url": "https://github.com/manovotny/wp-taxonomy-util"
     },
     {
@@ -19,8 +23,9 @@
       "url": "https://github.com/manovotny/wp-url-util"
     }
   ],
-  "require-dev": {
+  "require": {
       "manovotny/wp-file-util": "0.1.0",
+      "manovotny/wp-post-type-util": "0.3.0",
       "manovotny/wp-taxonomy-util": "0.2.2",
       "manovotny/wp-url-util": "0.1.0"
   }
