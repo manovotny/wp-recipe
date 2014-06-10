@@ -2,8 +2,17 @@
 
     'use strict';
 
+    var ingredient = {
+            add: '.' + phpData.ingredient.classes.add,
+            id: phpData.ingredient.classes.id + '-',
+            item: '.' + phpData.ingredient.classes.item,
+            list: '.' + phpData.ingredient.classes.list,
+            markup: phpData.ingredient.markup,
+            remove: '.' + phpData.ingredient.classes.remove
+        };
+
     function generateUniqueId($ingredient) {
-        var id = _.uniqueId('wp-recipe-ingredient-');
+        var id = _.uniqueId(ingredient.id);
 
         $ingredient.find('label').attr('for', id);
         $ingredient.find('input').attr('id', id);
@@ -12,34 +21,34 @@
     function removeIngredient(event) {
         event.preventDefault();
 
-        var $ingredient = $(event.currentTarget).parents('.ingredient').remove();
+        var $ingredient = $(event.currentTarget).parents(ingredient.item).remove();
 
-        $ingredient.find('.remove-ingredient').off('click', removeIngredient);
+        $ingredient.find(ingredient.remove).off('click', removeIngredient);
     }
 
     function addIngredient(event) {
         event.preventDefault();
 
-        var $ingredient = $(phpData.ingredientMarkup);
+        var $ingredient = $(ingredient.markup);
 
         generateUniqueId($ingredient);
 
-        $('.ingredients').append($ingredient);
+        $(ingredient.list).append($ingredient);
 
-        $ingredient.find('.remove-ingredient').on('click', removeIngredient);
+        $ingredient.find(ingredient.remove).on('click', removeIngredient);
     }
 
     function init() {
-        var $ingredients = $('.ingredients');
+        var $ingredients = $(ingredient.list);
 
-        _.each($ingredients, function (ingredient) {
+        $ingredients.each(function () {
 
-            generateUniqueId($(ingredient));
+            generateUniqueId($(this));
 
         });
 
-        $('.add-ingredient').on('click', addIngredient);
-        $('.remove-ingredient').on('click', removeIngredient);
+        $(ingredient.add).on('click', addIngredient);
+        $(ingredient.remove).on('click', removeIngredient);
     }
 
     init();

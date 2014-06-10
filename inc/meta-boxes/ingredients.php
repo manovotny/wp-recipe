@@ -38,12 +38,13 @@ function wp_recipe_display_ingredients_meta_box() {
     wp_nonce_field( $wp_recipe_ingredients->get_slug(), $wp_recipe_ingredients->get_nonce() );
 
     $ingredients = maybe_unserialize( get_post_meta( $post->ID, $wp_recipe_ingredients->get_slug(), true ) );
+    $ingredients_classes = $wp_recipe_ingredients->get_classes();
 
     $html = '';
 
     $html .= '<fieldset class="' . $wp_recipe_ingredients->get_slug() . '">';
-        $html .= '<button class="add-ingredient button">Add</button>';
-        $html .= '<ul class="list ingredients">';
+        $html .= '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add</button>';
+        $html .= '<ul class="list ' . $ingredients_classes[ 'list' ] . '">';
 
             if ( ! empty( $ingredients ) ) {
 

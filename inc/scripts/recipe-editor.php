@@ -24,8 +24,13 @@ function wp_recipe_editor_scripts() {
 
         wp_enqueue_script( $script_handle, $url, null, $wp_recipe->get_version(), true );
 
+        $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+
         $data = array(
-            'ingredientMarkup' => WP_Recipe_Ingredients::get_instance()->generate_markup()
+            'ingredient' => array(
+                'classes' => $wp_recipe_ingredients->get_classes(),
+                'markup' => $wp_recipe_ingredients->generate_markup()
+            )
         );
 
         wp_localize_script( $script_handle, 'phpData', $data );
