@@ -9,7 +9,8 @@ module.exports = function (grunt) {
                 nomen: true,
                 predef: [
                     '_',
-                    'jQuery'
+                    'jQuery',
+                    'phpData'
                 ]
             },
             src: [

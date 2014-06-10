@@ -20,7 +20,15 @@ function wp_recipe_editor_scripts() {
         $path = WP_File_Util::get_instance()->get_absolute_path( __DIR__, '../../admin/js/recipe-editor.js' );
         $url = WP_URL_Util::get_instance()->convert_path_to_url( $path );
 
-        wp_enqueue_script( 'wp-recipe-editor-script', $url, null, $wp_recipe->get_version(), true );
+        $script_handle = 'wp-recipe-editor-script';
+
+        wp_enqueue_script( $script_handle, $url, null, $wp_recipe->get_version(), true );
+
+        $data = array(
+            'ingredientsId' => WP_Recipe_Ingredients::get_instance()->get_id()
+        );
+
+        wp_localize_script( $script_handle, 'phpData', $data );
 
     }
 
