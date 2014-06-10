@@ -2,15 +2,6 @@
 
     'use strict';
 
-    var ingredient =
-        '<li class="ingredient">' +
-        '<label class="item-label">Ingredient</label>' +
-        '<input class="item-control" name="' + phpData.ingredientsId + '[]" type="text" value="" />' +
-        '<span class="item-action">' +
-        '<button class="remove-ingredient button">Remove</button>' +
-        '</span>' +
-        '</li>';
-
     function generateUniqueId($ingredient) {
         var id = _.uniqueId('wp-recipe-ingredient-');
 
@@ -29,7 +20,7 @@
     function addIngredient(event) {
         event.preventDefault();
 
-        var $ingredient = $(ingredient);
+        var $ingredient = $(phpData.ingredientMarkup);
 
         generateUniqueId($ingredient);
 

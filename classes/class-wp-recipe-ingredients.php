@@ -85,4 +85,29 @@ class WP_Recipe_Ingredients {
 
     }
 
+    /* Methods
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Generates markup for a given ingredient.
+     *
+     * @param string $ingredient Optional. Ingredient value to added to markup.
+     * @return string Recipe ingredient markup.
+     */
+    public function generate_markup( $ingredient = '' ) {
+
+        $html = '';
+
+        $html .= '<li class="ingredient">';
+            $html .= '<label class="item-label">Ingredient</label>';
+            $html .= '<input class="item-control" name="' . $this->get_id() . '[]" type="text" value="' . $ingredient . '" />';
+            $html .= '<span class="item-action">';
+                $html .= '<button class="remove-ingredient button">Remove</button>';
+            $html .= '</span>';
+        $html .= '</li>';
+
+        return $html;
+
+    }
+
 }

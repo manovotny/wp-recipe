@@ -25,7 +25,7 @@ function wp_recipe_editor_scripts() {
         wp_enqueue_script( $script_handle, $url, null, $wp_recipe->get_version(), true );
 
         $data = array(
-            'ingredientsId' => WP_Recipe_Ingredients::get_instance()->get_id()
+            'ingredientMarkup' => WP_Recipe_Ingredients::get_instance()->generate_markup()
         );
 
         wp_localize_script( $script_handle, 'phpData', $data );

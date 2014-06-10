@@ -49,13 +49,7 @@ function wp_recipe_display_ingredients_meta_box() {
 
                 foreach ( $ingredients as $ingredient ) {
 
-                    $html .= '<li class="ingredient">';
-                        $html .= '<label class="item-label">Ingredient</label>';
-                        $html .= '<input class="item-control" name="' . $wp_recipe_ingredients->get_id() . '[]" type="text" value="' . $ingredient . '" />';
-                        $html .= '<span class="item-action">';
-                            $html .= '<button class="remove-ingredient button">Remove</button>';
-                        $html .= '</span>';
-                    $html .= '</li>';
+                    $html .= $wp_recipe_ingredients->generate_markup( $ingredient );
 
                 }
 
