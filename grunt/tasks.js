@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'lib',
+        'packages',
         'css',
         'js',
         'bump'
@@ -25,16 +25,17 @@ module.exports = function (grunt) {
         'cssmin'
     ]);
 
-    grunt.registerTask('lib', [
-        'clean:lib',
-        'copy'
-    ]);
-
     grunt.registerTask('js', [
         'clean:js',
         'jslint',
         'concat',
         'uglify'
     ]);
+
+    grunt.registerTask('packages', [
+        'clean:packages',
+        'copy'
+    ]);
+
 
 };

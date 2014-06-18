@@ -6,12 +6,12 @@ module.exports = function (grunt) {
         css: [
             'admin/css'
         ],
+        packages: [
+            'composer.lock',
+            'vendor/**/.git*'
+        ],
         js: [
             'admin/js/*.js'
-        ],
-        lib: [
-            'composer.lock',
-            'lib'
         ]
     });
 

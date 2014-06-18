@@ -34,13 +34,10 @@ if ( ! defined( 'WPINC' ) ) {
 
 wp_enqueue_script( 'underscore' );
 
-/* Libraries
+/* Vendor
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/lib/wp-file-util/wp-file-util.php';
-require_once __DIR__ . '/lib/wp-post-type-util/wp-post-type-util.php';
-require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';
-require_once __DIR__ . '/lib/wp-url-util/wp-url-util.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 /* Classes
 ---------------------------------------------------------------------------------- */
