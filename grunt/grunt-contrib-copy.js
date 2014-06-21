@@ -14,6 +14,19 @@ module.exports = function (grunt) {
                     dest: '.'
                 }
             ]
+        },
+        composer: {
+            files: [
+                {
+                    expand: true,
+                    cwd: 'vendor/manovotny',
+                    src: [
+                        '**/*',
+                        '!vendor/**/.git*'
+                    ],
+                    dest: 'lib'
+                }
+            ]
         }
     });
 

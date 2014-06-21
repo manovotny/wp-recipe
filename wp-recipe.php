@@ -37,8 +37,11 @@ wp_enqueue_script( 'underscore' );
 /* Vendor
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/vendor/manovotny/wp-array-util/wp-array-util.php';
+require_once __DIR__ . '/lib/wp-array-util/wp-array-util.php';
+require_once __DIR__ . '/lib/wp-file-util/wp-file-util.php';
+require_once __DIR__ . '/lib/wp-post-type-util/wp-post-type-util.php';
+require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';
+require_once __DIR__ . '/lib/wp-url-util/wp-url-util.php';
 
 /* Classes
 ---------------------------------------------------------------------------------- */

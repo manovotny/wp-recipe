@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         ],
         packages: [
             'composer.lock',
-            'vendor/**/.git*'
+            'lib'
         ],
         js: [
             'admin/js/*.js'
