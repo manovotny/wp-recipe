@@ -1,0 +1,21 @@
+{
+  "name": "wp-array-util",
+  "version": "0.1.0",
+  "description": "A clever array utility for WordPress development.",
+  "author": "Michael Novotny <http://manovotny.com/>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manovotny/wp-array-util/"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-jslint": "~1.1.12",
+    "grunt-phplint": "0.0.5",
+    "grunt-phpunit": "~0.3.3",
+    "grunt-text-replace": "~0.3.12",
+    "load-grunt-tasks": "~0.5.0",
+    "time-grunt": "~0.3.2"
+  }
+}

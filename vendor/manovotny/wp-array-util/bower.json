@@ -1,0 +1,22 @@
+{
+  "name": "wp-array-util",
+  "version": "0.1.0",
+  "description": "A clever array utility for WordPress development.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manovotny/wp-array-util.git"
+  },
+  "keywords": [
+    "array",
+    "php",
+    "utility",
+    "wordpress"
+  ],
+  "authors": [
+    {
+      "name": "Michael Novotny",
+      "email": "manovotny@gmail.com",
+      "homepage": "http://manovotny.com"
+    }
+  ]
+}

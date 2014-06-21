@@ -38,6 +38,7 @@ wp_enqueue_script( 'underscore' );
 ---------------------------------------------------------------------------------- */
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/manovotny/wp-array-util/wp-array-util.php';
 
 /* Classes
 ---------------------------------------------------------------------------------- */
@@ -48,6 +49,11 @@ require_once __DIR__ . '/classes/class-wp-recipe-directions.php';
 require_once __DIR__ . '/classes/class-wp-recipe-ingredients.php';
 require_once __DIR__ . '/classes/class-wp-recipe-tips.php';
 require_once __DIR__ . '/classes/class-wp-recipe-yield.php';
+
+/* Admin
+---------------------------------------------------------------------------------- */
+
+require_once __DIR__ . '/admin/inc/post-type-columns.php';
 
 /* Includes
 ---------------------------------------------------------------------------------- */

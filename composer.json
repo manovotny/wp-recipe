@@ -8,6 +8,10 @@
   "repositories": [
     {
       "type": "vcs",
+      "url": "https://github.com/manovotny/wp-array-util"
+    },
+    {
+      "type": "vcs",
       "url": "https://github.com/manovotny/wp-file-util"
     },
     {
@@ -24,6 +28,7 @@
     }
   ],
   "require": {
+      "manovotny/wp-array-util": "0.1.0",
       "manovotny/wp-file-util": "0.1.0",
       "manovotny/wp-post-type-util": "0.3.0",
       "manovotny/wp-taxonomy-util": "0.2.2",
