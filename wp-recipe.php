@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 wp_enqueue_script( 'underscore' );
 
-/* Vendor
+/* Library
 ---------------------------------------------------------------------------------- */
 
 require_once __DIR__ . '/lib/wp-array-util/wp-array-util.php';
