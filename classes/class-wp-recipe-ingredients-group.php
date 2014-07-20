@@ -49,7 +49,8 @@ class WP_Recipe_Ingredients_Group {
 
         $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
 
-        $classes = $this->get_classes();
+        $group_classes = $this->get_classes();
+        $ingredient_classes = $wp_recipe_ingredients->get_classes();
 
         $html = '';
 
@@ -64,7 +65,8 @@ class WP_Recipe_Ingredients_Group {
                         $html .= '<label class="item-label">Ingredient Group</label>';
                         $html .= '<input class="item-control" type="text" value="' . $ingredient . '" />';
                         $html .= '<span class="item-action">';
-                            $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
+                            $html .= '<button class="' . $group_classes[ 'remove' ] . ' button">Remove</button>';
+                            $html .= '<button class="' . $ingredient_classes[ 'add' ] . ' button">Add</button>';
                         $html .= '</span>';
                         $html .= '<ul class="list">';
 

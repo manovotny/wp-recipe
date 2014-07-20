@@ -27,6 +27,7 @@
 .wp-recipe-ingredients .ingredients {
   width: 100%; }
 .wp-recipe-ingredients .ingredient-group {
+  border: 2px solid #f00;
   width: 100%; }
 .wp-recipe-ingredients .ingredient {
   width: 100%; }

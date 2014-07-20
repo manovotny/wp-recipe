@@ -114,11 +114,19 @@
         event.preventDefault();
 
         var $ingredient = $(ingredient.markup),
-            $ingredientInput = $ingredient.find('input');
+            $ingredientInput = $ingredient.find('input'),
+            $parentListItem = $(event.currentTarget).parents('li'),
+            $list;
 
         generateUniqueId($ingredientInput);
 
-        $(ingredient.list).append($ingredient);
+        if ($parentListItem.hasClass('ingredient-group')) {
+            $list = $parentListItem.find('ul');
+        } else {
+            $list = $(ingredient.list);
+        }
+
+        $list.append($ingredient);
 
         $ingredient.find(ingredient.remove).on('click', removeIngredient);
 
