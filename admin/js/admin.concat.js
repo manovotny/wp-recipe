@@ -114,12 +114,6 @@
         generateForm();
     }
 
-    function removeGroup(event) {
-        event.preventDefault();
-
-        generateForm();
-    }
-
     function addGroup(event) {
         event.preventDefault();
 
@@ -132,6 +126,23 @@
 
         $ingredientGroup.find(group.remove).on('click', removeGroup);
         $ingredientGroup.find(ingredient.add).on('click', addIngredient);
+
+        generateForm();
+    }
+
+    function removeGroup(event) {
+        event.preventDefault();
+
+        var $group = $(event.currentTarget).parents('li');
+
+        $group.find(ingredient.item).each(function () {
+            $(this).find(ingredient.remove).off('click', removeIngredient);
+        });
+
+        $group.find(group.add).off('click', addGroup);
+        $group.find(group.remove).off('click', removeGroup);
+
+        $group.remove();
 
         generateForm();
     }

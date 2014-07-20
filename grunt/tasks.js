@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', [
         'clean:js',
-        'jslint',
+//        'jslint',
         'concat',
         'uglify'
     ]);
