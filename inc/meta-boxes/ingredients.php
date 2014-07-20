@@ -76,6 +76,45 @@ function wp_recipe_display_ingredients_meta_box() {
 
     echo $html;
 
+//    echo '
+//        <ul class="ingredients">
+//            <li class="ingredient">
+//                <input name="wp-recipe-ingredients[0]" value="Ingredient 1" />
+//            </li>
+//            <li class="ingredient">
+//                <input name="wp-recipe-ingredients[1]" value="Ingredient 2" />
+//            </li>
+//            <li class="ingredient">
+//                <input name="wp-recipe-ingredients[2]" value="Ingredient 3" />
+//            </li>
+//            <li class="ingredient-group">
+//                <input name="wp-recipe-ingredients[3][group]" value="Ingredient Group 1" />
+//                <ul>
+//                    <li class="ingredient">
+//                        <input name="wp-recipe-ingredients[3][]" value="Ingredient 4" />
+//                    </li>
+//                    <li class="ingredient">
+//                        <input name="wp-recipe-ingredients[3][]" value="Ingredient 5" />
+//                    </li>
+//                </ul>
+//            </li>
+//            <li class="ingredient">
+//                <input name="wp-recipe-ingredients[4]" value="Ingredient 6" />
+//            </li>
+//            <li class="ingredient-group">
+//                <input name="wp-recipe-ingredients[5][group]" value="Ingredient Group 2" />
+//                <ul>
+//                    <li class="ingredient">
+//                        <input name="wp-recipe-ingredients[5][]" value="Ingredient 7" />
+//                    </li>
+//                    <li class="ingredient">
+//                        <input name="wp-recipe-ingredients[5][]" value="Ingredient 8" />
+//                    </li>
+//                </ul>
+//            </li>
+//        </ul>
+//        ';
+
 }
 
 /**

@@ -4,7 +4,9 @@
 
     var group = {
             add: '.' + phpData.ingredient.group.classes.add,
-            markup: '.' + phpData.ingredient.group.markup,
+            item: phpData.ingredient.group.classes.item,
+            keys: phpData.ingredient.group.keys,
+            markup: phpData.ingredient.group.markup,
             remove: '.' + phpData.ingredient.group.classes.remove
         },
         ingredient = {
@@ -41,9 +43,9 @@
             generateUniqueId($ingredientGroup);
         }
 
-        generateInputName($ingredientGroup, index, '[group]');
+        generateInputName($ingredientGroup, index, '[' + group.keys.group + ']');
 
-        $item.find('.ingredient').each(function () {
+        $item.find(ingredient.item).each(function () {
             $ingredient = $(this).find('> input');
 
             if (generateIds) {
@@ -65,39 +67,18 @@
     }
 
     function generateForm(generateIds) {
-        var $ingredientList = $('.ingredients > li'),
+        var $ingredientList = $(ingredient.list + ' > li'),
             $item;
 
         $ingredientList.each(function (index) {
             $item = $(this);
 
-            if ($item.hasClass('ingredient-group')) {
+            if ($item.hasClass(group.item)) {
                 generateIngredientGroup($item, index, generateIds);
             } else {
                 generateIngredient($item, index, generateIds);
             }
         });
-    }
-
-    function removeGroup(event) {
-        event.preventDefault();
-
-        generateForm();
-    }
-
-    function addGroup(event) {
-        event.preventDefault();
-
-        var $ingredientGroup = $(group.markup),
-            $ingredientGroupInput = $ingredientGroup.find('input');
-
-        generateUniqueId($ingredientGroupInput);
-
-        $(ingredient.list).append($ingredientGroup);
-
-        $ingredientGroup.find(group.remove).on('click', removeGroup);
-
-        generateForm();
     }
 
     function removeIngredient(event) {
@@ -120,7 +101,7 @@
 
         generateUniqueId($ingredientInput);
 
-        if ($parentListItem.hasClass('ingredient-group')) {
+        if ($parentListItem.hasClass(group.item)) {
             $list = $parentListItem.find('ul');
         } else {
             $list = $(ingredient.list);
@@ -129,6 +110,28 @@
         $list.append($ingredient);
 
         $ingredient.find(ingredient.remove).on('click', removeIngredient);
+
+        generateForm();
+    }
+
+    function removeGroup(event) {
+        event.preventDefault();
+
+        generateForm();
+    }
+
+    function addGroup(event) {
+        event.preventDefault();
+
+        var $ingredientGroup = $(group.markup),
+            $ingredientGroupInput = $ingredientGroup.find('input');
+
+        generateUniqueId($ingredientGroupInput);
+
+        $(ingredient.list).append($ingredientGroup);
+
+        $ingredientGroup.find(group.remove).on('click', removeGroup);
+        $ingredientGroup.find(ingredient.add).on('click', addIngredient);
 
         generateForm();
     }

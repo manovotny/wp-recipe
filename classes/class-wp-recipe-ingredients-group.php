@@ -56,7 +56,7 @@ class WP_Recipe_Ingredients_Group {
 
         if ( ! empty( $ingredient_group ) ) {
 
-            $html .= '<li class="' . 'ingredient-group' . '">';
+            $html .= '<li class="' . $group_classes[ 'item' ] . '">';
 
                 foreach ( $ingredient_group as $key => $ingredient ) {
 
@@ -90,13 +90,27 @@ class WP_Recipe_Ingredients_Group {
     /**
      * Gets recipe ingredients group classes.
      *
-     * @return array List of recipe ingredients classes.
+     * @return array List of recipe ingredients group classes.
      */
     public function get_classes() {
 
         return array(
             'add'       => 'add-group',
+            'item'       => 'ingredient-group',
             'remove'    => 'remove-group'
+        );
+
+    }
+
+    /**
+     * Gets recipe ingredients group keys.
+     *
+     * @return array List of recipe ingredients group keys.
+     */
+    public function get_keys() {
+
+        return array(
+            'group' => 'group'
         );
 
     }
