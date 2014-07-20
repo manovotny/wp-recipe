@@ -8,9 +8,11 @@ module.exports = function (grunt) {
         },
         admin: {
             src: [
-                'admin/js/recipe-editor/ingredients.js'
+                '!admin/js/**/*.concat.js',
+                '!admin/js/**/*.min.js',
+                'admin/js/**/*.js'
             ],
-            dest: 'admin/js/recipe-editor.js'
+            dest: 'admin/js/admin.concat.js'
         }
     });
 

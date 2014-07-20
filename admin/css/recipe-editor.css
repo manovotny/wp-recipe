@@ -1,3 +1,9 @@
+.wp-recipe-ingredients .actions:before, .wp-recipe-ingredients .ingredient:before, .wp-recipe-ingredients .actions:after, .wp-recipe-ingredients .ingredient:after {
+  content: ' ';
+  display: table; }
+.wp-recipe-ingredients .actions:after, .wp-recipe-ingredients .ingredient:after {
+  clear: both; }
+
 .wp-recipe-ingredients .list,
 .wp-recipe-ingredients .list-item,
 .wp-recipe-yield .list,
@@ -10,23 +16,22 @@
 .wp-recipe-yield .item-control {
   width: 100%; }
 
+.wp-recipe-ingredients .actions {
+  background-color: #f5f5f5;
+  border: 1px solid #dedede;
+  padding: 5px; }
+.wp-recipe-ingredients .add-group {
+  float: right; }
+.wp-recipe-ingredients .editor {
+  padding-top: 5px; }
 .wp-recipe-ingredients .ingredients {
-  border-collapse: collapse;
-  display: table;
+  width: 100%; }
+.wp-recipe-ingredients .ingredient-group {
   width: 100%; }
 .wp-recipe-ingredients .ingredient {
-  border-bottom: solid transparent 10px;
-  display: table-row;
   width: 100%; }
-  .wp-recipe-ingredients .ingredient:first-child {
-    border-top: solid transparent 10px; }
-  .wp-recipe-ingredients .ingredient:last-child {
-    border-bottom-width: 0; }
 .wp-recipe-ingredients .item-control {
-  display: table-cell;
-  width: 98%; }
+  float: left;
+  width: calc(100% - 80px); }
 .wp-recipe-ingredients .item-action {
-  display: table-cell;
-  margin: 0;
-  vertical-align: top;
-  width: 2%; }
+  float: right; }

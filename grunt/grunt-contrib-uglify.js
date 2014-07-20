@@ -5,8 +5,8 @@ module.exports = function (grunt) {
     grunt.config('uglify', {
         admin: {
             files: {
-                'admin/js/recipe-editor.min.js': [
-                    'admin/js/recipe-editor.js'
+                'admin/js/admin.min.js': [
+                    'admin/js/**/*.concat.js'
                 ]
             }
         }

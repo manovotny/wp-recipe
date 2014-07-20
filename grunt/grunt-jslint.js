@@ -14,6 +14,8 @@ module.exports = function (grunt) {
                 ]
             },
             src: [
+                '!admin/js/**/*.concat.js',
+                '!admin/js/**/*.min.js',
                 'admin/js/**/*.js'
             ]
         },

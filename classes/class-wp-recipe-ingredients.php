@@ -89,22 +89,6 @@ class WP_Recipe_Ingredients {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Gets recipe ingredients classes.
-     *
-     * @return array List of recipe ingredients classes.
-     */
-    public function get_classes() {
-
-        return array(
-            'add'       => 'add-ingredient',
-            'item'      => 'ingredient',
-            'list'      => 'ingredients',
-            'remove'    => 'remove-ingredient'
-        );
-
-    }
-
-    /**
      * Generates markup for a given ingredient.
      *
      * @param string $ingredient Optional. Ingredient value to added to markup.
@@ -118,13 +102,29 @@ class WP_Recipe_Ingredients {
 
         $html .= '<li class="' . $classes[ 'item' ] . '">';
             $html .= '<label class="item-label">Ingredient</label>';
-            $html .= '<input class="item-control" name="' . $this->get_id() . '[]" type="text" value="' . $ingredient . '" />';
+            $html .= '<input class="item-control" type="text" value="' . $ingredient . '" />';
             $html .= '<span class="item-action">';
                 $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
             $html .= '</span>';
         $html .= '</li>';
 
         return $html;
+
+    }
+
+    /**
+     * Gets recipe ingredients classes.
+     *
+     * @return array List of recipe ingredients classes.
+     */
+    public function get_classes() {
+
+        return array(
+            'add'       => 'add-ingredient',
+            'item'      => 'ingredient',
+            'list'      => 'ingredients',
+            'remove'    => 'remove-ingredient'
+        );
 
     }
 

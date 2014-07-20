@@ -34,29 +34,44 @@ function wp_recipe_display_ingredients_meta_box() {
     global $post;
 
     $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+    $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
 
     wp_nonce_field( $wp_recipe_ingredients->get_slug(), $wp_recipe_ingredients->get_nonce() );
 
     $ingredients = maybe_unserialize( get_post_meta( $post->ID, $wp_recipe_ingredients->get_slug(), true ) );
     $ingredients_classes = $wp_recipe_ingredients->get_classes();
+    $ingredients_group_classes = $wp_recipe_ingredients_group->get_classes();
 
     $html = '';
 
     $html .= '<fieldset class="' . $wp_recipe_ingredients->get_slug() . '">';
-        $html .= '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add</button>';
-        $html .= '<ul class="list ' . $ingredients_classes[ 'list' ] . '">';
+        $html .= '<div class="actions">';
+            $html .= '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add Ingredient</button>';
+            $html .= '<button class="' . $ingredients_group_classes[ 'add' ] . ' button">Add Group</button>';
+        $html .= '</div>';
+        $html .= '<div class="editor">';
+            $html .= '<ul class="list ' . $ingredients_classes[ 'list' ] . '">';
 
-            if ( ! empty( $ingredients ) ) {
+                if ( ! empty( $ingredients ) ) {
 
-                foreach ( $ingredients as $ingredient ) {
+                    foreach ( $ingredients as $item ) {
 
-                    $html .= $wp_recipe_ingredients->generate_markup( $ingredient );
+                        if ( is_array( $item ) ) {
+
+                            $html .= $wp_recipe_ingredients_group->generate_markup( $item );
+
+                        } else {
+
+                            $html .= $wp_recipe_ingredients->generate_markup( $item );
+
+                        }
+
+                    }
 
                 }
 
-            }
-
-        $html .= '</ul>';
+            $html .= '</ul>';
+        $html .= '</div>';
     $html .= '</fieldset>';
 
     echo $html;

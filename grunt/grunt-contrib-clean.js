@@ -11,7 +11,8 @@ module.exports = function (grunt) {
             'lib'
         ],
         js: [
-            'admin/js/*.js'
+            'admin/js/**/*.concat.js',
+            'admin/js/**/*.min.js'
         ]
     });
 
