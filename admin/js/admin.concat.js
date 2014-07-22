@@ -1,4 +1,38 @@
-(function ($) {
+(function (global) {
+    'use strict';
+
+    function namespace(ns, api) {
+        var object = this,
+            levels = ns.split('.'),
+            levelCount = levels.length,
+            i;
+
+        for (i = 0; i < levelCount; i += 1) {
+            if (object[levels[i]] === undefined) {
+                if (i === levelCount - 1) {
+                    object[levels[i]] = api || {};
+                } else {
+                    object[levels[i]] = {};
+                }
+            }
+
+            object = object[levels[i]];
+        }
+
+        if (api.init) {
+            api.init();
+        }
+    }
+
+    if (undefined === global.wp) {
+        global.wp = {
+            namespace: namespace
+        };
+    } else if (undefined === global.wp['namespace']) {
+        global.wp['namespace'] = namespace;
+    }
+
+}(this));;(function ($, wp) {
 
     'use strict';
 
@@ -18,15 +52,26 @@
             remove: '.' + phpData.ingredient.classes.remove
         };
 
+    wp.namespace('wprecipe.admin.ingredients.data', {
+        group: group,
+        ingredient: ingredient
+    });
+
+}(jQuery, wp));;(function ($, wp) {
+
+    'use strict';
+
+    var data = wp.wprecipe.admin.ingredients.data;
+
     function generateUniqueId($ingredient) {
-        var id = _.uniqueId(ingredient.id + '-');
+        var id = _.uniqueId(data.ingredient.id + '-');
 
         $ingredient.prev().attr('for', id);
         $ingredient.attr('id', id);
     }
 
     function generateInputName($ingredient, index, suffix) {
-        var name = ingredient.id + '[' + index + ']';
+        var name = data.ingredient.id + '[' + index + ']';
 
         if (suffix) {
             name += suffix;
@@ -43,9 +88,9 @@
             generateUniqueId($ingredientGroup);
         }
 
-        generateInputName($ingredientGroup, index, '[' + group.keys.group + ']');
+        generateInputName($ingredientGroup, index, '[' + data.group.keys.group + ']');
 
-        $item.find(ingredient.item).each(function () {
+        $item.find(data.ingredient.item).each(function () {
             $ingredient = $(this).find('> input');
 
             if (generateIds) {
@@ -67,13 +112,13 @@
     }
 
     function generateForm(generateIds) {
-        var $ingredientList = $(ingredient.list + ' > li'),
+        var $ingredientList = $(data.ingredient.list + ' > li'),
             $item;
 
         $ingredientList.each(function (index) {
             $item = $(this);
 
-            if ($item.hasClass(group.item)) {
+            if ($item.hasClass(data.group.item)) {
                 generateIngredientGroup($item, index, generateIds);
             } else {
                 generateIngredient($item, index, generateIds);
@@ -81,82 +126,116 @@
         });
     }
 
-    function removeIngredient(event) {
-        event.preventDefault();
-
-        var $ingredient = $(event.currentTarget).parents(ingredient.item).remove();
-
-        $ingredient.find(ingredient.remove).off('click', removeIngredient);
-
-        generateForm();
+    function init() {
+        generateForm(true);
     }
 
-    function addIngredient(event) {
+    wp.namespace('wprecipe.admin.ingredients.common', {
+        generateForm: generateForm,
+        generateInputName: generateInputName,
+        generateUniqueId: generateUniqueId,
+        init: init
+    });
+
+}(jQuery, wp));;(function ($, wp) {
+
+    'use strict';
+
+    var common = wp.wprecipe.admin.ingredients.common,
+        data = wp.wprecipe.admin.ingredients.data;
+
+    function remove(event) {
         event.preventDefault();
 
-        var $ingredient = $(ingredient.markup),
+        var $ingredient = $(event.currentTarget).parents(data.ingredient.item).remove();
+
+        $ingredient.find(data.ingredient.remove).off('click', remove);
+
+        common.generateForm();
+    }
+
+    function add(event) {
+        event.preventDefault();
+
+        var $ingredient = $(data.ingredient.markup),
             $ingredientInput = $ingredient.find('input'),
             $parentListItem = $(event.currentTarget).parents('li'),
             $list;
 
-        generateUniqueId($ingredientInput);
+        common.generateUniqueId($ingredientInput);
 
-        if ($parentListItem.hasClass(group.item)) {
+        if ($parentListItem.hasClass(data.group.item)) {
             $list = $parentListItem.find('ul');
         } else {
-            $list = $(ingredient.list);
+            $list = $(data.ingredient.list);
         }
 
         $list.append($ingredient);
 
-        $ingredient.find(ingredient.remove).on('click', removeIngredient);
+        $ingredient.find(data.ingredient.remove).on('click', remove);
 
-        generateForm();
+        common.generateForm();
     }
 
-    function addGroup(event) {
+    function init() {
+        $(data.ingredient.add).on('click', add);
+        $(data.ingredient.remove).on('click', remove);
+    }
+
+    wp.namespace('wprecipe.admin.ingredients.ingredient', {
+        add: add,
+        init: init,
+        remove: remove
+    });
+
+}(jQuery, wp));;(function ($, wp) {
+
+    'use strict';
+
+    var common = wp.wprecipe.admin.ingredients.common,
+        data = wp.wprecipe.admin.ingredients.data,
+        ingredient = wp.wprecipe.admin.ingredients.ingredient;
+
+    function add(event) {
         event.preventDefault();
 
-        var $ingredientGroup = $(group.markup),
+        var $ingredientGroup = $(data.group.markup),
             $ingredientGroupInput = $ingredientGroup.find('input');
 
-        generateUniqueId($ingredientGroupInput);
+        common.generateUniqueId($ingredientGroupInput);
 
-        $(ingredient.list).append($ingredientGroup);
+        $(data.ingredient.list).append($ingredientGroup);
 
-        $ingredientGroup.find(group.remove).on('click', removeGroup);
-        $ingredientGroup.find(ingredient.add).on('click', addIngredient);
+        $ingredientGroup.find(data.group.remove).on('click', remove);
+        $ingredientGroup.find(data.ingredient.add).on('click', ingredient.add);
 
-        generateForm();
+        common.generateForm();
     }
 
-    function removeGroup(event) {
+    function remove(event) {
         event.preventDefault();
 
         var $group = $(event.currentTarget).parents('li');
 
-        $group.find(ingredient.item).each(function () {
-            $(this).find(ingredient.remove).off('click', removeIngredient);
+        $group.find(data.ingredient.item).each(function () {
+            $(this).find(data.ingredient.remove).off('click', ingredient.remove);
         });
 
-        $group.find(group.add).off('click', addGroup);
-        $group.find(group.remove).off('click', removeGroup);
+        $group.find(data.group.add).off('click', add);
+        $group.find(data.group.remove).off('click', remove);
 
         $group.remove();
 
-        generateForm();
+        common.generateForm();
     }
 
     function init() {
-        generateForm(true);
-
-        $(group.add).on('click', addGroup);
-        $(group.remove).on('click', removeGroup);
-
-        $(ingredient.add).on('click', addIngredient);
-        $(ingredient.remove).on('click', removeIngredient);
+        $(data.group.add).on('click', add);
+        $(data.group.remove).on('click', remove);
     }
 
-    init();
+    wp.namespace('wprecipe.admin.ingredients.group', {
+        init: init
+    });
 
-}(jQuery));
+}(jQuery, wp));
