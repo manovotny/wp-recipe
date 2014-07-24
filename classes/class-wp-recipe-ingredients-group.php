@@ -63,12 +63,16 @@ class WP_Recipe_Ingredients_Group {
                     if ( 'group' === $key ) {
 
                         $html .= '<label class="item-label">Ingredient Group</label>';
-                        $html .= '<input class="item-control" type="text" value="' . $ingredient . '" />';
-                        $html .= '<span class="item-action">';
-                            $html .= '<button class="' . $group_classes[ 'remove' ] . ' button">Remove</button>';
-                            $html .= '<button class="' . $ingredient_classes[ 'add' ] . ' button">Add</button>';
-                        $html .= '</span>';
-                        $html .= '<ul class="list">';
+                        $html .= '<input class="item-control" type="text" value="' . $ingredient . '" placeholder="Ingredient Group"/>';
+                        $html .= '<ul class="actions">';
+                            $html .= '<li class="action-item">';
+                                $html .= '<button class="' . $ingredient_classes[ 'add' ] . ' button">Add</button>';
+                            $html .= '</li>';
+                            $html .= '<li class="action-item">';
+                                $html .= '<button class="' . $group_classes[ 'remove' ] . ' button">Remove</button>';
+                            $html .= '</li>';
+                        $html .= '</ul>';
+                        $html .= '<ul class="' . $group_classes[ 'list' ] . '">';
 
                     } else {
 
@@ -95,9 +99,10 @@ class WP_Recipe_Ingredients_Group {
     public function get_classes() {
 
         return array(
-            'add'       => 'add-group',
-            'item'       => 'ingredient-group',
-            'remove'    => 'remove-group'
+            'add'    => 'add-group',
+            'item'   => 'group',
+            'list'   => 'ingredients-group',
+            'remove' => 'remove-group'
         );
 
     }

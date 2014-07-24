@@ -54,7 +54,7 @@ function wp_recipe_editor_scripts() {
             )
         );
 
-        wp_localize_script( $script_handle, 'phpData', $data );
+        wp_localize_script( $script_handle, 'wprecipe', $data );
 
     }
 

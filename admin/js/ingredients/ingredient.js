@@ -26,7 +26,7 @@
         common.generateUniqueId($ingredientInput);
 
         if ($parentListItem.hasClass(data.group.item)) {
-            $list = $parentListItem.find('ul');
+            $list = $parentListItem.find(data.group.list);
         } else {
             $list = $(data.ingredient.list);
         }

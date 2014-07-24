@@ -37,19 +37,20 @@
     'use strict';
 
     var group = {
-            add: '.' + phpData.ingredient.group.classes.add,
-            item: phpData.ingredient.group.classes.item,
-            keys: phpData.ingredient.group.keys,
-            markup: phpData.ingredient.group.markup,
-            remove: '.' + phpData.ingredient.group.classes.remove
+            add: '.' + wprecipe.ingredient.group.classes.add,
+            item: wprecipe.ingredient.group.classes.item,
+            keys: wprecipe.ingredient.group.keys,
+            list: '.' + wprecipe.ingredient.group.classes.list,
+            markup: wprecipe.ingredient.group.markup,
+            remove: '.' + wprecipe.ingredient.group.classes.remove
         },
         ingredient = {
-            add: '.' + phpData.ingredient.classes.add,
-            id: phpData.ingredient.id,
-            item: '.' + phpData.ingredient.classes.item,
-            list: '.' + phpData.ingredient.classes.list,
-            markup: phpData.ingredient.markup,
-            remove: '.' + phpData.ingredient.classes.remove
+            add: '.' + wprecipe.ingredient.classes.add,
+            id: wprecipe.ingredient.id,
+            item: '.' + wprecipe.ingredient.classes.item,
+            list: '.' + wprecipe.ingredient.classes.list,
+            markup: wprecipe.ingredient.markup,
+            remove: '.' + wprecipe.ingredient.classes.remove
         };
 
     wp.namespace('wprecipe.admin.ingredients.data', {
@@ -165,7 +166,7 @@
         common.generateUniqueId($ingredientInput);
 
         if ($parentListItem.hasClass(data.group.item)) {
-            $list = $parentListItem.find('ul');
+            $list = $parentListItem.find(data.group.list);
         } else {
             $list = $(data.ingredient.list);
         }

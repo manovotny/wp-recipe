@@ -102,10 +102,12 @@ class WP_Recipe_Ingredients {
 
         $html .= '<li class="' . $classes[ 'item' ] . '">';
             $html .= '<label class="item-label">Ingredient</label>';
-            $html .= '<input class="item-control" type="text" value="' . $ingredient . '" />';
-            $html .= '<span class="item-action">';
-                $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
-            $html .= '</span>';
+            $html .= '<input class="item-control" type="text" value="' . $ingredient . '" placeholder="Ingredient"/>';
+            $html .= '<ul class="actions">';
+                $html .= '<li class="action-item">';
+                    $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
+                $html .= '</li>';
+            $html .= '</ul>';
         $html .= '</li>';
 
         return $html;
@@ -120,10 +122,10 @@ class WP_Recipe_Ingredients {
     public function get_classes() {
 
         return array(
-            'add'       => 'add-ingredient',
-            'item'      => 'ingredient',
-            'list'      => 'ingredients',
-            'remove'    => 'remove-ingredient'
+            'add'    => 'add-ingredient',
+            'item'   => 'ingredient',
+            'list'   => 'ingredients',
+            'remove' => 'remove-ingredient'
         );
 
     }

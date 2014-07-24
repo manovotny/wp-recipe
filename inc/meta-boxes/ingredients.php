@@ -45,10 +45,16 @@ function wp_recipe_display_ingredients_meta_box() {
     $html = '';
 
     $html .= '<fieldset class="' . $wp_recipe_ingredients->get_slug() . '">';
-        $html .= '<div class="actions">';
-            $html .= '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add Ingredient</button>';
-            $html .= '<button class="' . $ingredients_group_classes[ 'add' ] . ' button">Add Group</button>';
-        $html .= '</div>';
+        $html .= '<section class="toolbar">';
+            $html .= '<ul class="actions">';
+                $html .= '<li class="action-item">';
+                    $html .= '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add Ingredient</button>';
+                $html .= '</li>';
+                $html .= '<li class="action-item">';
+                    $html .= '<button class="' . $ingredients_group_classes[ 'add' ] . ' button">Add Group</button>';
+                $html .= '</li>';
+            $html .= '</ul>';
+        $html .= '</section>';
         $html .= '<div class="editor">';
             $html .= '<ul class="list ' . $ingredients_classes[ 'list' ] . '">';
 
@@ -75,45 +81,6 @@ function wp_recipe_display_ingredients_meta_box() {
     $html .= '</fieldset>';
 
     echo $html;
-
-//    echo '
-//        <ul class="ingredients">
-//            <li class="ingredient">
-//                <input name="wp-recipe-ingredients[0]" value="Ingredient 1" />
-//            </li>
-//            <li class="ingredient">
-//                <input name="wp-recipe-ingredients[1]" value="Ingredient 2" />
-//            </li>
-//            <li class="ingredient">
-//                <input name="wp-recipe-ingredients[2]" value="Ingredient 3" />
-//            </li>
-//            <li class="ingredient-group">
-//                <input name="wp-recipe-ingredients[3][group]" value="Ingredient Group 1" />
-//                <ul>
-//                    <li class="ingredient">
-//                        <input name="wp-recipe-ingredients[3][]" value="Ingredient 4" />
-//                    </li>
-//                    <li class="ingredient">
-//                        <input name="wp-recipe-ingredients[3][]" value="Ingredient 5" />
-//                    </li>
-//                </ul>
-//            </li>
-//            <li class="ingredient">
-//                <input name="wp-recipe-ingredients[4]" value="Ingredient 6" />
-//            </li>
-//            <li class="ingredient-group">
-//                <input name="wp-recipe-ingredients[5][group]" value="Ingredient Group 2" />
-//                <ul>
-//                    <li class="ingredient">
-//                        <input name="wp-recipe-ingredients[5][]" value="Ingredient 7" />
-//                    </li>
-//                    <li class="ingredient">
-//                        <input name="wp-recipe-ingredients[5][]" value="Ingredient 8" />
-//                    </li>
-//                </ul>
-//            </li>
-//        </ul>
-//        ';
 
 }
 
