@@ -3,11 +3,12 @@
  * @package WP_Recipe
  */
 
-add_action( 'save_post', 'wp_recipe_save_recipes_referenced_in_post' );
+add_action( 'save_post', 'wp_recipe_save_cross_references' );
 
-function wp_recipe_save_recipes_referenced_in_post() {
-
-    $post_type_util = WP_Post_Type_Util::get_instance();
+/**
+ * Saves post and recipe cross references.
+ */
+function wp_recipe_save_cross_references() {
 
     global $post;
 
@@ -89,6 +90,12 @@ function wp_recipe_save_recipes_referenced_in_post() {
 
 }
 
+/**
+ * Determines if a post exists or not.
+ *
+ * @param string $post_id The post id to check for existence.
+ * @return boolean Whether or not the post exists.
+ */
 function wp_recipe_post_exists( $post_id ) {
 
     return is_string( get_post_status( $post_id ) );

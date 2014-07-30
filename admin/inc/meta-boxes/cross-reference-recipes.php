@@ -6,7 +6,7 @@
 add_action( 'add_meta_boxes_post', 'wp_recipe_add_recipe_cross_reference_meta_box' );
 
 /**
- * Adds XXXXXX meta box.
+ * Adds recipe cross reference meta box to posts.
  */
 function wp_recipe_add_recipe_cross_reference_meta_box() {
 
@@ -24,7 +24,7 @@ function wp_recipe_add_recipe_cross_reference_meta_box() {
 }
 
 /**
- * Displays XXXXXX meta box.
+ * Displays recipe cross reference meta box.
  */
 function wp_recipe_display_recipe_cross_reference_meta_box() {
 
