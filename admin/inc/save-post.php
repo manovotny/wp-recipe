@@ -12,6 +12,10 @@ function wp_recipe_save_cross_references() {
 
     global $post;
 
+    $wp_recipe = WP_Recipe::get_instance();
+
+    $content = $_POST[ 'content' ];
+
     $pattern = get_shortcode_regex();
 
     /*
@@ -19,33 +23,32 @@ function wp_recipe_save_cross_references() {
      * the global post contains the existing post information and the POST
      * contains the new information being saved.
      */
-    preg_match_all( '/'. $pattern .'/s', $_POST[ 'content' ], $matches );
+
+    preg_match_all( '/'. $pattern .'/s', $content, $matches );
 
     if ( empty( $matches ) ) {
 
-        return;
+        return null;
 
     }
 
     $recipe_ids_in_post = array();
 
-    foreach ( $matches[ 3 ] as $attributes_string ) {
+    foreach ( $matches[ 2 ] as $index => $shortcode ) {
 
-        $attributes = explode( ' ', $attributes_string );
+        if ( $shortcode === $wp_recipe->get_shortcode() ) {
 
-        foreach ( $attributes as $attribute ) {
+            $attributes = explode( ' ', trim( $matches[ 3 ][ $index ] ) );
 
-            if ( empty( $attribute ) ) {
+            foreach ( $attributes as $attribute ) {
 
-                continue;
+                $attribute_key_value = explode( '=', $attribute );
 
-            }
+                if ( 'id' === $attribute_key_value[ 0 ] ) {
 
-            $attribute_key_value = explode( '=', $attribute );
+                    array_push( $recipe_ids_in_post, $attribute_key_value[ 1 ] );
 
-            if ( 'id' === $attribute_key_value[ 0 ] ) {
-
-                array_push( $recipe_ids_in_post, $attribute_key_value[ 1 ] );
+                }
 
             }
 
