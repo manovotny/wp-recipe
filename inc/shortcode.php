@@ -1,10 +1,9 @@
 <?php
 /**
  * @package WP_Recipe
- * @author Michael Novotny <manovotny@gmail.com>
  */
 
-add_shortcode( 'wp-recipe', 'wp_recipe_shortcode' );
+add_shortcode( WP_Recipe::get_instance()->get_shortcode(), 'wp_recipe_shortcode' );
 
 /**
  * Renders recipe shortcode.

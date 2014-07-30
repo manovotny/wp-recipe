@@ -57,6 +57,27 @@ class WP_Recipe {
 
     }
 
+    /* Shortcode
+    ---------------------------------------------- */
+
+    /**
+     * Recipe shortcode.
+     *
+     * @var string
+     */
+    protected $shortcode = 'wprecipe';
+
+    /**
+     * Getter method for shortcode.
+     *
+     * @return string Recipe shortcode.
+     */
+    public function get_shortcode() {
+
+        return $this->shortcode;
+
+    }
+
     /* Version
     ---------------------------------------------- */
 
