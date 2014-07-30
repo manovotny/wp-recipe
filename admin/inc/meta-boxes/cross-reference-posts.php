@@ -15,7 +15,7 @@ function wp_recipe_add_posts_cross_reference_meta_box() {
 
     add_meta_box(
         $post_references->get_slug(),
-        'Posts Cross References',
+        'Post Cross References',
         'wp_recipe_display_posts_cross_reference_meta_box',
         $wp_recipe->get_post_type(),
         'normal',
