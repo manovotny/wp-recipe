@@ -3,7 +3,7 @@
  * @package WP_Recipe
  */
 
-add_action( 'save_post', 'wp_recipe_save_cross_references' );
+add_action( 'save_post_post', 'wp_recipe_save_cross_references' );
 
 /**
  * Saves post and recipe cross references.

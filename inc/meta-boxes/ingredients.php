@@ -5,7 +5,7 @@
  */
 
 add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_ingredients_meta_box' );
-add_action( 'save_post', 'wp_recipe_save_ingredients_meta_box' );
+add_action( 'save_post_' . WP_Recipe::get_instance()->get_post_type(), 'wp_recipe_save_ingredients_meta_box' );
 
 /**
  * Adds ingredients meta box.

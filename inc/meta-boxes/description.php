@@ -5,7 +5,7 @@
  */
 
 add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_description_meta_box' );
-add_action( 'save_post', 'wp_recipe_save_description_meta_box' );
+add_action( 'save_post_' . WP_Recipe::get_instance()->get_post_type(), 'wp_recipe_save_description_meta_box' );
 
 /**
  * Adds description meta box.
