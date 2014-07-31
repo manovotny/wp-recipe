@@ -33,6 +33,8 @@
 
         $list.append($ingredient);
 
+        $ingredientInput.focus();
+
         $ingredient.find(data.ingredient.remove).on('click', remove);
 
         common.generateForm();

@@ -173,6 +173,8 @@
 
         $list.append($ingredient);
 
+        $ingredientInput.focus();
+
         $ingredient.find(data.ingredient.remove).on('click', remove);
 
         common.generateForm();
@@ -206,6 +208,8 @@
         common.generateUniqueId($ingredientGroupInput);
 
         $(data.ingredient.list).append($ingredientGroup);
+
+        $ingredientGroupInput.focus();
 
         $ingredientGroup.find(data.group.remove).on('click', remove);
         $ingredientGroup.find(data.ingredient.add).on('click', ingredient.add);

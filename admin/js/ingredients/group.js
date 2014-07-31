@@ -16,6 +16,8 @@
 
         $(data.ingredient.list).append($ingredientGroup);
 
+        $ingredientGroupInput.focus();
+
         $ingredientGroup.find(data.group.remove).on('click', remove);
         $ingredientGroup.find(data.ingredient.add).on('click', ingredient.add);
 
