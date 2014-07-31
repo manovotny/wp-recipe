@@ -64,6 +64,20 @@ class WP_Recipe_Ingredients {
 
     }
 
+    /* Meta Slug
+    ---------------------------------------------- */
+
+    /**
+     * Getter method for meta slug.
+     *
+     * @return string Recipe ingredients meta slug.
+     */
+    public function get_meta_slug() {
+
+        return '_' . $this->slug;
+
+    }
+
     /* Slug
     ---------------------------------------------- */
 

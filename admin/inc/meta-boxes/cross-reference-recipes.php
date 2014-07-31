@@ -32,7 +32,7 @@ function wp_recipe_display_recipe_cross_reference_meta_box() {
 
     $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
 
-    $recipe_references_meta = get_post_meta( $post->ID, $recipe_references->get_slug() );
+    $recipe_references_meta = get_post_meta( $post->ID, $recipe_references->get_meta_slug() );
 
     $html = '';
     $html .= '<section class="' . $recipe_references->get_slug() . '">';

@@ -37,7 +37,7 @@ function wp_recipe_display_tips_meta_box() {
 
     wp_nonce_field( $wp_recipe_tips->get_slug(), $wp_recipe_tips->get_nonce() );
 
-    $tips = get_post_meta( $post->ID, $wp_recipe_tips->get_slug(), true );
+    $tips = get_post_meta( $post->ID, $wp_recipe_tips->get_meta_slug(), true );
 
     $settings = array(
         'drag_drop_upload'  => true,
@@ -68,7 +68,7 @@ function wp_recipe_save_tips_meta_box( $post_id ) {
 
     if ( $wp_post_type_util->can_save_post_meta( $post_id, $wp_recipe_tips->get_slug(), $wp_recipe_tips->get_nonce() ) ) {
 
-        update_post_meta( $post_id, $wp_recipe_tips->get_slug(), $_POST[ $wp_recipe_tips->get_id() ] );
+        update_post_meta( $post_id, $wp_recipe_tips->get_meta_slug(), $_POST[ $wp_recipe_tips->get_id() ] );
 
     }
 

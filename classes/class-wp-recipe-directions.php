@@ -64,6 +64,20 @@ class WP_Recipe_Directions {
 
     }
 
+    /* Meta Slug
+    ---------------------------------------------- */
+
+    /**
+     * Getter method for meta slug.
+     *
+     * @return string Recipe directions meta slug.
+     */
+    public function get_meta_slug() {
+
+        return '_' . $this->slug;
+
+    }
+
     /* Slug
     ---------------------------------------------- */
 

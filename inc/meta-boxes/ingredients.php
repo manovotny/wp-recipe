@@ -38,7 +38,7 @@ function wp_recipe_display_ingredients_meta_box() {
 
     wp_nonce_field( $wp_recipe_ingredients->get_slug(), $wp_recipe_ingredients->get_nonce() );
 
-    $ingredients = maybe_unserialize( get_post_meta( $post->ID, $wp_recipe_ingredients->get_slug(), true ) );
+    $ingredients = maybe_unserialize( get_post_meta( $post->ID, $wp_recipe_ingredients->get_meta_slug(), true ) );
     $ingredients_classes = $wp_recipe_ingredients->get_classes();
     $ingredients_group_classes = $wp_recipe_ingredients_group->get_classes();
 
@@ -104,7 +104,7 @@ function wp_recipe_save_ingredients_meta_box( $post_id ) {
 
     if ( $wp_post_type_util->can_save_post_meta( $post_id, $wp_recipe_ingredients->get_slug(), $wp_recipe_ingredients->get_nonce() ) ) {
 
-        update_post_meta( $post_id, $wp_recipe_ingredients->get_slug(), $_POST[ $wp_recipe_ingredients->get_id() ] );
+        update_post_meta( $post_id, $wp_recipe_ingredients->get_meta_slug(), $_POST[ $wp_recipe_ingredients->get_id() ] );
 
     }
 

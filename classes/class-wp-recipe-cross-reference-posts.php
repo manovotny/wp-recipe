@@ -35,6 +35,20 @@ class WP_Recipe_Cross_Reference_Posts {
 
     }
 
+    /* Meta Slug
+    ---------------------------------------------- */
+
+    /**
+     * Getter method for meta slug.
+     *
+     * @return string Recipe post cross reference meta slug.
+     */
+    public function get_meta_slug() {
+
+        return '_' . $this->slug;
+
+    }
+
     /* Slug
     ---------------------------------------------- */
 
@@ -68,13 +82,13 @@ class WP_Recipe_Cross_Reference_Posts {
         $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
         $post_references = WP_Recipe_Cross_Reference_Posts::get_instance();
 
-        $previous_recipe_ids = get_post_meta( $post_id, $recipe_references->get_slug() );
+        $previous_recipe_ids = get_post_meta( $post_id, $recipe_references->get_meta_slug() );
 
         $recipe_ids_removed = array_diff( $previous_recipe_ids, $recipe_ids );
 
         foreach ( $recipe_ids_removed as $recipe_id ) {
 
-            delete_post_meta( $recipe_id, $post_references->get_slug(), $post_id );
+            delete_post_meta( $recipe_id, $post_references->get_meta_slug(), $post_id );
 
         }
 
@@ -82,11 +96,11 @@ class WP_Recipe_Cross_Reference_Posts {
 
             if ( $this->post_exists( $recipe_id ) ) {
 
-                $post_references_meta = get_post_meta( $recipe_id, $post_references->get_slug() );
+                $post_references_meta = get_post_meta( $recipe_id, $post_references->get_meta_slug() );
 
                 if ( ! in_array( $post_id, $post_references_meta ) ) {
 
-                    add_post_meta( $recipe_id, $post_references->get_slug(), $post_id );
+                    add_post_meta( $recipe_id, $post_references->get_meta_slug(), $post_id );
 
                 }
 

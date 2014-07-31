@@ -37,7 +37,7 @@ function wp_recipe_display_yield_meta_box() {
 
     wp_nonce_field( $wp_recipe_yield->get_slug(), $wp_recipe_yield->get_nonce() );
 
-    $yield = get_post_meta( $post->ID, $wp_recipe_yield->get_slug(), true );
+    $yield = get_post_meta( $post->ID, $wp_recipe_yield->get_meta_slug(), true );
 
     $html = '';
 
@@ -74,7 +74,7 @@ function wp_recipe_save_yield_meta_box( $post_id ) {
 
     if ( $wp_post_type_util->can_save_post_meta( $post_id, $wp_recipe_yield->get_slug(), $wp_recipe_yield->get_nonce() ) ) {
 
-        update_post_meta( $post_id, $wp_recipe_yield->get_slug(), $_POST[ $wp_recipe_yield->get_id() ] );
+        update_post_meta( $post_id, $wp_recipe_yield->get_meta_slug(), $_POST[ $wp_recipe_yield->get_id() ] );
 
     }
 

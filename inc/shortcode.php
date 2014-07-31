@@ -43,11 +43,11 @@ function wp_recipe_shortcode( $attributes ) {
     $wp_recipe_yield = WP_Recipe_Yield::get_instance();
 
     $title = get_the_title( $id );
-    $description = $recipe_post_meta[ $wp_recipe_description->get_slug() ][ 0 ];
-    $directions = $recipe_post_meta[ $wp_recipe_directions->get_slug() ][ 0 ];
-    $ingredients = maybe_unserialize( $recipe_post_meta[ $wp_recipe_ingredients->get_slug() ][ 0 ] );
-    $tips = $recipe_post_meta[ $wp_recipe_tips->get_slug() ][ 0 ];
-    $yield = $recipe_post_meta[ $wp_recipe_yield->get_slug() ][ 0 ];
+    $description = $recipe_post_meta[ $wp_recipe_description->get_meta_slug() ][ 0 ];
+    $directions = $recipe_post_meta[ $wp_recipe_directions->get_meta_slug() ][ 0 ];
+    $ingredients = maybe_unserialize( $recipe_post_meta[ $wp_recipe_ingredients->get_meta_slug() ][ 0 ] );
+    $tips = $recipe_post_meta[ $wp_recipe_tips->get_meta_slug() ][ 0 ];
+    $yield = $recipe_post_meta[ $wp_recipe_yield->get_meta_slug() ][ 0 ];
 
 
     $html = '';
