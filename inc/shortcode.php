@@ -39,6 +39,7 @@ function wp_recipe_shortcode( $attributes ) {
     $wp_recipe_description = WP_Recipe_Description::get_instance();
     $wp_recipe_directions = WP_Recipe_Directions::get_instance();
     $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+    $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
     $wp_recipe_tips = WP_Recipe_Tips::get_instance();
     $wp_recipe_yield = WP_Recipe_Yield::get_instance();
 
@@ -59,15 +60,29 @@ function wp_recipe_shortcode( $attributes ) {
         $html .= '</section>';
         $html .= '<section class="ingredients">';
             $html .= '<h3>Ingredients</h3>';
-            $html .= '<ul>';
 
-                foreach ( $ingredients as $ingredient ) {
+            if ( ! empty( $ingredients ) ) {
 
-                    $html .= '<li>' . $ingredient . '</li>';
+                $html .= '<ul>';
 
-                }
+                    foreach ( $ingredients as $item ) {
 
-            $html .= '</ul>';
+                        if ( is_array( $item ) ) {
+
+                            $html .= $wp_recipe_ingredients_group->generate_markup( $item );
+
+                        } else {
+
+                            $html .= $wp_recipe_ingredients->generate_markup( $item );
+
+                        }
+
+                    }
+
+                $html .= '</ul>';
+
+            }
+
         $html .= '</section>';
         $html .= '<section class="directions">';
             $html .= '<h3>Directions</h3>';

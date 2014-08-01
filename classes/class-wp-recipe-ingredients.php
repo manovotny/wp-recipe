@@ -129,6 +129,18 @@ class WP_Recipe_Ingredients {
     }
 
     /**
+     * Generates markup for a given ingredient.
+     *
+     * @param string $ingredient Optional. Ingredient value to added to markup.
+     * @return string Recipe ingredient markup.
+     */
+    public function generate_markup( $ingredient ) {
+
+        return '<li>' . $ingredient . '</li>';
+
+    }
+
+    /**
      * Gets recipe ingredients classes.
      *
      * @return array List of recipe ingredients classes.

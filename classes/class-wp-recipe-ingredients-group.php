@@ -92,6 +92,42 @@ class WP_Recipe_Ingredients_Group {
     }
 
     /**
+     * Generates markup for a given ingredient group.
+     *
+     * @param array $ingredient_group Ingredient group to generate markup for.
+     * @return string Recipe ingredient group markup.
+     */
+    public function generate_markup( $ingredient_group ) {
+
+        $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+
+        $html = '';
+
+        $html .= '<li>';
+
+            foreach ( $ingredient_group as $key => $ingredient ) {
+
+                if ( 'group' === $key ) {
+
+                    $html .= $ingredient;
+                    $html .= '<ul>';
+
+                } else {
+
+                    $html .= $wp_recipe_ingredients->generate_markup( $ingredient );
+
+                }
+
+            }
+
+            $html .= '</ul>';
+        $html .= '</li>';
+
+        return $html;
+
+    }
+
+    /**
      * Gets recipe ingredients group classes.
      *
      * @return array List of recipe ingredients group classes.
