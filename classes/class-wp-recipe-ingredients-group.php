@@ -40,12 +40,12 @@ class WP_Recipe_Ingredients_Group {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Generates markup for a given ingredient group.
+     * Generates admin markup for a given ingredient group.
      *
-     * @param array $ingredient_group Ingredient group to generate markup for.
-     * @return string Recipe ingredient group markup.
+     * @param array $ingredient_group Ingredient group to generate admin markup for.
+     * @return string Recipe ingredient group admin markup.
      */
-    public function generate_markup( $ingredient_group ) {
+    public function generate_admin_markup( $ingredient_group ) {
 
         $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
 
@@ -76,7 +76,7 @@ class WP_Recipe_Ingredients_Group {
 
                     } else {
 
-                        $html .= $wp_recipe_ingredients->generate_markup( $ingredient );
+                        $html .= $wp_recipe_ingredients->generate_admin_markup( $ingredient );
 
                     }
 

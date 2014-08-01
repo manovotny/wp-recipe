@@ -47,10 +47,10 @@ function wp_recipe_editor_scripts() {
                 'group' => array(
                     'classes' => $wp_recipe_ingredients_group->get_classes(),
                     'keys' => $group_keys,
-                    'markup' => $wp_recipe_ingredients_group->generate_markup( $new_group )
+                    'markup' => $wp_recipe_ingredients_group->generate_admin_markup( $new_group )
                 ),
                 'id' => $wp_recipe_ingredients->get_id(),
-                'markup' => $wp_recipe_ingredients->generate_markup()
+                'markup' => $wp_recipe_ingredients->generate_admin_markup()
             )
         );
 

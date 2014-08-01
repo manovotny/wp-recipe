@@ -64,11 +64,11 @@ function wp_recipe_display_ingredients_meta_box() {
 
                         if ( is_array( $item ) ) {
 
-                            $html .= $wp_recipe_ingredients_group->generate_markup( $item );
+                            $html .= $wp_recipe_ingredients_group->generate_admin_markup( $item );
 
                         } else {
 
-                            $html .= $wp_recipe_ingredients->generate_markup( $item );
+                            $html .= $wp_recipe_ingredients->generate_admin_markup( $item );
 
                         }
 

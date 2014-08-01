@@ -103,12 +103,12 @@ class WP_Recipe_Ingredients {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Generates markup for a given ingredient.
+     * Generates admin markup for a given ingredient.
      *
-     * @param string $ingredient Optional. Ingredient value to added to markup.
-     * @return string Recipe ingredient markup.
+     * @param string $ingredient Optional. Ingredient value to added to admin markup.
+     * @return string Recipe ingredient admin markup.
      */
-    public function generate_markup( $ingredient = '' ) {
+    public function generate_admin_markup( $ingredient = '' ) {
 
         $classes = $this->get_classes();
 
