@@ -5,23 +5,23 @@
  */
 
 // Register admin styles.
-add_action( 'admin_enqueue_scripts', 'wp_recipe_editor_scripts' );
+add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_scripts' );
 
 /**
  * Loads editor scripts.
  */
-function wp_recipe_editor_scripts() {
+function wp_recipe_post_type_scripts() {
 
     $wp_post_type_util = WP_Post_Type_Util::get_instance();
     $wp_recipe = WP_Recipe::get_instance();
 
     if ( $wp_post_type_util->is_post_type_add_or_edit_screen( $wp_recipe->get_post_type() ) ) {
 
-        $script = 'admin.min.js';
+        $script = 'recipe-post-type.min.js';
 
         if ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) {
 
-            $script = 'admin.concat.js';
+            $script = 'recipe-post-type.concat.js';
 
         }
 

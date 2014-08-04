@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         options: {
             separator: ';'
         },
-        admin: {
+        recipePostType: {
             src: [
                 '!admin/js/**/*.concat.js',
                 '!admin/js/**/*.min.js',
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                 'admin/js/ingredients/group.js',
                 'admin/js/**/*.js'
             ],
-            dest: 'admin/js/admin.concat.js'
+            dest: 'admin/js/recipe-post-type.concat.js'
         }
     });
 
