@@ -1,7 +1,6 @@
 <?php
 /**
  * @package WP_Recipe
- * @author Michael Novotny <manovotny@gmail.com>
  */
 
 class WP_Recipe_Tips {

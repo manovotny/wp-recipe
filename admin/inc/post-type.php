@@ -1,7 +1,6 @@
 <?php
 /**
  * @package WP_Recipe
- * @author Michael Novotny <manovotny@gmail.com>
  */
 
 add_action( 'init', 'wp_recipe_post_type' );

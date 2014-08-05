@@ -1,7 +1,6 @@
 <?php
 /**
  * @package WP_Recipe
- * @author Michael Novotny <manovotny@gmail.com>
  */
 
 add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_ingredients_meta_box' );
