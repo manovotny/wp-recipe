@@ -1,6 +1,6 @@
 {
   "name": "manovotny/wp-recipe",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Add recipes to WordPress.",
   "type": "library",
   "homepage": "https://github.com/manovotny/wp-recipe/",
