@@ -60,6 +60,8 @@ require_once __DIR__ . '/classes/class-wp-recipe-yield.php';
 /* Admin
 ---------------------------------------------------------------------------------- */
 
+require_once __DIR__ . '/admin/inc/enqueue-scripts.php';
+require_once __DIR__ . '/admin/inc/enqueue-styles.php';
 require_once __DIR__ . '/admin/inc/meta-boxes/cross-reference-posts.php';
 require_once __DIR__ . '/admin/inc/meta-boxes/cross-reference-recipes.php';
 require_once __DIR__ . '/admin/inc/meta-boxes/description.php';
@@ -70,8 +72,6 @@ require_once __DIR__ . '/admin/inc/meta-boxes/tips.php';
 require_once __DIR__ . '/admin/inc/meta-boxes/yield.php';
 require_once __DIR__ . '/admin/inc/post-type.php';
 require_once __DIR__ . '/admin/inc/post-type-columns.php';
-require_once __DIR__ . '/admin/inc/register-scripts.php';
-require_once __DIR__ . '/admin/inc/register-styles.php';
 require_once __DIR__ . '/admin/inc/remove-default-discussion-meta-box.php';
 require_once __DIR__ . '/admin/inc/remove-default-editor.php';
 require_once __DIR__ . '/admin/inc/save-post.php';
