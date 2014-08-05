@@ -33,10 +33,6 @@ function wp_recipe_post_type_columns( $columns ) {
  */
 function wp_recipe_post_type_columns_content( $column, $post_id ) {
 
-    if ( $column == 'recipe_id' ) {
-
-        echo '<span>' . $post_id . '</span>';
-
-    }
+    include WP_File_Util::get_instance()->get_absolute_path( __DIR__, '../views/post-type-columns.php' );
 
 }

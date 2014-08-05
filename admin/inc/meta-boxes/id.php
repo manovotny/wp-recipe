@@ -29,8 +29,6 @@ function wp_recipe_add_id_meta_box() {
  */
 function wp_recipe_display_id_meta_box() {
 
-    global $post;
-
-    echo '<p>' . $post->ID . '</p>';
+    include WP_File_Util::get_instance()->get_absolute_path( __DIR__, '../../views/meta-boxes/id.php' );
 
 }
