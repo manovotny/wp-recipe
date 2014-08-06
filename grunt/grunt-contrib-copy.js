@@ -22,7 +22,16 @@ module.exports = function (grunt) {
                     cwd: 'vendor/manovotny',
                     src: [
                         '**/*',
-                        '!vendor/**/.git*'
+
+                        '!**/grunt/**',
+                        '!**/tests/**',
+                        '!**/vendor/**',
+
+                        '!**/.git*',
+                        '!**/bower.json',
+                        '!**/composer.json',
+                        '!**/Gruntfile.js',
+                        '!**/package.json'
                     ],
                     dest: 'lib'
                 }

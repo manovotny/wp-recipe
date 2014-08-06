@@ -1,8 +1,0 @@
-{
-  "name": "manovotny/wp-post-type-util",
-  "version": "0.3.0",
-  "description": "A lovely collection of post type utilities for WordPress.",
-  "type": "library",
-  "homepage": "https://github.com/manovotny/wp-post-type-util/",
-  "license": "GPL-3.0+"
-}

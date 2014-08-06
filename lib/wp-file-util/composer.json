@@ -1,8 +1,0 @@
-{
-  "name": "manovotny/wp-file-util",
-  "version": "0.1.1",
-  "description": "A file utility for WordPress.",
-  "type": "library",
-  "homepage": "https://github.com/manovotny/wp-file-util/",
-  "license": "GPL-3.0+"
-}

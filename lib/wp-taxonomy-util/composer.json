@@ -1,8 +1,0 @@
-{
-  "name": "manovotny/wp-taxonomy-util",
-  "version": "0.2.2",
-  "description": "A taxonomy utility for WordPress.",
-  "type": "library",
-  "homepage": "https://github.com/manovotny/wp-taxonomy-util/",
-  "license": "GPL-3.0+"
-}
