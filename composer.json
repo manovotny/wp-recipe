@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-      "manovotny/wp-array-util": "0.1.0",
+      "manovotny/wp-array-util": "0.1.1",
       "manovotny/wp-file-util": "0.1.1",
       "manovotny/wp-post-type-util": "0.3.0",
       "manovotny/wp-taxonomy-util": "0.2.2",
