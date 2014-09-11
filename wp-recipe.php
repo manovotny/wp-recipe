@@ -29,12 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 }
 
-/* Support
----------------------------------------------------------------------------------- */
-
-wp_enqueue_script( 'underscore' );
-
-/* Library
+/* Libraries
 ---------------------------------------------------------------------------------- */
 
 require_once __DIR__ . '/lib/wp-array-util/wp-array-util.php';
@@ -46,7 +41,14 @@ require_once __DIR__ . '/lib/wp-url-util/wp-url-util.php';
 /* Classes
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/classes/class-wp-recipe.php';
+if ( ! class_exists( 'WP_Recipe' ) ) {
+
+    require_once __DIR__ . '/classes/class-wp-recipe.php';
+
+    WP_Recipe::get_instance();
+
+}
+
 require_once __DIR__ . '/classes/class-wp-recipe-cross-reference-posts.php';
 require_once __DIR__ . '/classes/class-wp-recipe-cross-reference-recipes.php';
 require_once __DIR__ . '/classes/class-wp-recipe-description.php';
