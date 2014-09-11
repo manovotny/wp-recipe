@@ -23,7 +23,7 @@
     border: 0;
     border-bottom: 1px solid #dedede;
     box-shadow: none;
-    width: calc(100% - 83px); }
+    width: calc(100% - 84px); }
     .wp-recipe-ingredients .item-control:focus {
       border-color: #dedede;
       box-shadow: none; }
@@ -35,14 +35,14 @@
     margin: 0 0 0 10px; }
 
 .group .item-control {
-  width: calc(100% - 139px); }
+  width: calc(100% - 140px); }
 .group .ingredients-group {
   list-style: disc;
   margin-top: 6px; }
 .group .ingredient {
   margin-left: 23px; }
   .group .ingredient .item-control {
-    width: calc(100% - 83px); }
+    width: calc(100% - 84px); }
 
 .wp-recipe-yield .list,
 .wp-recipe-yield .list-item {
