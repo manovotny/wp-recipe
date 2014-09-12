@@ -2,37 +2,26 @@ module.exports = function (grunt) {
 
     'use strict';
 
+    var config = require('config'),
+        predef = [
+            'module',
+            'require'
+        ];
+
     grunt.config('jslint', {
-        admin: {
+        js: {
             directives: {
-                browser: true,
                 nomen: true,
-                predef: [
-                    '_',
-                    'jQuery',
-                    'phpData'
-                ]
+                predef: predef
             },
             src: [
-                '!admin/js/**/*.concat.js',
-                '!admin/js/**/*.min.js',
-                'admin/js/**/*.js'
-            ]
-        },
-        automation: {
-            directives: {
-                browser: true,
-                predef: [
-                    'module',
-                    'require'
-                ]
-            },
-            src: [
-                'bower.json',
-                'composer.json',
-                'Gruntfile.js',
-                'package.json',
-                'grunt/*.js'
+                config.paths.config + '/*.js',
+                config.paths.grunt + '/*.js',
+
+                config.files.bower,
+                config.files.composer,
+                config.files.grunt,
+                config.files.package
             ]
         }
     });

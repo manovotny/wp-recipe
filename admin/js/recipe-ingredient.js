@@ -1,9 +1,9 @@
-(function ($, wp) {
+(function ($) {
 
     'use strict';
 
-    var common = wp.wprecipe.admin.ingredients.common,
-        data = wp.wprecipe.admin.ingredients.data;
+    var common = require('./recipe-common'),
+        data = require('./recipe-data');
 
     function remove(event) {
         event.preventDefault();
@@ -45,10 +45,11 @@
         $(data.ingredient.remove).on('click', remove);
     }
 
-    wp.namespace('wprecipe.admin.ingredients.ingredient', {
+    module.exports = {
         add: add,
-        init: init,
         remove: remove
-    });
+    };
 
-}(jQuery, wp));
+    init();
+
+}(jQuery));

@@ -3,35 +3,24 @@
   "version": "0.6.2",
   "description": "Add recipes to WordPress.",
   "type": "library",
-  "homepage": "https://github.com/manovotny/wp-recipe/",
-  "license": "GPL-3.0+",
-  "repositories": [
+  "homepage": "https://github.com/manovotny/wp-recipe",
+  "authors": [
     {
-      "type": "vcs",
-      "url": "https://github.com/manovotny/wp-array-util"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/manovotny/wp-file-util"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/manovotny/wp-post-type-util"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/manovotny/wp-taxonomy-util"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/manovotny/wp-url-util"
+      "name": "Michael Novotny",
+      "email": "manovotny@gmail.com",
+      "homepage": "http://manovotny.com",
+      "role": "Developer"
     }
   ],
+  "license": "GPL-3.0+",
   "require": {
-      "manovotny/wp-array-util": "0.1.1",
-      "manovotny/wp-file-util": "0.1.1",
-      "manovotny/wp-post-type-util": "0.3.0",
-      "manovotny/wp-taxonomy-util": "0.2.2",
-      "manovotny/wp-url-util": "0.1.0"
+    "manovotny/wp-array-util": "0.1.1",
+    "manovotny/wp-enqueue-util": "1.0.0",
+    "manovotny/wp-file-util": "0.1.1",
+    "manovotny/wp-phpunit-helpers": "0.1.0",
+    "manovotny/wp-post-type-util": "0.3.0",
+    "manovotny/wp-taxonomy-util": "0.2.2",
+    "manovotny/wp-url-util": "0.3.0",
+    "phpunit/phpunit": "4.1.*"
   }
 }

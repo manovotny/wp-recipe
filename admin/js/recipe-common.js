@@ -1,8 +1,8 @@
-(function ($, wp) {
+(function ($) {
 
     'use strict';
 
-    var data = wp.wprecipe.admin.ingredients.data;
+    var data = require('./recipe-data');
 
     function generateUniqueId($ingredient) {
         var id = _.uniqueId(data.ingredient.id + '-');
@@ -71,11 +71,12 @@
         generateForm(true);
     }
 
-    wp.namespace('wprecipe.admin.ingredients.common', {
+    module.exports = {
         generateForm: generateForm,
         generateInputName: generateInputName,
-        generateUniqueId: generateUniqueId,
-        init: init
-    });
+        generateUniqueId: generateUniqueId
+    };
 
-}(jQuery, wp));
+    init();
+
+}(jQuery));

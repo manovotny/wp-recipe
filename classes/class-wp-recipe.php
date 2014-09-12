@@ -35,6 +35,20 @@ class WP_Recipe {
 
     }
 
+    /* Localization Handle
+    ---------------------------------------------- */
+
+    /**
+     * Getter method for localization handle.
+     *
+     * @return string Localization handle.
+     */
+    public function get_localization_handle() {
+
+        return str_replace( '-', '_', $this->slug );
+
+    }
+
     /* Post Type
     ---------------------------------------------- */
 
@@ -60,20 +74,34 @@ class WP_Recipe {
     ---------------------------------------------- */
 
     /**
-     * Recipe shortcode.
-     *
-     * @var string
-     */
-    protected $shortcode = 'wprecipe';
-
-    /**
      * Getter method for shortcode.
      *
      * @return string Recipe shortcode.
      */
     public function get_shortcode() {
 
-        return $this->shortcode;
+        return str_replace( '-', '', $this->slug );
+
+    }
+
+    /* Slug
+    ---------------------------------------------- */
+
+    /**
+     * Recipe slug.
+     *
+     * @var string
+     */
+    protected $slug = 'wp-recipe';
+
+    /**
+     * Getter method for slug.
+     *
+     * @return string Recipe slug.
+     */
+    public function get_slug() {
+
+        return $this->slug;
 
     }
 

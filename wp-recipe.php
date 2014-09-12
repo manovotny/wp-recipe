@@ -1,12 +1,6 @@
 <?php
 /**
- * Add recipes to WordPress.
- *
  * @package WP_Recipe
- * @author Michael Novotny <manovotny@gmail.com>
- * @license GPL-3.0+
- * @link https://github.com/manovotny/wp-recipe
- * @copyright 2014 Michael Novotny
  *
  * @wordpress-plugin
  * Plugin Name: WP Recipe
@@ -17,6 +11,8 @@
  * Author URI: http://manovotny.com
  * License: GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ * Domain Path: /lang
+ * Text Domain: wp-recipe
  * GitHub Plugin URI: https://github.com/manovotny/wp-recipe
  */
 
@@ -33,6 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 ---------------------------------------------------------------------------------- */
 
 require_once __DIR__ . '/lib/wp-array-util/wp-array-util.php';
+require_once __DIR__ . '/lib/wp-enqueue-util/wp-enqueue-util.php';
 require_once __DIR__ . '/lib/wp-file-util/wp-file-util.php';
 require_once __DIR__ . '/lib/wp-post-type-util/wp-post-type-util.php';
 require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';

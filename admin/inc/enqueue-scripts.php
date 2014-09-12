@@ -3,7 +3,6 @@
  * @package WP_Recipe
  */
 
-// Register admin styles.
 add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_scripts' );
 
 /**
@@ -11,50 +10,48 @@ add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_scripts' );
  */
 function wp_recipe_post_type_scripts() {
 
-    $wp_post_type_util = WP_Post_Type_Util::get_instance();
+    $wp_enqueue_util = WP_Enqueue_Util::get_instance();
     $wp_recipe = WP_Recipe::get_instance();
+    $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+    $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
 
-    if ( $wp_post_type_util->is_post_type_add_or_edit_screen( $wp_recipe->get_post_type() ) ) {
+    $handle = $wp_recipe->get_slug() . '-admin-script';
+    $relative_path = __DIR__ . '/../js/';
+    $filename = 'bundle.min.js';
+    $filename_debug = 'bundle.concat.js';
+    $dependencies = array();
 
-        $script = 'recipe-post-type.min.js';
+    $group_keys = $wp_recipe_ingredients_group->get_keys();
 
-        if ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) {
+    $new_group = array(
+        $group_keys[ 'group' ] => ''
+    );
 
-            $script = 'recipe-post-type.concat.js';
+    $data = array(
+        'ingredient' => array(
+            'classes' => $wp_recipe_ingredients->get_classes(),
+            'group' => array(
+                'classes' => $wp_recipe_ingredients_group->get_classes(),
+                'keys' => $group_keys,
+                'markup' => $wp_recipe_ingredients_group->generate_admin_markup( $new_group )
+            ),
+            'id' => $wp_recipe_ingredients->get_id(),
+            'markup' => $wp_recipe_ingredients->generate_admin_markup()
+        )
+    );
 
-        }
+    $options = new WP_Enqueue_Options(
+        $handle,
+        $relative_path,
+        $filename,
+        $filename_debug,
+        $dependencies,
+        $wp_recipe->get_version(),
+        true
+    );
 
-        $path = WP_File_Util::get_instance()->get_absolute_path( __DIR__, '../../admin/js/' . $script );
-        $url = WP_URL_Util::get_instance()->convert_path_to_url( $path );
+    $options->set_localization( $wp_recipe->get_localization_handle(), $data );
 
-        $script_handle = 'wp-recipe-editor-script';
-
-        wp_enqueue_script( $script_handle, $url, null, $wp_recipe->get_version(), true );
-
-        $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
-        $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
-
-        $group_keys = $wp_recipe_ingredients_group->get_keys();
-
-        $new_group = array(
-            $group_keys[ 'group' ] => ''
-        );
-
-        $data = array(
-            'ingredient' => array(
-                'classes' => $wp_recipe_ingredients->get_classes(),
-                'group' => array(
-                    'classes' => $wp_recipe_ingredients_group->get_classes(),
-                    'keys' => $group_keys,
-                    'markup' => $wp_recipe_ingredients_group->generate_admin_markup( $new_group )
-                ),
-                'id' => $wp_recipe_ingredients->get_id(),
-                'markup' => $wp_recipe_ingredients->generate_admin_markup()
-            )
-        );
-
-        wp_localize_script( $script_handle, 'wprecipe', $data );
-
-    }
+    $wp_enqueue_util->enqueue_script( $options );
 
 }
