@@ -1,25 +1,25 @@
 {
-  "name": "wp-recipe",
-  "version": "0.6.2",
-  "description": "Add recipes to WordPress.",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/manovotny/wp-recipe.git"
-  },
-  "keywords": [
-    "food",
-    "recipe",
-    "recipes",
-    "wordpress"
-  ],
-  "authors": [
-    {
-      "name": "Michael Novotny",
-      "email": "manovotny@gmail.com",
-      "homepage": "http://manovotny.com"
+    "name": "wp-recipe",
+    "version": "0.6.2",
+    "description": "Add recipes to WordPress.",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/manovotny/wp-recipe.git"
+    },
+    "keywords": [
+        "food",
+        "recipe",
+        "recipes",
+        "wordpress"
+    ],
+    "authors": [
+        {
+            "name": "Michael Novotny",
+            "email": "manovotny@gmail.com",
+            "homepage": "http://manovotny.com"
+        }
+    ],
+    "devDependencies": {
+        "sass-lint-config": "git://github.com/manovotny/sass-lint-config.git#0.1.0"
     }
-  ],
-  "devDependencies": {
-    "sass-lint-config": "git://github.com/manovotny/sass-lint-config.git#0.1.0"
-  }
 }
