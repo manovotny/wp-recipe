@@ -22,7 +22,6 @@ build:
 generate:
   - autoprefixer
   - cssmin
-  - makepot
   - browserify
 
 update:
