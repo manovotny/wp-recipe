@@ -2,17 +2,15 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var config = require('config');
-
     grunt.config('phpunit', {
         options: {
-            bin: config.paths.phpunit,
-            bootstrap: config.paths.composer + '/manovotny/wp-phpunit-helpers/wp-phpunit-helpers.php',
+            bin: 'vendor/bin/phpunit',
+            bootstrap: 'vendor/manovotny/wp-phpunit-helpers/wp-phpunit-helpers.php',
             colors: true
         },
-        classes: {
+        tests: {
             coverage: true,
-            dir: config.paths.tests
+            dir: 'tests'
         }
     });
 

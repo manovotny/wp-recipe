@@ -2,39 +2,43 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var config = require('config'),
-        expand = true,
-        extension = '.css',
+    var _ = require('lodash'),
+        config = require('config'),
+
         options = {
             outputStyle: 'nested'
         },
-        source = [
-            '**/*.scss'
-        ];
+
+        adminPath = config.paths.source + '/admin',
+        sitePath = config.paths.source + '/site',
+
+        baseFiles = {
+            expand: true,
+            src: [
+                '**/*.scss'
+            ],
+            ext: '.css'
+        },
+        adminFiles = _.extend({
+            cwd: adminPath + '/sass',
+            dest: adminPath + '/css'
+        }, baseFiles),
+        siteFiles = _.extend({
+            cwd: sitePath + '/sass',
+            dest: sitePath + '/css'
+        }, baseFiles);
 
     grunt.config('sass', {
         admin: {
             options: options,
             files: [
-                {
-                    expand: expand,
-                    cwd: config.paths.admin + '/' + config.paths.sass,
-                    src: source,
-                    dest: config.paths.admin + '/' + config.paths.css,
-                    ext: extension
-                }
+                adminFiles
             ]
         },
         site: {
             options: options,
             files: [
-                {
-                    expand: expand,
-                    cwd: config.paths.sass,
-                    src: source,
-                    dest: config.paths.css,
-                    ext: extension
-                }
+                siteFiles
             ]
         }
     });

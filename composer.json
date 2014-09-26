@@ -13,14 +13,36 @@
         }
     ],
     "license": "GPL-3.0+",
+    "keywords": [
+        "food",
+        "recipe",
+        "recipes",
+        "wordpress"
+    ],
     "require": {
-        "manovotny/wp-array-util": "0.1.1",
-        "manovotny/wp-enqueue-util": "1.0.0",
-        "manovotny/wp-file-util": "0.1.1",
+        "manovotny/wp-array-util": "~1.0",
+        "manovotny/wp-enqueue-util": "~1.1",
+        "manovotny/wp-post-type-util": "~1.0",
+        "manovotny/wp-taxonomy-util": "~1.0",
+        "manovotny/wp-url-util": "~1.0"
+    },
+    "require-dev": {
         "manovotny/wp-phpunit-helpers": "0.1.0",
-        "manovotny/wp-post-type-util": "0.3.0",
-        "manovotny/wp-taxonomy-util": "0.2.2",
-        "manovotny/wp-url-util": "0.3.0",
         "phpunit/phpunit": "4.1.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src"
+        ],
+        "files": [
+            "wp-recipe.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "vendor/phpunit",
+            "vendor/sebastian",
+            "vendor/symfony"
+        ]
     }
 }

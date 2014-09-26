@@ -4,52 +4,51 @@ module.exports = function (grunt) {
 
     var config = require('config'),
 
-        filename = 'bundle',
+        concatFilename = config.files.browserify + '.concat.js',
+        minFilename = config.files.browserify + '.min.js',
+
+        concatOptions = {
+            debug: true
+        },
+        minOptions = {
+            debug: true,
+            transform: [
+                'uglifyify'
+            ]
+        },
+
+        adminDistPath = config.paths.source + '/admin/js/',
         adminSource = [
-            config.paths.admin + '/' + config.paths.js + '/**/*.js',
-            '!' + config.paths.admin + '/' + config.paths.js + '/**/*.concat.js',
-            '!' + config.paths.admin + '/' + config.paths.js + '/**/*.min.js'
+            config.paths.source + '/admin/js/**/*.js',
+            '!' + config.paths.source + '/admin/js/**/' + config.files.browserify + '.*.js'
         ],
-        source = [
-            config.paths.js + '/**/*.js',
-            '!' + config.paths.js + '/**/*.concat.js',
-            '!' + config.paths.js + '/**/*.min.js'
+
+        siteDistPath = config.paths.source + '/site/js/',
+        siteSource = [
+            config.paths.source + '/site/js/**/*.js',
+            '!' + config.paths.source + '/site/js/**/' + config.files.browserify + '.*.js'
         ];
 
     grunt.config('browserify', {
         admin: {
-            options: {
-                debug: true
-            },
+            options: concatOptions,
             src: adminSource,
-            dest: config.paths.admin + '/' + config.paths.js + '/' + filename + '.concat.js'
+            dest: adminDistPath + concatFilename
         },
         admin_dist: {
-            options: {
-                debug: true,
-                transform: [
-                    'uglifyify'
-                ]
-            },
+            options: minOptions,
             src: adminSource,
-            dest: config.paths.admin + '/' + config.paths.js + '/' + filename + '.min.js'
+            dest: adminDistPath + minFilename
         },
         site: {
-            options: {
-                debug: true
-            },
-            src: source,
-            dest: config.paths.js + '/' + filename + '.concat.js'
+            options: concatOptions,
+            src: siteSource,
+            dest: siteDistPath + concatFilename
         },
         site_dist: {
-            options: {
-                debug: true,
-                transform: [
-                    'uglifyify'
-                ]
-            },
-            src: source,
-            dest: config.paths.js + '/' + filename + '.min.js'
+            options: minOptions,
+            src: siteSource,
+            dest: siteDistPath + minFilename
         }
     });
 

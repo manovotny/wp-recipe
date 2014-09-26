@@ -25,54 +25,16 @@ if ( ! defined( 'WPINC' ) ) {
 
 }
 
-/* Libraries
+/* Composer
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/lib/wp-array-util/wp-array-util.php';
-require_once __DIR__ . '/lib/wp-enqueue-util/wp-enqueue-util.php';
-require_once __DIR__ . '/lib/wp-file-util/wp-file-util.php';
-require_once __DIR__ . '/lib/wp-post-type-util/wp-post-type-util.php';
-require_once __DIR__ . '/lib/wp-taxonomy-util/wp-taxonomy-util.php';
-require_once __DIR__ . '/lib/wp-url-util/wp-url-util.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
-/* Classes
----------------------------------------------------------------------------------- */
-
-if ( ! class_exists( 'WP_Recipe' ) ) {
-
-    require_once __DIR__ . '/classes/class-wp-recipe.php';
-
-    WP_Recipe::get_instance();
+    require_once __DIR__ . '/vendor/autoload.php';
 
 }
 
-require_once __DIR__ . '/classes/class-wp-recipe-cross-reference-posts.php';
-require_once __DIR__ . '/classes/class-wp-recipe-cross-reference-recipes.php';
-require_once __DIR__ . '/classes/class-wp-recipe-description.php';
-require_once __DIR__ . '/classes/class-wp-recipe-directions.php';
-require_once __DIR__ . '/classes/class-wp-recipe-id.php';
-require_once __DIR__ . '/classes/class-wp-recipe-ingredients.php';
-require_once __DIR__ . '/classes/class-wp-recipe-ingredients-group.php';
-require_once __DIR__ . '/classes/class-wp-recipe-tips.php';
-require_once __DIR__ . '/classes/class-wp-recipe-yield.php';
-
-/* Admin
+/* Initialization
 ---------------------------------------------------------------------------------- */
 
-require_once __DIR__ . '/admin/inc/enqueue-scripts.php';
-require_once __DIR__ . '/admin/inc/enqueue-styles.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/cross-reference-posts.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/cross-reference-recipes.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/description.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/directions.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/id.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/ingredients.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/tips.php';
-require_once __DIR__ . '/admin/inc/meta-boxes/yield.php';
-require_once __DIR__ . '/admin/inc/post-type.php';
-require_once __DIR__ . '/admin/inc/post-type-columns.php';
-require_once __DIR__ . '/admin/inc/remove-default-discussion-meta-box.php';
-require_once __DIR__ . '/admin/inc/remove-default-editor.php';
-require_once __DIR__ . '/admin/inc/save-post.php';
-require_once __DIR__ . '/admin/inc/shortcode.php';
-require_once __DIR__ . '/admin/inc/taxonomies.php';
+require_once __DIR__ . '/src/initialize.php';

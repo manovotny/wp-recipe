@@ -2,7 +2,26 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var config = require('config');
+    var _ = require('lodash'),
+        config = require('config'),
+
+        adminPath = config.paths.source + '/admin/css',
+        sitePath = config.paths.source + '/site/css',
+
+        baseTask = {
+            expand: true,
+            flatten: true
+        },
+
+        adminTask = _.extend({
+            src: adminPath + '/**/*.css',
+            dest: adminPath
+        }, baseTask),
+
+        siteTask = _.extend({
+            src: sitePath + '/**/*.css',
+            dest: sitePath
+        }, baseTask);
 
     grunt.config('autoprefixer', {
         options: {
@@ -12,12 +31,8 @@ module.exports = function (grunt) {
                 'ie 9'
             ]
         },
-        css: {
-            expand: true,
-            flatten: true,
-            src: config.paths.css + '/**/*.css',
-            dest: config.paths.css
-        }
+        admin: adminTask,
+        site: siteTask
     });
 
 };

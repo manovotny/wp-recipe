@@ -2,35 +2,35 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var config = require('config'),
-        expand = true,
-        extension = '.min.css',
-        options = {
-            keepSpecialComments: 0
-        },
-        source = [
-            '*.css',
+    var _ = require('lodash'),
+        config = require('config'),
 
-            '!*.min.css'
-        ];
+        adminPath = config.paths.source + '/admin/css',
+        sitePath = config.paths.source + '/site/css',
+
+        baseTask = {
+            options: {
+                keepSpecialComments: 0
+            },
+            expand: true,
+            src: [
+                '*.css',
+                '!*.min.css'
+            ],
+            ext: '.min.css'
+        },
+        adminTask = _.extend({
+            cwd: adminPath,
+            dest: adminPath
+        }, baseTask),
+        siteTask = _.extend({
+            cwd: sitePath,
+            dest: sitePath
+        }, baseTask);
 
     grunt.config('cssmin', {
-        admin: {
-            options: options,
-            expand: expand,
-            cwd: config.paths.admin + '/' + config.paths.css,
-            src: source,
-            dest: config.paths.admin + '/' + config.paths.css,
-            ext: extension
-        },
-        css: {
-            options: options,
-            expand: expand,
-            cwd: config.paths.css,
-            src: source,
-            dest: config.paths.css,
-            ext: extension
-        }
+        admin: adminTask,
+        site: siteTask
     });
 
 };

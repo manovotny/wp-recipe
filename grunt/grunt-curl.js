@@ -6,8 +6,8 @@ module.exports = function (grunt) {
 
     grunt.config('curl', {
         jshintrc: {
-            src: 'http://develop.svn.wordpress.org/trunk/' + config.files.jshint,
-            dest: config.paths.config + '/' + config.files.jshint
+            src: 'http://develop.svn.wordpress.org/trunk/.jshintrc',
+            dest: config.paths.curl + '/.jshintrc'
         }
     });
 

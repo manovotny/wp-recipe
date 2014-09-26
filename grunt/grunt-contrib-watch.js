@@ -7,8 +7,7 @@ module.exports = function (grunt) {
     grunt.config('watch', {
         css: {
             files: [
-                config.paths.admin + '/' + config.paths.sass + '/**/*.scss',
-                config.paths.sass + '/**/*.scss'
+                config.paths.source + '/**/*.scss'
             ],
             tasks: [
                 'css'
@@ -16,11 +15,8 @@ module.exports = function (grunt) {
         },
         js: {
             files: [
-                config.paths.admin + '/' + config.paths.js + '/**/*.js',
-                config.paths.js + '/**/*.js',
-
-                '!' + config.paths.admin + '/' + config.paths.js + '/**/*.min.js',
-                '!' + config.paths.js + '/**/*.min.js'
+                config.paths.source + '/**/*.js',
+                '!' + config.paths.source + '/**/' + config.files.browserify + '.*.js'
             ],
             tasks: [
                 'js'

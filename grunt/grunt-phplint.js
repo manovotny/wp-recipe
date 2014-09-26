@@ -6,11 +6,7 @@ module.exports = function (grunt) {
 
     grunt.config('phplint', {
         files: [
-            config.paths.admin + '/**/*.php',
-            config.paths.classes + '/**/*.php',
-            config.paths.inc + '/**/*.php',
-            config.paths.tests + '/**/*.php',
-            config.paths.views + '/**/*.php',
+            config.paths.source + '/**/*.php',
             '*.php'
         ]
     });

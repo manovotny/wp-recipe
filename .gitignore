@@ -4,5 +4,6 @@
 bower_components
 composer.lock
 config/runtime.json
+curl_downloads
 node_modules
 vendor
