@@ -12,7 +12,7 @@ function wp_recipe_save_cross_references() {
 
     global $post;
 
-    if ( empty( $post ) ) {
+    if ( empty( $post ) || ! array_key_exists( 'content', $_POST ) ) {
 
         return;
 
