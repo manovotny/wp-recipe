@@ -16,7 +16,7 @@ module.exports = (function () {
             name: 'WP Recipe',
             slug: 'wp-recipe',
             url: 'https://github.com/manovotny/wp-recipe',
-            version: '1.0.1'
+            version: '1.0.2'
         },
         translations: {
             domain: 'wp-recipe',
