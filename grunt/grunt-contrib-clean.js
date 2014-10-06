@@ -6,12 +6,11 @@ module.exports = function (grunt) {
 
     grunt.config('clean', {
         generated: [
-            config.paths.source + '/admin/css',
-            config.paths.source + '/site/css',
-
+            config.paths.source + '/**/css',
             config.paths.source + '/**/' + config.files.browserify + '.*.js',
 
-            'composer.lock'
+            'composer.lock',
+            'dist'
         ]
     });
 

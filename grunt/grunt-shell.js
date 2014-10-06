@@ -10,11 +10,12 @@ module.exports = function (grunt) {
             ].join('&&')
         },
         release: {
-            command: 'composer install --no-dev --optimize-autoloader'
+            command: 'composer update --no-dev --optimize-autoloader'
         },
         update: {
             command: [
                 'npm prune',
+                'npm install',
                 'npm-check-updates -u',
                 'npm update',
                 'npm update caniuse-db',

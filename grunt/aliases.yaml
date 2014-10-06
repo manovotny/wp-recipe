@@ -43,3 +43,4 @@ release:
   - replace:update_project
   - generate
   - shell:release
+  - copy
