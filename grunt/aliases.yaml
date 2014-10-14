@@ -15,14 +15,13 @@ build:
   - clean
   - lint
   - test
-  - browserify:admin
-  - browserify:site
+  - browserify
   - sass
 
 generate:
   - autoprefixer
   - cssmin
-  - browserify
+  - unpathify
 
 update:
   - shell:update
@@ -31,6 +30,7 @@ update:
 
 lint:
   - jshint
+  - jscs
   - phplint
   - scsslint
 

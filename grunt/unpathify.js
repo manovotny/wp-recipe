@@ -4,10 +4,9 @@ module.exports = function (grunt) {
 
     var config = require('config');
 
-    grunt.config('phplint', {
+    grunt.config('unpathify', {
         files: [
-            config.paths.source + '/**/*.php',
-            '*.php'
+            config.paths.source + '/**/' + config.files.browserify + '.min.js'
         ]
     });
 

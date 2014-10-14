@@ -81,6 +81,7 @@
     init();
 
 }(jQuery));
+
 },{"./recipe-data":2}],2:[function(require,module,exports){
 (function (global){
 (function (global) {
@@ -110,6 +111,7 @@
     };
 
 }(global));
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 (function ($) {
@@ -163,6 +165,7 @@
     init();
 
 }(jQuery));
+
 },{"./recipe-common":1,"./recipe-data":2,"./recipe-ingredient":4}],4:[function(require,module,exports){
 (function ($) {
 
@@ -219,4 +222,5 @@
     init();
 
 }(jQuery));
+
 },{"./recipe-common":1,"./recipe-data":2}]},{},[1,2,3,4]);

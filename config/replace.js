@@ -10,7 +10,10 @@ module.exports = (function () {
             username: 'manovotny'
         },
         project: {
-            composer: 'manovotny/wp-recipe',
+            composer: {
+                name: 'manovotny/wp-recipe',
+                type: 'library'
+            },
             description: 'Add recipes to WordPress.',
             git: 'git://github.com/manovotny/wp-recipe.git',
             name: 'WP Recipe',

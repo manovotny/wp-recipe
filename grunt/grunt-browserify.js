@@ -2,7 +2,9 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var config = require('config'),
+    var _ = require('lodash'),
+        config = require('config'),
+        glob = require('glob'),
 
         concatFilename = config.files.browserify + '.concat.js',
         minFilename = config.files.browserify + '.min.js',
@@ -17,39 +19,60 @@ module.exports = function (grunt) {
             ]
         },
 
+        adminFiles,
         adminDistPath = config.paths.source + '/admin/js/',
-        adminSource = [
-            config.paths.source + '/admin/js/**/*.js',
+        adminSource = config.paths.source + '/admin/js/**/*.js',
+        adminSources = [
+            adminSource,
             '!' + config.paths.source + '/admin/js/**/' + config.files.browserify + '.*.js'
         ],
 
+        siteFiles,
         siteDistPath = config.paths.source + '/site/js/',
-        siteSource = [
-            config.paths.source + '/site/js/**/*.js',
+        siteSource = config.paths.source + '/site/js/**/*.js',
+        siteSources = [
+            siteSource,
             '!' + config.paths.source + '/site/js/**/' + config.files.browserify + '.*.js'
-        ];
+        ],
 
-    grunt.config('browserify', {
-        admin: {
+        tasks = {};
+
+    adminFiles = glob.sync(adminSource, {});
+
+    if (!_.isEmpty(adminFiles)) {
+        tasks.admin = {
             options: concatOptions,
-            src: adminSource,
+            src: adminSources,
             dest: adminDistPath + concatFilename
-        },
-        admin_dist: {
+        };
+
+        tasks.admin_dist = {
             options: minOptions,
-            src: adminSource,
+            src: adminSources,
             dest: adminDistPath + minFilename
-        },
-        site: {
+        };
+    }
+
+    siteFiles = glob.sync(siteSource, {});
+
+    if (!_.isEmpty(siteFiles)) {
+        tasks.site = {
             options: concatOptions,
-            src: siteSource,
+            src: siteSources,
             dest: siteDistPath + concatFilename
-        },
-        site_dist: {
+        };
+
+        tasks.site_dist = {
             options: minOptions,
-            src: siteSource,
+            src: siteSources,
             dest: siteDistPath + minFilename
-        }
-    });
+        };
+    }
+
+    if (_.isEmpty(tasks)) {
+        tasks.empty = {};
+    }
+
+    grunt.config('browserify', tasks);
 
 };
