@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_action( 'add_meta_boxes_recipe', 'wp_recipe_add_tips_meta_box' );
 add_action( 'save_post_' . WP_Recipe::get_instance()->get_post_type(), 'wp_recipe_save_tips_meta_box' );

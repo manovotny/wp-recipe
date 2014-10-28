@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 global $post;
 

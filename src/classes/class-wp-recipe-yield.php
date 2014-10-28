@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 class WP_Recipe_Yield {
 

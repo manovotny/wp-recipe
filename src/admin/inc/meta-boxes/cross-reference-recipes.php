@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_action( 'add_meta_boxes_post', 'wp_recipe_add_recipe_cross_reference_meta_box' );
 
