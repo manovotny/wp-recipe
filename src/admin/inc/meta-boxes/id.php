@@ -15,7 +15,7 @@ function wp_recipe_add_id_meta_box() {
         'Recipe Id',
         'wp_recipe_display_id_meta_box',
         $wp_recipe->get_post_type(),
-        'normal',
+        'side',
         'high'
     );
 

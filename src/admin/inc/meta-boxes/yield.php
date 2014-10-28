@@ -16,7 +16,7 @@ function wp_recipe_add_yield_meta_box() {
         'Yield',
         'wp_recipe_display_yield_meta_box',
         $wp_recipe->get_post_type(),
-        'normal',
+        'side',
         'high'
     );
 

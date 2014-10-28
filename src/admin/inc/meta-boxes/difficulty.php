@@ -16,7 +16,7 @@ function wp_recipe_add_difficulty_meta_box() {
         'Difficulty',
         'wp_recipe_display_difficulty_meta_box',
         $wp_recipe->get_post_type(),
-        'normal',
+        'side',
         'high'
     );
 
