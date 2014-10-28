@@ -9,6 +9,9 @@ module.exports = function (grunt) {
                 'composer install'
             ].join('&&')
         },
+        refresh: {
+            command: 'composer dump-autoload'
+        },
         release: {
             command: 'composer update --no-dev --optimize-autoloader'
         },

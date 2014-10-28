@@ -23,6 +23,9 @@ generate:
   - cssmin
   - unpathify
 
+refresh:
+  - shell:refresh
+
 update:
   - shell:update
   - curl
