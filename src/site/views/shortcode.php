@@ -43,7 +43,7 @@ $html .= '<section class="recipe">';
 
     if ( ! empty( $title ) ) {
 
-        $html .= '<h4 class="title">' . $title . '</h4>';
+        $html .= '<h3 class="title">' . $title . '</h3>';
 
     }
 
