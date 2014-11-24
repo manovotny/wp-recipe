@@ -97,9 +97,11 @@ class WP_Recipe_Ingredients_Group {
 
         $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
 
+        $group_classes = $this->get_classes();
+
         $html = '';
 
-        $html .= '<li>';
+        $html .= '<li class="' . $group_classes[ 'list' ] . '">';
 
             foreach ( $ingredient_group as $key => $ingredient ) {
 
