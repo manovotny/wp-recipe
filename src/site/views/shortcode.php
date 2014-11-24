@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 extract(
     shortcode_atts(
@@ -40,19 +37,34 @@ $ingredients = maybe_unserialize( $recipe_post_meta[ $wp_recipe_ingredients->get
 $tips = $recipe_post_meta[ $wp_recipe_tips->get_meta_slug() ][ 0 ];
 $yield = $recipe_post_meta[ $wp_recipe_yield->get_meta_slug() ][ 0 ];
 
-
 $html = '';
+
 $html .= '<section class="recipe">';
-    $html .= '<h1 class="title">' . $title . '</h1>';
-    $html .= '<h2 class="description">' . $description . '</h2>';
-    $html .= '<section class="meta">';
-        $html .= $yield;
-    $html .= '</section>';
-    $html .= '<section class="ingredients">';
-        $html .= '<h3>Ingredients</h3>';
 
-        if ( ! empty( $ingredients ) ) {
+    if ( ! empty( $title ) ) {
 
+        $html .= '<h4 class="title">' . $title . '</h4>';
+
+    }
+
+    if ( ! empty( $description ) ) {
+
+        $html .= '<h4 class="description">' . $description . '</h4>';
+
+    }
+
+    if ( ! empty( $yield ) ) {
+
+        $html .= '<section class="meta">';
+           $html .= '<p>' . $yield . '</p>';
+        $html .= '</section>';
+
+    }
+
+    if ( ! empty( $ingredients ) ) {
+
+        $html .= '<section class="ingredients">';
+            $html .= '<h4>Ingredients</h4>';
             $html .= '<ul>';
 
                 foreach ( $ingredients as $item ) {
@@ -70,18 +82,28 @@ $html .= '<section class="recipe">';
                 }
 
             $html .= '</ul>';
+        $html .= '</section>';
 
-        }
+    }
 
-    $html .= '</section>';
-    $html .= '<section class="directions">';
-        $html .= '<h3>Directions</h3>';
-        $html .= '<p>' . $directions . '</p>';
-    $html .= '</section>';
-    $html .= '<section class="tips">';
-        $html .= '<h3>Tips</h3>';
-        $html .= '<p>' . $tips . '</p>';
-    $html .= '</section>';
+    if ( ! empty( $directions ) ) {
+
+        $html .= '<section class="directions">';
+           $html .= '<h4>Directions</h4>';
+            $html .= '<p>' . $directions . '</p>';
+        $html .= '</section>';
+
+    }
+
+    if ( ! empty( $tips ) ) {
+
+        $html .= '<section class="tips">';
+            $html .= '<h4>Tips</h4>';
+            $html .= '<p>' . $tips . '</p>';
+        $html .= '</section>';
+
+    }
+
 $html .= '</section>';
 
 echo $html;
