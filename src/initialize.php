@@ -20,3 +20,5 @@ require __DIR__ . '/admin/inc/remove-default-editor.php';
 require __DIR__ . '/admin/inc/save-post.php';
 require __DIR__ . '/admin/inc/shortcode.php';
 require __DIR__ . '/admin/inc/taxonomies.php';
+
+require __DIR__ . '/site/inc/enqueue-scripts.php';
