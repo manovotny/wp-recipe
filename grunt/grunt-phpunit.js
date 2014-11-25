@@ -2,15 +2,28 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    grunt.config('phpunit', {
-        options: {
-            bin: 'vendor/bin/phpunit',
-            colors: true,
-            coverage: true
+    var _ = require('lodash'),
+        glob = require('glob'),
+
+        source = 'tests/**/*Test*.php',
+        task = {
+            options: {
+                bin: 'vendor/bin/phpunit',
+                bootstrap: 'vendor/manovotny/wp-phpunit-helpers/wp-phpunit-helpers.php',
+                colors: true,
+                coverage: true
+            }
         },
-        tests: {
+        files;
+
+    files = glob.sync(source, {});
+
+    if (!_.isEmpty(files)) {
+        task.tests = {
             dir: 'tests'
-        }
-    });
+        };
+    }
+
+    grunt.config('phpunit', task);
 
 };

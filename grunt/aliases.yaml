@@ -1,35 +1,38 @@
+# Default
+#----------------------------------------------------------------------------------
+
 default:
   - build
 
-init:
-  - config
-  - shell:install
-  - update
-  - build
+# Setup
+#----------------------------------------------------------------------------------
 
-config:
+init:
+  - shell:init
   - replace
   - rename
-
-build:
-  - clean
-  - lint
-  - test
-  - browserify
-  - sass
-
-generate:
-  - autoprefixer
-  - cssmin
-  - unpathify
+  - build
 
 refresh:
   - shell:refresh
 
 update:
   - shell:update
-  - curl
   - build
+
+upgrade:
+  - shell:upgrade
+
+# Build
+#----------------------------------------------------------------------------------
+
+build:
+  - clean
+  - curl
+  - lint
+  - test
+  - js
+  - css
 
 lint:
   - jshint
@@ -40,10 +43,19 @@ lint:
 test:
   - phpunit
 
+js:
+  - browserify
+  - unpathify
+
+css:
+  - sass
+  - autoprefixer
+  - cssmin
+
+# Release
+#----------------------------------------------------------------------------------
+
 release:
   - build
   - replace:project_version
   - replace:update_project
-  - generate
-  - shell:release
-  - copy

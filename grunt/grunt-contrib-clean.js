@@ -9,8 +9,7 @@ module.exports = function (grunt) {
             config.paths.source + '/**/css',
             config.paths.source + '/**/' + config.files.browserify + '.*.js',
 
-            'composer.lock',
-            'dist'
+            'composer.lock'
         ]
     });
 
