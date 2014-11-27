@@ -40,6 +40,13 @@ $yield = $recipe_post_meta[ $wp_recipe_yield->get_meta_slug() ][ 0 ];
 $html = '';
 
 $html .= '<section class="recipe">';
+
+    if ( shortcode_exists( 'pinit' ) ) {
+
+        $html .= do_shortcode( '[pinit]' );
+
+    }
+
     $html .= '<button class="print">Print Recipe</button>';
 
     if ( ! empty( $title ) ) {
