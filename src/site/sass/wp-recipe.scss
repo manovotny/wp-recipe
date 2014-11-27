@@ -1,6 +1,5 @@
-.recipe {
-    .print {
-        cursor: pointer;
-        margin-bottom: 15px;
-    }
-}
+@import '../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print';
+
+@import 'partials/variables';
+@import 'partials/recipe';
+@import 'partials/print';

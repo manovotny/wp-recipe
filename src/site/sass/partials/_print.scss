@@ -1,0 +1,33 @@
+@media print {
+    body > *:not(.printable-recipe) {
+        display: none !important;
+    }
+
+    .printable-recipe {
+        display: block;
+        padding: 4em 4em 0;
+
+        h4 {
+            margin-bottom: $spacing;
+        }
+
+        li {
+            list-style-type: disc;
+
+            &.ingredients-group {
+                list-style-type: none;
+                margin: $spacing 0 $spacing (-$spacing);
+            }
+        }
+
+        ol,
+        ul {
+            margin-left: $spacing;
+            margin-top: $spacing;
+        }
+
+        ol li {
+            list-style-type: decimal;
+        }
+    }
+}
