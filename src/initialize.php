@@ -22,3 +22,4 @@ require __DIR__ . '/admin/inc/shortcode.php';
 require __DIR__ . '/admin/inc/taxonomies.php';
 
 require __DIR__ . '/site/inc/enqueue-scripts.php';
+require __DIR__ . '/site/inc/enqueue-styles.php';
