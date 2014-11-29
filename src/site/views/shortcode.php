@@ -41,6 +41,12 @@ $html = '';
 
 $html .= '<section class="recipe">';
 
+    if ( ! empty( $title ) ) {
+
+        $html .= '<h3 class="title">' . $title . '</h3>';
+
+    }
+
     if ( shortcode_exists( 'pinit' ) ) {
 
         $html .= do_shortcode( '[pinit]' );
@@ -48,12 +54,6 @@ $html .= '<section class="recipe">';
     }
 
     $html .= '<button class="print">Print Recipe</button>';
-
-    if ( ! empty( $title ) ) {
-
-        $html .= '<h3 class="title">' . $title . '</h3>';
-
-    }
 
     if ( ! empty( $description ) ) {
 
