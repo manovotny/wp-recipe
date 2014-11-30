@@ -40,83 +40,79 @@ $ingredients = maybe_unserialize( $recipe_post_meta[ $wp_recipe_ingredients->get
 $tips = $recipe_post_meta[ $wp_recipe_tips->get_meta_slug() ][ 0 ];
 $yield = $recipe_post_meta[ $wp_recipe_yield->get_meta_slug() ][ 0 ];
 
-$html = '';
-
-$html .= '<section class="recipe">';
+echo '<section class="recipe">';
 
     if ( ! empty( $title ) ) {
 
-        $html .= '<h3 class="title">' . $title . '</h3>';
+        echo '<h3 class="title">' . $title . '</h3>';
 
     }
 
     if ( shortcode_exists( 'pinit' ) ) {
 
-        $html .= do_shortcode( '[pinit]' );
+        echo do_shortcode( '[pinit]' );
 
     }
 
-    $html .= '<button class="print">Print Recipe</button>';
+    echo '<button class="print">Print Recipe</button>';
 
     if ( ! empty( $description ) ) {
 
-        $html .= '<h4 class="description">' . $description . '</h4>';
+        echo '<h4 class="description">' . $description . '</h4>';
 
     }
 
     if ( ! empty( $yield ) ) {
 
-        $html .= '<section class="meta">';
-           $html .= '<p>' . $yield . '</p>';
-        $html .= '</section>';
+        echo '<section class="meta">';
+           echo '<p>' . $yield . '</p>';
+        echo '</section>';
 
     }
 
     if ( ! empty( $ingredients ) ) {
 
-        $html .= '<section class="ingredients">';
-            $html .= '<h4>Ingredients</h4>';
-            $html .= '<ul>';
+        echo '<section class="ingredients">';
+            echo '<h4>Ingredients</h4>';
+            echo '<ul>';
 
                 foreach ( $ingredients as $item ) {
 
                     if ( is_array( $item ) ) {
 
-                        $html .= $wp_recipe_ingredients_group->generate_markup( $item );
+                        echo $wp_recipe_ingredients_group->generate_markup( $item );
 
                     } else {
 
-                        $html .= $wp_recipe_ingredients->generate_markup( $item );
+                        echo $wp_recipe_ingredients->generate_markup( $item );
 
                     }
 
                 }
 
-            $html .= '</ul>';
-        $html .= '</section>';
+            echo '</ul>';
+        echo '</section>';
 
     }
 
     if ( ! empty( $directions ) ) {
 
-        $html .= '<section class="directions">';
-           $html .= '<h4>Directions</h4>';
-            $html .= '<p>' . $directions . '</p>';
-        $html .= '</section>';
+        echo '<section class="directions">';
+            echo '<h4>Directions</h4>';
+            echo '<p>' . $directions . '</p>';
+        echo '</section>';
 
     }
 
     if ( ! empty( $tips ) ) {
 
-        $html .= '<section class="tips">';
-            $html .= '<h4>Tips</h4>';
-            $html .= '<p>' . $tips . '</p>';
-        $html .= '</section>';
+        echo '<section class="tips">';
+            echo '<h4>Tips</h4>';
+            echo '<p>' . $tips . '</p>';
+        echo '</section>';
 
     }
 
     do_action( $actions[ 'after_recipe' ] );
 
-$html .= '</section>';
-
-echo $html;
+echo '</section>';
