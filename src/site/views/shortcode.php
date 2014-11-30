@@ -23,6 +23,7 @@ if ( empty( $recipe_post_meta ) ) {
 
 }
 
+$wp_recipe = WP_Recipe::get_instance();
 $wp_recipe_description = WP_Recipe_Description::get_instance();
 $wp_recipe_directions = WP_Recipe_Directions::get_instance();
 $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
@@ -111,6 +112,8 @@ $html .= '<section class="recipe">';
         $html .= '</section>';
 
     }
+
+    do_action( $wp_recipe->get_localization_handle() . '_after_recipe' );
 
 $html .= '</section>';
 
