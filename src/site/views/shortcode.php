@@ -31,6 +31,8 @@ $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
 $wp_recipe_tips = WP_Recipe_Tips::get_instance();
 $wp_recipe_yield = WP_Recipe_Yield::get_instance();
 
+$actions = $wp_recipe->get_actions();
+
 $title = get_the_title( $id );
 $description = $recipe_post_meta[ $wp_recipe_description->get_meta_slug() ][ 0 ];
 $directions = $recipe_post_meta[ $wp_recipe_directions->get_meta_slug() ][ 0 ];
@@ -113,7 +115,7 @@ $html .= '<section class="recipe">';
 
     }
 
-    do_action( $wp_recipe->get_localization_handle() . '_after_recipe' );
+    do_action( $actions[ 'after_recipe' ] );
 
 $html .= '</section>';
 
