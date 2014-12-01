@@ -10,24 +10,28 @@
         h4 {
             margin-bottom: $spacing;
         }
+    }
 
-        li {
-            list-style-type: disc;
+    .recipe-controls {
+        display: none;
+    }
 
-            &.ingredients-group {
-                list-style-type: none;
-                margin: $spacing 0 $spacing (-$spacing);
-            }
+    .ingredients li {
+        list-style-type: disc;
+
+        &.ingredients-group {
+            list-style-type: none;
+            margin: $spacing 0 $spacing (-$spacing);
         }
+    }
 
-        ol,
-        ul {
-            margin-left: $spacing;
-            margin-top: $spacing;
-        }
+    .directions ol,
+    .ingredients ul {
+        margin-left: $spacing;
+        margin-top: $spacing;
+    }
 
-        ol li {
-            list-style-type: decimal;
-        }
+    .directions ol li {
+        list-style-type: decimal;
     }
 }

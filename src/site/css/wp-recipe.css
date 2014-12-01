@@ -75,14 +75,20 @@
     padding: 4em 4em 0; }
     .printable-recipe h4 {
       margin-bottom: 15px; }
-    .printable-recipe li {
-      list-style-type: disc; }
-      .printable-recipe li.ingredients-group {
-        list-style-type: none;
-        margin: 15px 0 15px -15px; }
-    .printable-recipe ol, .printable-recipe ul {
-      margin-left: 15px;
-      margin-top: 15px; }
-    .printable-recipe ol li {
-      list-style-type: decimal; }
+
+  .recipe-controls {
+    display: none; }
+
+  .ingredients li {
+    list-style-type: disc; }
+    .ingredients li.ingredients-group {
+      list-style-type: none;
+      margin: 15px 0 15px -15px; }
+
+  .directions ol, .ingredients ul {
+    margin-left: 15px;
+    margin-top: 15px; }
+
+  .directions ol li {
+    list-style-type: decimal; }
  }

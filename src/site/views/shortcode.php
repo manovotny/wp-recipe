@@ -48,13 +48,21 @@ echo '<section class="recipe">';
 
     }
 
-    if ( shortcode_exists( 'pinit' ) ) {
+    echo '<ul class="recipe-controls">';
 
-        echo do_shortcode( '[pinit]' );
+        if ( shortcode_exists( 'pinit' ) ) {
 
-    }
+            echo '<li>';
+                echo do_shortcode( '[pinit]' );
+            echo '</li>';
 
-    echo '<button class="print">Print Recipe</button>';
+        }
+
+        echo '<li>';
+            echo '<button class="print">Print Recipe</button>';
+        echo '</li>';
+
+    echo '</ul>';
 
     if ( ! empty( $description ) ) {
 
