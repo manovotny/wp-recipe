@@ -27,12 +27,13 @@ upgrade:
 #----------------------------------------------------------------------------------
 
 build:
-  - clean
+  - clean:build
   - curl
   - lint
   - test
   - js
   - css
+  - images
 
 lint:
   - jshint
@@ -45,12 +46,16 @@ test:
 
 js:
   - browserify
-  - unpathify
 
 css:
   - sass
   - autoprefixer
   - cssmin
+
+images:
+  - imagemin:svg
+  - grunticon
+  - imagemin:png
 
 # Release
 #----------------------------------------------------------------------------------
@@ -59,3 +64,9 @@ release:
   - build
   - replace:project_version
   - replace:update_project
+
+# Deploy
+#----------------------------------------------------------------------------------
+
+deploy:
+  - clean:deploy

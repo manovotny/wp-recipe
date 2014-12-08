@@ -13,6 +13,14 @@ module.exports = function (grunt) {
                 'css'
             ]
         },
+        images: {
+            files: [
+                config.paths.source + '/**/*.svg'
+            ],
+            tasks: [
+                'images'
+            ]
+        },
         js: {
             files: [
                 config.paths.source + '/**/*.js',

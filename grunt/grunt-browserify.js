@@ -3,6 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var _ = require('lodash'),
+        collapse = require('bundle-collapser/plugin'),
         config = require('config'),
         glob = require('glob'),
 
@@ -14,6 +15,9 @@ module.exports = function (grunt) {
         },
         minOptions = {
             debug: true,
+            plugin: [
+                collapse
+            ],
             transform: [
                 'uglifyify'
             ]
