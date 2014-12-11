@@ -22,6 +22,7 @@
     "require": {
         "manovotny/wp-array-util": "~1.0",
         "manovotny/wp-enqueue-util": "~1.1",
+        "manovotny/wp-grunticon": "~1.0",
         "manovotny/wp-post-type-util": "~1.0",
         "manovotny/wp-taxonomy-util": "~1.0",
         "manovotny/wp-url-util": "~1.0"

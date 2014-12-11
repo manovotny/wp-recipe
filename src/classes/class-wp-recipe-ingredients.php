@@ -117,6 +117,9 @@ class WP_Recipe_Ingredients {
                 $html .= '<li class="action-item">';
                     $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';
                 $html .= '</li>';
+                $html .= '<li class="action-item">';
+                    $html .= '<span class="drag-handle"></span>';
+                $html .= '</li>';
             $html .= '</ul>';
         $html .= '</li>';
 

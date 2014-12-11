@@ -41,13 +41,19 @@
     }
 
     .actions {
+        @include scut-list-floated(10px);
+
         display: inline-block;
+        margin-left: 10px;
         vertical-align: middle;
     }
 
     .action-item {
-        display: inline-block;
-        margin: 0 0 0 10px;
+        margin-bottom: 0;
+    }
+
+    .drag-handle {
+        cursor: move;
     }
 }
 

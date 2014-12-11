@@ -29,26 +29,40 @@
     border: 0;
     border-bottom: 1px solid #dedede;
     box-shadow: none;
-    width: calc(100% - 84px); }
+    width: calc(100% - 105px); }
     .wp-recipe-ingredients .item-control:focus {
       border-color: #dedede;
       box-shadow: none; }
   .wp-recipe-ingredients .actions {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     display: inline-block;
+    margin-left: 10px;
     vertical-align: middle; }
+    .wp-recipe-ingredients .actions:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .wp-recipe-ingredients .actions > li {
+      float: left; }
+    .wp-recipe-ingredients .actions > li + li {
+      margin-left: 10px; }
   .wp-recipe-ingredients .action-item {
-    display: inline-block;
-    margin: 0 0 0 10px; }
+    margin-bottom: 0; }
+  .wp-recipe-ingredients .drag-handle {
+    cursor: move; }
 
 .group .item-control {
-  width: calc(100% - 140px); }
+  width: calc(100% - 161px); }
 .group .ingredients-group {
   list-style: disc;
   margin-top: 6px; }
 .group .ingredient {
   margin-left: 23px; }
   .group .ingredient .item-control {
-    width: calc(100% - 84px); }
+    width: calc(100% - 105px); }
 
 .wp-recipe-yield .list, .wp-recipe-yield .list-item {
   margin: 0; }

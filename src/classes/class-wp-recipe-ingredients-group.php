@@ -67,6 +67,9 @@ class WP_Recipe_Ingredients_Group {
                             $html .= '<li class="action-item">';
                                 $html .= '<button class="' . $group_classes[ 'remove' ] . ' button">Remove</button>';
                             $html .= '</li>';
+                            $html .= '<li class="action-item">';
+                                $html .= '<span class="drag-handle"></span>';
+                            $html .= '</li>';
                         $html .= '</ul>';
                         $html .= '<ul class="' . $group_classes[ 'list' ] . '">';
 

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_scripts' );
 
@@ -9,6 +6,8 @@ add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_scripts' );
  * Loads editor scripts.
  */
 function wp_recipe_post_type_scripts() {
+
+    wp_enqueue_script( 'jquery-ui-sortable' );
 
     $wp_enqueue_util = WP_Enqueue_Util::get_instance();
     $wp_recipe = WP_Recipe::get_instance();

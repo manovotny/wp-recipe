@@ -223,4 +223,29 @@
 
 }(jQuery));
 
-},{"./recipe-common":1,"./recipe-data":2}]},{},[1,2,3,4]);
+},{"./recipe-common":1,"./recipe-data":2}],5:[function(require,module,exports){
+(function ($) {
+
+    'use strict';
+
+    var data = require('./recipe-data');
+
+    function init() {
+        $(data.ingredient.list).sortable({
+            axis: 'y',
+            connectWith: data.ingredient.list,
+            cursor: 'move',
+            handle: '.drag-handle',
+            scroll: true
+        });
+
+        $(data.group.list).sortable({
+            connectWith: data.group.list
+        });
+    }
+
+    init();
+
+}(jQuery));
+
+},{"./recipe-data":2}]},{},[1,2,3,4,5]);
