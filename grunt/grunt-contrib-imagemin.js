@@ -6,6 +6,7 @@ module.exports = function (grunt) {
 
         paths = {
             admin: '/admin',
+            data: '/data',
             images: '/images',
             png: '/css/images/png',
             site: '/site'
@@ -20,6 +21,12 @@ module.exports = function (grunt) {
         };
 
     grunt.config('imagemin', {
+        options: {
+            svgoPlugins: [
+                { removeDesc: true },
+                { removeTitle: true }
+            ]
+        },
         png: {
             files: [
                 {
@@ -46,9 +53,21 @@ module.exports = function (grunt) {
                 },
                 {
                     expand: true,
+                    cwd: config.paths.source + paths.admin + paths.images + paths.data,
+                    src: source.svg,
+                    dest: config.paths.source + paths.admin + paths.images + paths.data
+                },
+                {
+                    expand: true,
                     cwd: config.paths.source + paths.site + paths.images,
                     src: source.svg,
                     dest: config.paths.source + paths.site + paths.images
+                },
+                {
+                    expand: true,
+                    cwd: config.paths.source + paths.site + paths.images + paths.data,
+                    src: source.svg,
+                    dest: config.paths.source + paths.site + paths.images + paths.data
                 }
             ]
         }
