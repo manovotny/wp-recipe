@@ -33,6 +33,7 @@ function wp_recipe_post_type() {
         'exclude_from_search'   =>  true,
         'hierarchical'          =>  false,
         'labels'                =>  $labels,
+        'menu_icon'             => 'data:image/svg+xml;base64,' . base64_encode( file_get_contents( realpath( __DIR__ . '/../images/data/recipes.svg' ) ) ),
         'menu_position'         =>  5,
         'public'                =>  true,
         'supports'              =>  array(
