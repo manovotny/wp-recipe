@@ -11,10 +11,10 @@ add_filter( 'wp_grunticon_enqueue_scripts', 'wp_recipe_enqueue_grunticon_scripts
 function wp_recipe_enqueue_grunticon_scripts( $queue ) {
 
     $wp_recipe = WP_Recipe::get_instance();
-    $wp_grunticon = WP_Grunticon::get_instance();
+    $wp_url_util = WP_Url_Util::get_instance();
 
     $wp_grunticon_options = new WP_Grunticon_Options(
-        $wp_grunticon->generate_grunticon_asset_path( __DIR__, '../css/images' ),
+        $wp_url_util->convert_absolute_path_to_root_path( realpath( __DIR__ . '/../css/images' ) ),
         'svg.css',
         'png.css',
         'fallback.css',

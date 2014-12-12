@@ -22,10 +22,11 @@
     "require": {
         "manovotny/wp-array-util": "~1.0",
         "manovotny/wp-enqueue-util": "~1.1",
-        "manovotny/wp-grunticon": "~1.0",
+        "manovotny/wp-grunticon": "~2.0",
+        "manovotny/wp-image-util": "~1.1",
         "manovotny/wp-post-type-util": "~1.0",
         "manovotny/wp-taxonomy-util": "~1.0",
-        "manovotny/wp-url-util": "~1.0"
+        "manovotny/wp-url-util": "~2.0"
     },
     "require-dev": {
         "manovotny/wp-phpunit-helpers": "~1.0",
