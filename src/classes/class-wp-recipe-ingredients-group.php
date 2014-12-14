@@ -59,7 +59,7 @@ class WP_Recipe_Ingredients_Group {
                     if ( 'group' === $key ) {
 
                         $html .= '<label class="item-label">Ingredient Group</label>';
-                        $html .= '<input class="item-control" type="text" value="' . $ingredient . '" placeholder="Ingredient Group"/>';
+                        $html .= '<input class="item-control" type="text" value="' . esc_attr( $ingredient ) . '" placeholder="Ingredient Group"/>';
                         $html .= '<ul class="actions">';
                             $html .= '<li class="action-item">';
                                 $html .= '<button class="' . $ingredient_classes[ 'add' ] . ' button">Add</button>';

@@ -112,7 +112,7 @@ class WP_Recipe_Ingredients {
 
         $html .= '<li class="' . $classes[ 'item' ] . '">';
             $html .= '<label class="item-label">Ingredient</label>';
-            $html .= '<input class="item-control" type="text" value="' . $ingredient . '" placeholder="Ingredient"/>';
+            $html .= '<input class="item-control" type="text" value="' . esc_attr( $ingredient ) . '" placeholder="Ingredient"/>';
             $html .= '<ul class="actions">';
                 $html .= '<li class="action-item">';
                     $html .= '<button class="' . $classes[ 'remove' ] . ' button">Remove</button>';

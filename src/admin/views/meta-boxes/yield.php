@@ -14,7 +14,7 @@ $html .= '<fieldset class="' . $wp_recipe_yield->get_slug() . '">';
     $html .= '<ul class="list">';
         $html .= '<li class="list-item">';
             $html .= '<label class="item-label" for="' . $wp_recipe_yield->get_id() . '">Yield</label>';
-            $html .= '<input class="item-control" id="' . $wp_recipe_yield->get_id() . '" name="' . $wp_recipe_yield->get_id() . '" type="text" value="' . $yield . '" />';
+            $html .= '<input class="item-control" id="' . $wp_recipe_yield->get_id() . '" name="' . $wp_recipe_yield->get_id() . '" type="text" value="' . esc_attr( $yield ) . '" />';
         $html .= '</li>';
     $html .= '</ul>';
 $html .= '</fieldset>';
