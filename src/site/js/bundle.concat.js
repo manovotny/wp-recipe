@@ -3,6 +3,8 @@
 
     'use strict';
 
+    var recipePrintButtonSelector = '.recipe .print';
+
     function printRecipe(event) {
         var $body = $('body'),
             $recipe = $(event.currentTarget).parents('.recipe').clone(),
@@ -21,10 +23,15 @@
         $body.find(printableSelector).remove();
     }
 
-    function init() {
-        $('.recipe .print').on('click', printRecipe);
+    function showRecipePrintButton() {
+        $(recipePrintButtonSelector).show();
     }
 
+    function init() {
+        $(window).load(showRecipePrintButton);
+
+        $(recipePrintButtonSelector).on('click', printRecipe);
+    }
     init();
 
 }(jQuery));

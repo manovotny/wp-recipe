@@ -61,6 +61,7 @@
 
 .recipe .print {
   cursor: pointer;
+  display: none;
   margin-bottom: 15px; }
 
 .printable-recipe {
