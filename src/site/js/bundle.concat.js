@@ -3,34 +3,41 @@
 
     'use strict';
 
-    var recipePrintButtonSelector = '.recipe .print';
-
     function printRecipe(event) {
-        var $body = $('body'),
-            $recipe = $(event.currentTarget).parents('.recipe').clone(),
-            printableClass = 'printable-recipe',
-            printableSelector = '.' + printableClass,
-            printButtonSelector = '.print';
+        var recipe = $(event.currentTarget).parents('.recipe').clone().get(0),
+            iframe = document.createElement('iframe'),
+            recipeTitle = recipe.querySelector('.title').textContent,
+            content;
 
-        $recipe.addClass(printableClass);
+        recipe.querySelector('.recipe-controls').remove();
 
-        $recipe.find(printButtonSelector).remove();
+        iframe.setAttribute('id', 'printable-recipe');
+        iframe.classList.add('printable-recipe');
 
-        $body.append($recipe);
+        content =
+            '<!DOCTYPE html>' +
+                '<head>' +
+                    '<title>' + recipeTitle + '</title>' +
+                '</head>' +
+                '<body>' +
+                    recipe.outerHTML +
+                '</body>' +
+            '</html>';
 
-        window.print();
+        document.body.appendChild(iframe);
 
-        $body.find(printableSelector).remove();
-    }
+        iframe.contentWindow.document.open('text/htmlreplace');
+        iframe.contentWindow.document.write(content);
+        iframe.contentWindow.document.close();
 
-    function showRecipePrintButton() {
-        $(recipePrintButtonSelector).show();
+        iframe.focus();
+        iframe.contentWindow.print();
+
+        iframe.remove();
     }
 
     function init() {
-        $(window).load(showRecipePrintButton);
-
-        $(recipePrintButtonSelector).on('click', printRecipe);
+        $('.recipe .print').on('click', printRecipe);
     }
     init();
 
