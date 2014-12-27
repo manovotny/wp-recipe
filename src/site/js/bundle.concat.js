@@ -3,6 +3,8 @@
 
     'use strict';
 
+    var data = require('./recipe-data');
+
     function iframeLoaded(event) {
         var iframe = event.currentTarget;
 
@@ -15,7 +17,8 @@
             $iframe,
             printableIframe = 'printable-iframe',
             content,
-            iframe;
+            iframe,
+            styles = '';
 
         $recipe.find('.recipe-controls').remove();
 
@@ -31,10 +34,15 @@
 
         iframe.onload = iframeLoaded;
 
+        _.each(data.print.styles, function (style) {
+            styles += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
+        });
+
         content =
             '<html>' +
                 '<head>' +
-                    '<title>' + 'asdf' + '</title>' +
+                    '<title>' + $recipe.find('.title').text() + '</title>' +
+                    styles +
                 '</head>' +
                 '<body>' +
                     $recipe.get(0).outerHTML +
@@ -54,4 +62,19 @@
 
 }(jQuery));
 
-},{}]},{},[1]);
+},{"./recipe-data":2}],2:[function(require,module,exports){
+(function (global){
+(function (global) {
+
+    'use strict';
+
+    var print = global.wp_recipe.print;
+
+    module.exports = {
+        print: print
+    };
+
+}(global));
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[1,2]);

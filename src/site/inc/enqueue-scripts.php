@@ -8,6 +8,8 @@ add_action( 'wp_enqueue_scripts', 'wp_recipe_site_scripts' );
 function wp_recipe_site_scripts() {
 
     $wp_enqueue_util = WP_Enqueue_Util::get_instance();
+    $wp_url_util = WP_Url_Util::get_instance();
+
     $wp_recipe = WP_Recipe::get_instance();
 
     $handle = $wp_recipe->get_slug() . '-scripts';
@@ -16,6 +18,17 @@ function wp_recipe_site_scripts() {
     $filename_debug = 'bundle.concat.js';
     $dependencies = array();
     $version = $wp_recipe->get_version();
+
+    $styles = array(
+        $wp_url_util->convert_absolute_path_to_url( realpath( __DIR__ . '/../css/wp-recipe-print.css' ) )
+    );
+    $styles = apply_filters( 'wp_recipe_enqueue_print_styles', $styles );
+
+    $data = array(
+        'print' => array(
+            'styles' => $styles
+        )
+    );
 
     $options = new WP_Enqueue_Options(
         $handle,
@@ -26,6 +39,8 @@ function wp_recipe_site_scripts() {
         $version,
         true
     );
+
+    $options->set_localization( $wp_recipe->get_localization_handle(), $data );
 
     $wp_enqueue_util->enqueue_script( $options );
 

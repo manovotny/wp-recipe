@@ -2,6 +2,8 @@
 
     'use strict';
 
+    var data = require('./recipe-data');
+
     function iframeLoaded(event) {
         var iframe = event.currentTarget;
 
@@ -14,7 +16,8 @@
             $iframe,
             printableIframe = 'printable-iframe',
             content,
-            iframe;
+            iframe,
+            styles = '';
 
         $recipe.find('.recipe-controls').remove();
 
@@ -30,10 +33,15 @@
 
         iframe.onload = iframeLoaded;
 
+        _.each(data.print.styles, function (style) {
+            styles += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
+        });
+
         content =
             '<html>' +
                 '<head>' +
                     '<title>' + $recipe.find('.title').text() + '</title>' +
+                    styles +
                 '</head>' +
                 '<body>' +
                     $recipe.get(0).outerHTML +
