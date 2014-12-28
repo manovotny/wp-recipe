@@ -20,7 +20,7 @@ function wp_recipe_site_scripts() {
     $version = $wp_recipe->get_version();
 
     $styles = array(
-        $wp_url_util->convert_absolute_path_to_url( realpath( __DIR__ . '/../css/wp-recipe-print.css' ) )
+        $wp_enqueue_util->get_source_to_enqueue( __DIR__ . '/../css/', 'wp-recipe-print.min.css', 'wp-recipe-print.css' )
     );
     $styles = apply_filters( 'wp_recipe_enqueue_print_styles', $styles );
 
