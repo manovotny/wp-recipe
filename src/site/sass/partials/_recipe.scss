@@ -1,11 +1,10 @@
 .recipe {
     .print {
         cursor: pointer;
-        display: none;
         margin-bottom: $spacing;
     }
 }
 
-.printable-recipe {
+#printable-iframe {
     display: none;
 }

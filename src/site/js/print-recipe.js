@@ -2,35 +2,61 @@
 
     'use strict';
 
-    var recipePrintButtonSelector = '.recipe .print';
+    var data = require('./recipe-data');
 
-    function printRecipe(event) {
-        var $body = $('body'),
-            $recipe = $(event.currentTarget).parents('.recipe').clone(),
-            printableClass = 'printable-recipe',
-            printableSelector = '.' + printableClass,
-            printButtonSelector = '.print';
+    function iframeLoaded(event) {
+        var iframe = event.currentTarget;
 
-        $recipe.addClass(printableClass);
-
-        $recipe.find(printButtonSelector).remove();
-
-        $body.append($recipe);
-
-        window.print();
-
-        $body.find(printableSelector).remove();
+        iframe.focus();
+        iframe.contentWindow.print();
     }
 
-    function showRecipePrintButton() {
-        $(recipePrintButtonSelector).show();
+    function printRecipe(event) {
+        var $recipe = $(event.currentTarget).parents('.recipe').clone(),
+            $iframe,
+            printableIframe = 'printable-iframe',
+            content,
+            iframe,
+            styles = '';
+
+        $recipe.find('.recipe-controls').remove();
+
+        $iframe = $('iframe#printable-iframe');
+
+        if (!$iframe.length) {
+            $iframe = $('<iframe id="' + printableIframe + '"></iframe>');
+
+            $('body').append($iframe);
+        }
+
+        iframe = $iframe.get(0);
+
+        iframe.onload = iframeLoaded;
+
+        _.each(data.print.styles, function (style) {
+            styles += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
+        });
+
+        content =
+            '<html>' +
+                '<head>' +
+                    '<title>' + $recipe.find('.title').text() + '</title>' +
+                    styles +
+                '</head>' +
+                '<body>' +
+                    $recipe.get(0).outerHTML +
+                '</body>' +
+            '</html>';
+
+        iframe.contentWindow.document.open();
+        iframe.contentWindow.document.write(content);
+        iframe.contentWindow.document.close();
     }
 
     function init() {
-        $(window).load(showRecipePrintButton);
-
-        $(recipePrintButtonSelector).on('click', printRecipe);
+        $('.recipe .print').on('click', printRecipe);
     }
+
     init();
 
 }(jQuery));
