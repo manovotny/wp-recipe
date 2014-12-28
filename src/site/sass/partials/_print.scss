@@ -1,37 +1,39 @@
-@media print {
-    body > *:not(.printable-recipe) {
-        display: none !important;
+.recipe {
+    margin: 2em;
+
+    .title {
+        margin-bottom: .2em;
     }
 
-    .printable-recipe {
-        display: block;
-        padding: 4em 4em 0;
+    .yield {
+        font-size: 80%;
+        margin-top: 0;
+    }
 
-        h4 {
-            margin-bottom: $spacing;
+    .meta {
+        border-bottom: .1em solid;
+    }
+
+    ol {
+        padding-left: $default-spacing;
+    }
+
+    ul {
+        padding-left: $bullet-spacing;
+    }
+
+    .ingredients-group {
+        list-style-type: none;
+        margin-left: -($bullet-spacing);
+        margin-top: $default-spacing;
+
+        ul {
+            margin-top: $default-spacing;
+            padding-left: $bullet-spacing;
         }
-    }
 
-    .recipe-controls {
-        display: none;
-    }
-
-    .ingredients li {
-        list-style-type: disc;
-
-        &.ingredients-group {
-            list-style-type: none;
-            margin: $spacing 0 $spacing (-$spacing);
+        li {
+            list-style-type: disc;
         }
-    }
-
-    .directions ol,
-    .ingredients ul {
-        margin-left: $spacing;
-        margin-top: $spacing;
-    }
-
-    .directions ol li {
-        list-style-type: decimal;
     }
 }

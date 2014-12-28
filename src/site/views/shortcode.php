@@ -64,17 +64,18 @@ echo '<section class="recipe">';
 
     echo '</ul>';
 
-    if ( ! empty( $description ) ) {
-
-        echo '<h4 class="description">' . $description . '</h4>';
-
-    }
-
     if ( ! empty( $yield ) ) {
 
         echo '<section class="meta">';
-           echo '<p>' . $yield . '</p>';
+           echo '<p class="yield">' . $yield . '</p>';
         echo '</section>';
+
+    }
+
+    if ( ! empty( $description ) ) {
+
+        echo '<h4>Description</h4>';
+        echo '<p>' . $description . '</p>';
 
     }
 
