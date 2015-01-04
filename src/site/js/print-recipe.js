@@ -54,6 +54,12 @@
     }
 
     function init() {
+        var $controls = $('.recipe-controls');
+
+        $controls.each(function () {
+            $(this).append('<li><button class="print">Print Recipe</button></li>');
+        });
+
         $('.recipe .print').on('click', printRecipe);
     }
 

@@ -66,10 +66,6 @@ echo '<section class="recipe">';
 
         }
 
-        echo '<li>';
-            echo '<button class="print">Print Recipe</button>';
-        echo '</li>';
-
     echo '</ul>';
 
     if ( ! empty( $description ) ) {
