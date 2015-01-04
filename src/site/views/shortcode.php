@@ -70,8 +70,10 @@ echo '<section class="recipe">';
 
     if ( ! empty( $description ) ) {
 
-        echo '<h4>Description</h4>';
-        echo '<p>' . $description . '</p>';
+        echo '<div class="recipe-description">';
+            echo '<h4>Description</h4>';
+            echo '<p>' . $description . '</p>';
+        echo '</div>';
 
     }
 
