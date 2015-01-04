@@ -48,6 +48,14 @@ echo '<section class="recipe">';
 
     }
 
+    if ( ! empty( $yield ) ) {
+
+        echo '<section class="meta">';
+        echo '<p class="yield">' . $yield . '</p>';
+        echo '</section>';
+
+    }
+
     echo '<ul class="recipe-controls">';
 
         if ( shortcode_exists( 'pinit' ) ) {
@@ -63,14 +71,6 @@ echo '<section class="recipe">';
         echo '</li>';
 
     echo '</ul>';
-
-    if ( ! empty( $yield ) ) {
-
-        echo '<section class="meta">';
-           echo '<p class="yield">' . $yield . '</p>';
-        echo '</section>';
-
-    }
 
     if ( ! empty( $description ) ) {
 
