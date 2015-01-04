@@ -28,7 +28,7 @@ module.exports = (function () {
             slug: 'wp-recipe',
             type: 'plugin', // Should be `plugin` or `theme`.
             url: 'https://github.com/manovotny/wp-recipe',
-            version: '1.6.0'
+            version: '1.6.1'
         }
     };
 
