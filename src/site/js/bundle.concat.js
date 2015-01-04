@@ -55,13 +55,20 @@
     }
 
     function init() {
-        var $controls = $('.recipe-controls');
+        var $controls = $('.recipe-controls'),
+            $printButton,
+            $printControl;
 
         $controls.each(function () {
-            $(this).append('<li><button class="print">Print Recipe</button></li>');
-        });
+            $printButton = $('<button class="print">Print Recipe</button>');
+            $printControl = $('<li></li>');
 
-        $('.recipe .print').on('click', printRecipe);
+            $printControl.append($printButton);
+
+            $(this).append($printControl);
+
+            $printButton.click(printRecipe);
+        });
     }
 
     init();
