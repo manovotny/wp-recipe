@@ -13,7 +13,7 @@ function wp_recipe_add_tips_meta_box() {
 
     add_meta_box(
         $wp_recipe_tips->get_slug(),
-        'Tips',
+        'Notes',
         'wp_recipe_display_tips_meta_box',
         $wp_recipe->get_post_type(),
         'normal',

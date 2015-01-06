@@ -114,7 +114,7 @@ echo '<section class="recipe">';
     if ( ! empty( $tips ) ) {
 
         echo '<section class="tips">';
-            echo '<h4>Tips</h4>';
+            echo '<h4>Notes</h4>';
             echo '<p>' . $tips . '</p>';
         echo '</section>';
 
