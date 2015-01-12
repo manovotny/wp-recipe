@@ -1,6 +1,6 @@
 {
     "name": "wp-recipe",
-    "version": "1.6.3",
+    "version": "1.6.4",
     "description": "Add recipes to WordPress.",
     "repository": {
         "type": "git",

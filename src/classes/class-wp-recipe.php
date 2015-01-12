@@ -130,7 +130,7 @@ class WP_Recipe {
      *
      * @var string
      */
-    protected $version = '1.6.3';
+    protected $version = '1.6.4';
 
     /**
      * Getter method for version.
