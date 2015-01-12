@@ -1,6 +1,6 @@
 <?php
 
-add_filter( 'wp_grunticon_enqueue_scripts', 'wp_recipe_enqueue_grunticon_scripts' );
+add_filter( 'wp_grunticon_admin_enqueue_scripts', 'wp_recipe_admin_enqueue_grunticon_scripts' );
 
 /**
  * Queues Grunticon assets.
@@ -8,7 +8,7 @@ add_filter( 'wp_grunticon_enqueue_scripts', 'wp_recipe_enqueue_grunticon_scripts
  * @param $queue array List of enqueued Grunticon assets.
  * @return array Filtered list of enqueued Grunticon assets.
  */
-function wp_recipe_enqueue_grunticon_scripts( $queue ) {
+function wp_recipe_admin_enqueue_grunticon_scripts( $queue ) {
 
     $wp_recipe = WP_Recipe::get_instance();
     $wp_url_util = WP_Url_Util::get_instance();
