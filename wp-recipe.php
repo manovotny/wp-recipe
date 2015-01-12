@@ -6,7 +6,7 @@
  * Plugin Name: WP Recipe
  * Plugin URI: https://github.com/manovotny/wp-recipe
  * Description: Add recipes to WordPress.
- * Version: 1.6.4
+ * Version: 1.6.5
  * Author: Michael Novotny
  * Author URI: http://manovotny.com
  * License: GPL-3.0+
