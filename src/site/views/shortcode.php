@@ -40,7 +40,7 @@ $ingredients = maybe_unserialize( $recipe_post_meta[ $wp_recipe_ingredients->get
 $tips = $recipe_post_meta[ $wp_recipe_tips->get_meta_slug() ][ 0 ];
 $yield = $recipe_post_meta[ $wp_recipe_yield->get_meta_slug() ][ 0 ];
 
-echo '<section class="recipe">';
+echo '<div class="recipe">';
 
     if ( ! empty( $title ) ) {
 
@@ -122,4 +122,4 @@ echo '<section class="recipe">';
 
     do_action( $actions[ 'after_recipe' ] );
 
-echo '</section>';
+echo '</div>';

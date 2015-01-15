@@ -2,36 +2,41 @@
 
     'use strict';
 
-    var data = require('./recipe-data');
+    var data = require('./recipe-data'),
+        printableIframeId = 'printable-iframe';
 
-    function iframeLoaded(event) {
-        var iframe = event.currentTarget;
+    function iframeLoaded() {
+        var iframe = document.frames ? document.frames[printableIframeId] : document.getElementById(printableIframeId),
+            iframeWindow = iframe.contentWindow || iframe;
 
-        iframe.focus();
-        iframe.contentWindow.print();
+        iframeWindow.focus();
+        iframeWindow.print();
     }
 
     function printRecipe(event) {
-        var $recipe = $(event.currentTarget).parents('.recipe').clone(),
+        var $recipe = $(event.currentTarget).closest('.recipe').clone(),
             $iframe,
-            printableIframe = 'printable-iframe',
             content,
             iframe,
             styles = '';
 
         $recipe.find('.recipe-controls').remove();
 
-        $iframe = $('iframe#printable-iframe');
+        $iframe = $('iframe#' + printableIframeId);
 
         if (!$iframe.length) {
-            $iframe = $('<iframe id="' + printableIframe + '"></iframe>');
+            $iframe = $('<iframe id="' + printableIframeId + '"></iframe>');
 
             $('body').append($iframe);
         }
 
         iframe = $iframe.get(0);
 
-        iframe.onload = iframeLoaded;
+        if (iframe.attachEvent) {
+            iframe.attachEvent('onload', iframeLoaded);
+        } else {
+            iframe.addEventListener('load', iframeLoaded, false);
+        }
 
         _.each(data.print.styles, function (style) {
             styles += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
