@@ -1,8 +1,6 @@
-.recipe {
-    .print {
-        cursor: pointer;
-        margin-bottom: $spacing;
-    }
+.recipe-print {
+    cursor: pointer;
+    margin-bottom: $spacing;
 }
 
 #printable-iframe {

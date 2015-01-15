@@ -203,23 +203,27 @@ td, th {
 
 .recipe {
   margin: 2em; }
-  .recipe .title {
-    margin-bottom: 0.2em; }
-  .recipe .yield {
-    font-size: 80%;
-    margin-top: 0; }
-  .recipe .meta {
-    border-bottom: 0.1em solid; }
   .recipe ol {
     padding-left: 1.4em; }
   .recipe ul {
     padding-left: 1.1em; }
-  .recipe .ingredients-group {
-    list-style-type: none;
-    margin-left: -1.1em;
-    margin-top: 1.4em; }
-    .recipe .ingredients-group ul {
-      margin-top: 1.4em;
-      padding-left: 1.1em; }
-    .recipe .ingredients-group li {
-      list-style-type: disc; }
+
+.recipe-title {
+  margin-bottom: 0.2em; }
+
+.recipe-yield {
+  font-size: 80%;
+  margin-top: 0; }
+
+.recipe-meta {
+  border-bottom: 0.1em solid; }
+
+.ingredients-group {
+  list-style-type: none;
+  margin-left: -1.1em;
+  margin-top: 1.4em; }
+  .ingredients-group ul {
+    margin-top: 1.4em;
+    padding-left: 1.1em; }
+  .ingredients-group li {
+    list-style-type: disc; }

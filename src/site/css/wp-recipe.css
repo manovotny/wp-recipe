@@ -1,6 +1,7 @@
-.recipe .print {
+.recipe-print {
   cursor: pointer;
   margin-bottom: 15px; }
 
 #printable-iframe {
-  display: none; }
+  height: 0;
+  width: 0; }

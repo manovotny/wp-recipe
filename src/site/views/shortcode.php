@@ -44,14 +44,14 @@ echo '<div class="recipe">';
 
     if ( ! empty( $title ) ) {
 
-        echo '<h3 class="title">' . $title . '</h3>';
+        echo '<h3 class="recipe-title">' . $title . '</h3>';
 
     }
 
     if ( ! empty( $yield ) ) {
 
-        echo '<section class="meta">';
-        echo '<p class="yield">' . $yield . '</p>';
+        echo '<section class="recipe-meta">';
+            echo '<p class="recipe-yield">' . $yield . '</p>';
         echo '</section>';
 
     }
@@ -79,7 +79,7 @@ echo '<div class="recipe">';
 
     if ( ! empty( $ingredients ) ) {
 
-        echo '<section class="ingredients">';
+        echo '<section class="recipe-ingredients">';
             echo '<h4>Ingredients</h4>';
             echo '<ul>';
 
@@ -104,7 +104,7 @@ echo '<div class="recipe">';
 
     if ( ! empty( $directions ) ) {
 
-        echo '<section class="directions">';
+        echo '<section class="recipe-directions">';
             echo '<h4>Directions</h4>';
             echo '<p>' . $directions . '</p>';
         echo '</section>';
@@ -113,13 +113,15 @@ echo '<div class="recipe">';
 
     if ( ! empty( $tips ) ) {
 
-        echo '<section class="tips">';
+        echo '<section class="recipe-tips">';
             echo '<h4>Notes</h4>';
             echo '<p>' . $tips . '</p>';
         echo '</section>';
 
     }
 
-    do_action( $actions[ 'after_recipe' ] );
+    echo '<section class="recipe-after">';
+        do_action( $actions[ 'after_recipe' ] );
+    echo '</section>';
 
 echo '</div>';

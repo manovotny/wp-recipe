@@ -1,19 +1,6 @@
 .recipe {
     margin: 2em;
 
-    .title {
-        margin-bottom: .2em;
-    }
-
-    .yield {
-        font-size: 80%;
-        margin-top: 0;
-    }
-
-    .meta {
-        border-bottom: .1em solid;
-    }
-
     ol {
         padding-left: $default-spacing;
     }
@@ -21,19 +8,32 @@
     ul {
         padding-left: $bullet-spacing;
     }
+}
 
-    .ingredients-group {
-        list-style-type: none;
-        margin-left: -($bullet-spacing);
+.recipe-title {
+    margin-bottom: .2em;
+}
+
+.recipe-yield {
+    font-size: 80%;
+    margin-top: 0;
+}
+
+.recipe-meta {
+    border-bottom: .1em solid;
+}
+
+.ingredients-group {
+    list-style-type: none;
+    margin-left: -($bullet-spacing);
+    margin-top: $default-spacing;
+
+    ul {
         margin-top: $default-spacing;
+        padding-left: $bullet-spacing;
+    }
 
-        ul {
-            margin-top: $default-spacing;
-            padding-left: $bullet-spacing;
-        }
-
-        li {
-            list-style-type: disc;
-        }
+    li {
+        list-style-type: disc;
     }
 }
