@@ -3,11 +3,7 @@
 
     'use strict';
 
-    var data = require('./recipe-data'),
-        printableIframeId = 'printable-iframe',
-        recipeSelector = '.recipe',
-        recipeControlsSelector = '.recipe-controls',
-        recipePrintClass = 'recipe-print';
+    var printableIframeId = 'printable-iframe';
 
     function printIframe() {
         var iframe = document.frames ? document.frames[printableIframeId] : document.getElementById(printableIframeId),
@@ -17,7 +13,7 @@
         iframeWindow.print();
     }
 
-    function getIframe() {
+    function createIframe() {
         var $iframe = $('iframe#' + printableIframeId),
             iframe;
 
@@ -38,48 +34,81 @@
         return iframe;
     }
 
-    function getIframeStyles() {
-        var styles;
+    function createIframeStyles(styles) {
+        var stylesString = '';
 
-        _.each(data.print.styles, function (style) {
-            styles += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
+        _.each(styles, function (style) {
+            stylesString += '<link type="text/css" rel="stylesheet" href="' + style + '" />';
         });
 
-        return styles;
+        return stylesString;
     }
 
-    function getIframeContent($recipe, styles) {
-        var content;
+    function createIframeContent(options) {
+        var stylesString = createIframeStyles(options.styles);
 
-        $recipe.find(recipeControlsSelector).remove();
-
-        content =
+        return '' +
             '<html>' +
                 '<head>' +
-                    '<title>' + $recipe.find('.recipe-title').text() + '</title>' +
-                    styles +
+                    '<title>' + options.title + '</title>' +
+                    stylesString +
                 '</head>' +
                 '<body>' +
-                    $recipe.get(0).outerHTML +
+                    options.content +
                 '</body>' +
             '</html>';
-
-        return content;
     }
+
+    function print(options) {
+        var defaultOptions = {
+                content: '',
+                styles: undefined,
+                title: ''
+            },
+            iframe,
+            iframeContent;
+
+        _.extend(defaultOptions, options);
+
+        iframe = createIframe();
+        iframeContent = createIframeContent(defaultOptions);
+
+        iframe.contentWindow.document.open();
+        iframe.contentWindow.document.write(iframeContent);
+        iframe.contentWindow.document.close();
+    }
+
+    module.exports = {
+        print: print
+    };
+
+}(jQuery));
+
+},{}],2:[function(require,module,exports){
+(function ($) {
+
+    'use strict';
+
+    var data = require('./recipe-data'),
+        iframePrint = require('./iframe-print'),
+
+        recipeSelector = '.recipe',
+        recipeControlsSelector = '.recipe-controls',
+        recipePrintClass = 'recipe-print';
 
     function printRecipe(event) {
         var $recipe = $(event.currentTarget).closest(recipeSelector).clone(),
-            content,
-            iframe,
-            styles;
+            options;
 
-        iframe = getIframe();
-        styles = getIframeStyles();
-        content = getIframeContent($recipe, styles);
+        $recipe.find(recipeControlsSelector).remove();
 
-        iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(content);
-        iframe.contentWindow.document.close();
+        options = {
+            content: $recipe.get(0).outerHTML,
+            styles: data.print.styles,
+            title: $recipe.find('.recipe-title').text()
+        };
+
+        iframePrint.print(options);
     }
 
     function addPrintButtons() {
@@ -107,7 +136,7 @@
 
 }(jQuery));
 
-},{"./recipe-data":2}],2:[function(require,module,exports){
+},{"./iframe-print":1,"./recipe-data":3}],3:[function(require,module,exports){
 (function (global){
 (function (global) {
 
@@ -122,4 +151,4 @@
 }(global));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[1,2]);
+},{}]},{},[1,2,3]);
