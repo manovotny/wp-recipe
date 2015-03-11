@@ -32,7 +32,6 @@ function wp_recipe_post_type() {
     // Create post type arguments.
     $args = array(
         'description'           =>  _x( 'A place to collect all your delicious recipes', 'custom post type description', $domain ),
-        'exclude_from_search'   =>  true,
         'hierarchical'          =>  false,
         'labels'                =>  $labels,
         'menu_icon'             => $wp_image_util->generate_datauri( realpath( __DIR__ . '/../images/data/recipes.svg' ) ),
