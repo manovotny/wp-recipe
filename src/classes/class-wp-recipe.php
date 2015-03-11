@@ -171,7 +171,7 @@ class WP_Recipe {
     /**
      * Adds hook to modify the recipe query.
      *
-     * @param $query
+     * @param $query WP_Query The pre recipe query.
      */
     function add_recipe_query_hook( $query ) {
 
