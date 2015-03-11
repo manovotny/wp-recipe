@@ -1,6 +1,7 @@
 <?php
 
 WP_Recipe::get_instance();
+WP_Recipe_Taxonomies::get_instance();
 
 require __DIR__ . '/admin/inc/enqueue-scripts.php';
 require __DIR__ . '/admin/inc/enqueue-styles.php';
@@ -20,7 +21,6 @@ require __DIR__ . '/admin/inc/remove-default-discussion-meta-box.php';
 require __DIR__ . '/admin/inc/remove-default-editor.php';
 require __DIR__ . '/admin/inc/save-post.php';
 require __DIR__ . '/admin/inc/shortcode.php';
-require __DIR__ . '/admin/inc/taxonomies.php';
 
 require __DIR__ . '/site/inc/enqueue-scripts.php';
 require __DIR__ . '/site/inc/enqueue-styles.php';
