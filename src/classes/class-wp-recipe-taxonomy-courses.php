@@ -67,7 +67,7 @@ class WP_Recipe_Courses_Taxonomy {
             __( 'Course', $wp_recipe->get_slug() ),
             __( 'Courses', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            'recipe'
+            $wp_recipe->get_post_type()
         );
 
     }

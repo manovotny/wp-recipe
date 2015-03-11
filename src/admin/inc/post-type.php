@@ -41,6 +41,6 @@ function wp_recipe_post_type() {
         )
     );
 
-    register_post_type( 'recipe', $args );
+    register_post_type( $wp_recipe->get_post_type(), $args );
 
 }

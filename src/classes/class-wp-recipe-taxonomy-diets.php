@@ -67,7 +67,7 @@ class WP_Recipe_Diets_Taxonomy {
             __( 'Diet', $wp_recipe->get_slug() ),
             __( 'Diets', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            'recipe'
+            $wp_recipe->get_post_type()
         );
 
     }

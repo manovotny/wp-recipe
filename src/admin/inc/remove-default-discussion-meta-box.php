@@ -7,6 +7,6 @@ add_action( 'admin_menu', 'wp_recipe_remove_default_discussion_meta_box' );
  */
 function wp_recipe_remove_default_discussion_meta_box() {
 
-    remove_meta_box( 'commentstatusdiv', 'recipe', 'advanced' );
+    remove_meta_box( 'commentstatusdiv', WP_Recipe::get_instance()->get_post_type(), 'advanced' );
 
 }

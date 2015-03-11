@@ -67,7 +67,7 @@ class WP_Recipe_Cuisines_Taxonomy {
             __( 'Cuisine', $wp_recipe->get_slug() ),
             __( 'Cuisines', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            'recipe'
+            $wp_recipe->get_post_type()
         );
 
     }

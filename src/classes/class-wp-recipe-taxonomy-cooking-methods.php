@@ -67,7 +67,7 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
             __( 'Cooking Method', $wp_recipe->get_slug() ),
             __( 'Cooking Methods', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            'recipe'
+            $wp_recipe->get_post_type()
         );
 
     }

@@ -7,6 +7,6 @@ add_action( 'init', 'wp_recipe_remove_default_editor' );
  */
 function wp_recipe_remove_default_editor() {
 
-    remove_post_type_support( 'recipe', 'editor' );
+    remove_post_type_support( WP_Recipe::get_instance()->get_post_type(), 'editor' );
 
 }
