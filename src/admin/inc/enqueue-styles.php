@@ -1,9 +1,5 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
-// Register admin styles.
 add_action( 'admin_enqueue_scripts', 'wp_recipe_post_type_styles' );
 
 /**

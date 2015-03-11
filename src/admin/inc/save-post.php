@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_action( 'save_post_post', 'wp_recipe_save_cross_references' );
 

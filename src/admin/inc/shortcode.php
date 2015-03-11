@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_shortcode( WP_Recipe::get_instance()->get_shortcode(), 'wp_recipe_shortcode' );
 

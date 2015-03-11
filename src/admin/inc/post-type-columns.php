@@ -1,10 +1,6 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_filter( 'manage_recipe_posts_columns', 'wp_recipe_post_type_columns' );
-
 add_action( 'manage_recipe_posts_custom_column', 'wp_recipe_post_type_columns_content', 10, 2 );
 
 /**

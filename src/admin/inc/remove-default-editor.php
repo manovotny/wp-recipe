@@ -1,7 +1,4 @@
 <?php
-/**
- * @package WP_Recipe
- */
 
 add_action( 'init', 'wp_recipe_remove_default_editor' );
 
@@ -10,7 +7,6 @@ add_action( 'init', 'wp_recipe_remove_default_editor' );
  */
 function wp_recipe_remove_default_editor() {
 
-    // Remove editor.
     remove_post_type_support( 'recipe', 'editor' );
 
 }
