@@ -1,6 +1,7 @@
 <?php
 
 WP_Recipe::get_instance();
+WP_Recipe_Query::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 
 require __DIR__ . '/admin/inc/enqueue-scripts.php';
