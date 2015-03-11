@@ -40,7 +40,7 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
      *
      * @var string
      */
-    protected $slug = 'cooking-method';
+    protected $slug = 'cooking-methods';
 
     /**
      * Getter method for slug.
