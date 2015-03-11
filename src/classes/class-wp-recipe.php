@@ -151,6 +151,7 @@ class WP_Recipe {
      */
     public function __construct() {
 
+        add_action( 'pre_get_posts', array( $this, 'add_recipe_query_hook' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
     }
@@ -164,6 +165,23 @@ class WP_Recipe {
     public function enqueue_scripts() {
 
         wp_enqueue_script( 'underscore' );
+
+    }
+
+    /**
+     * Adds hook to modify the recipe query.
+     *
+     * @param $query
+     */
+    function add_recipe_query_hook( $query ) {
+
+        $wp_recipe_taxonomies = WP_Recipe_Taxonomies::get_instance();
+
+        if ( ( $query->is_main_query() ) && $wp_recipe_taxonomies->is_recipe_taxonomy() ) {
+
+            apply_filters( 'wp_recipe_query', $query );
+
+        }
 
     }
 

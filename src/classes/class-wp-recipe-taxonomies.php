@@ -48,6 +48,24 @@ class WP_Recipe_Taxonomies {
     ---------------------------------------------------------------------------------- */
 
     /**
+     * Determines if a recipe taxonomy is being used.
+     *
+     * @return boolean Whether a recipe taxonomy is being used or not.
+     */
+    public function is_recipe_taxonomy() {
+
+        return (
+            is_tax( WP_Recipe_Cooking_Methods_Taxonomy::get_instance()->get_slug() )
+            || is_tax( WP_Recipe_Courses_Taxonomy::get_instance()->get_slug() )
+            || is_tax( WP_Recipe_Cuisines_Taxonomy::get_instance()->get_slug() )
+            || is_tax( WP_Recipe_Diets_Taxonomy::get_instance()->get_slug() )
+            || is_tax( WP_Recipe_Ingredients_Taxonomy::get_instance()->get_slug() )
+            || is_tax( WP_Recipe_Occasions_Taxonomy::get_instance()->get_slug() )
+        );
+
+    }
+
+    /**
      * Registers taxonomies.
      */
     public function register_taxonomies() {
