@@ -160,15 +160,6 @@ class WP_Recipe {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Enqueues scripts.
-     */
-    public function enqueue_scripts() {
-
-        wp_enqueue_script( 'underscore' );
-
-    }
-
-    /**
      * Adds hook to modify the recipe query.
      *
      * @param $query WP_Query The pre recipe query.
@@ -182,6 +173,15 @@ class WP_Recipe {
             apply_filters( 'wp_recipe_query', $query );
 
         }
+
+    }
+
+    /**
+     * Enqueues scripts.
+     */
+    public function enqueue_scripts() {
+
+        wp_enqueue_script( 'underscore' );
 
     }
 
