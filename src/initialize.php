@@ -1,6 +1,6 @@
 <?php
 
-WP_Recipe::get_instance();
+WP_Recipe_Enqueue_Scripts::get_instance();
 WP_Recipe_Query::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 

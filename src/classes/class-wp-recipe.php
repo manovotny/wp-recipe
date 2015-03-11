@@ -143,28 +143,4 @@ class WP_Recipe {
 
     }
 
-    /* Constructor
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Enqueues scripts.
-     */
-    public function enqueue_scripts() {
-
-        wp_enqueue_script( 'underscore' );
-
-    }
-
 }
