@@ -1,6 +1,6 @@
 <?php
 
-class WP_Recipe_Enqueue_Scripts {
+class WP_Recipe_Enqueue_Admin_Scripts {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -11,14 +11,14 @@ class WP_Recipe_Enqueue_Scripts {
     /**
      * Instance of the class.
      *
-     * @var WP_Recipe_Enqueue_Scripts
+     * @var WP_Recipe_Enqueue_Admin_Scripts
      */
     protected static $instance = null;
 
     /**
      * Get accessor method for instance property.
      *
-     * @return WP_Recipe_Enqueue_Scripts Instance of the class.
+     * @return WP_Recipe_Enqueue_Admin_Scripts Instance of the class.
      */
     public static function get_instance() {
 
@@ -40,7 +40,7 @@ class WP_Recipe_Enqueue_Scripts {
      */
     public function __construct() {
 
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
     }
 
@@ -62,7 +62,7 @@ class WP_Recipe_Enqueue_Scripts {
 
     private function enqueue_default_scripts() {
 
-        wp_enqueue_script( 'underscore' );
+        wp_enqueue_script( 'jquery-ui-sortable' );
 
     }
 
@@ -70,22 +70,31 @@ class WP_Recipe_Enqueue_Scripts {
 
         $wp_enqueue_util = WP_Enqueue_Util::get_instance();
         $wp_recipe = WP_Recipe::get_instance();
+        $wp_recipe_ingredients = WP_Recipe_Ingredients::get_instance();
+        $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
 
-        $handle = $wp_recipe->get_slug() . '-scripts';
-        $relative_path = __DIR__ . '/../site/js/';
+        $handle = $wp_recipe->get_slug() . '-admin-script';
+        $relative_path = __DIR__ . '/../admin/js/';
         $filename = 'bundle.min.js';
         $filename_debug = 'bundle.concat.js';
-        $dependencies = array();
-        $version = $wp_recipe->get_version();
+        $dependencies = array( 'underscore' );
 
-        $styles = array(
-            $wp_enqueue_util->get_source_to_enqueue( __DIR__ . '/../site/css/', 'wp-recipe-print.min.css', 'wp-recipe-print.css' )
+        $group_keys = $wp_recipe_ingredients_group->get_keys();
+
+        $new_group = array(
+            $group_keys[ 'group' ] => ''
         );
-        $styles = apply_filters( 'wp_recipe_enqueue_print_styles', $styles );
 
         $data = array(
-            'print' => array(
-                'styles' => $styles
+            'ingredient' => array(
+                'classes' => $wp_recipe_ingredients->get_classes(),
+                'group' => array(
+                    'classes' => $wp_recipe_ingredients_group->get_classes(),
+                    'keys' => $group_keys,
+                    'markup' => $wp_recipe_ingredients_group->generate_admin_markup( $new_group )
+                ),
+                'id' => $wp_recipe_ingredients->get_id(),
+                'markup' => $wp_recipe_ingredients->generate_admin_markup()
             )
         );
 
@@ -95,7 +104,7 @@ class WP_Recipe_Enqueue_Scripts {
             $filename,
             $filename_debug,
             $dependencies,
-            $version,
+            $wp_recipe->get_version(),
             true
         );
 
