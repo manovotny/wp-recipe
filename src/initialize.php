@@ -1,13 +1,13 @@
 <?php
 
 WP_Recipe_Enqueue_Scripts::get_instance();
+WP_Recipe_Grunticon::get_instance();
 WP_Recipe_Query::get_instance();
 WP_Recipe_Shortcode::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 
 require __DIR__ . '/admin/inc/enqueue-scripts.php';
 require __DIR__ . '/admin/inc/enqueue-styles.php';
-require __DIR__ . '/admin/inc/grunticon.php';
 require __DIR__ . '/admin/inc/meta-boxes/cross-reference-posts.php';
 require __DIR__ . '/admin/inc/meta-boxes/cross-reference-recipes.php';
 require __DIR__ . '/admin/inc/meta-boxes/description.php';
