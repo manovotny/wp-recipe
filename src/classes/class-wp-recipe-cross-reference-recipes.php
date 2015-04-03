@@ -67,10 +67,80 @@ class WP_Recipe_Cross_Reference_Recipes {
 
     }
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'add_meta_boxes_post', array( $this, 'add_meta_box' ) );
+
+    }
+
     /* Methods
     ---------------------------------------------------------------------------------- */
 
     /**
+     * Adds post cross reference meta box to recipes.
+     */
+    public function add_meta_box() {
+
+        $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
+
+        add_meta_box(
+            $recipe_references->get_slug(),
+            'Recipe Cross References',
+            array( $this, 'render' ),
+            'post',
+            'normal',
+            'high'
+        );
+
+    }
+
+    /**
+     * Renders post cross reference meta box.
+     */
+    public function render() {
+
+        global $post;
+
+        $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
+
+        $recipe_references_meta = get_post_meta( $post->ID, $recipe_references->get_meta_slug() );
+
+        echo '<section class="' . $recipe_references->get_slug() . '">';
+            echo '<p>Below are a list of recipes who are referenced in this post.</p>';
+
+            if ( empty( $recipe_references_meta ) ) {
+
+                echo '<p class="empty">No recipes referenced in post.</p>';
+
+            } else {
+
+                echo '<ul>';
+
+                foreach ( $recipe_references_meta as $recipe_id ) {
+
+                    echo '<li>';
+                        echo '<a href="' . get_edit_post_link( $recipe_id ) . '">' . get_the_title( $recipe_id ) . '</a>' ;
+                    echo '</li>';
+
+                }
+
+                echo '</ul>';
+
+            }
+
+        echo '</section>';
+
+    }
+
+    /**
+     * Updates cross reference.
+     *
      * @param $post_id
      * @param $recipe_ids
      */
