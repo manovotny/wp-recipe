@@ -67,15 +67,86 @@ class WP_Recipe_Cross_Reference_Posts {
 
     }
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
+
+    }
+
     /* Methods
     ---------------------------------------------------------------------------------- */
 
     /**
+     * Adds post cross reference meta box to recipes.
+     */
+    public function add_meta_box() {
+
+        $wp_recipe = WP_Recipe::get_instance();
+        $post_references = WP_Recipe_Cross_Reference_Posts::get_instance();
+
+        add_meta_box(
+            $post_references->get_slug(),
+            'Post Cross References',
+            array( $this, 'render' ),
+            $wp_recipe->get_post_type(),
+            'normal',
+            'high'
+        );
+
+    }
+
+    /**
+     * Renders post cross reference meta box.
+     */
+    public function render() {
+
+        global $post;
+
+        $post_references = WP_Recipe_Cross_Reference_Posts::get_instance();
+
+        $post_references_meta = get_post_meta( $post->ID, $post_references->get_meta_slug() );
+
+        echo '<section class="' . $post_references->get_slug() . '">';
+            echo '<p>Below are a list of posts who are referencing this recipe.</p>';
+
+            if ( empty( $post_references_meta ) ) {
+
+                echo '<p class="empty">No posts reference this recipe.</p>';
+
+            } else {
+
+                echo '<ul>';
+
+                    foreach ( $post_references_meta as $post_id ) {
+
+                        echo '<li>';
+                            echo '<a href="' . get_edit_post_link( $post_id ) . '">' . get_the_title( $post_id ) . '</a>' ;
+                        echo '</li>';
+
+                    }
+
+                echo '</ul>';
+
+            }
+
+        echo '</section>';
+
+    }
+
+    /**
+     * Updates cross reference.
+     *
      * @param $post_id
      * @param $recipe_ids
      */
-    public function update( $post_id, $recipe_ids )
-    {
+    public function update( $post_id, $recipe_ids ) {
+
         $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
         $post_references = WP_Recipe_Cross_Reference_Posts::get_instance();
 
@@ -105,6 +176,9 @@ class WP_Recipe_Cross_Reference_Posts {
 
         }
     }
+
+    /* Helpers
+    ---------------------------------------------------------------------------------- */
 
     /**
      * Determines if a post exists or not.
