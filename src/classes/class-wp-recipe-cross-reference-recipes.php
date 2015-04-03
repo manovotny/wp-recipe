@@ -101,7 +101,7 @@ class WP_Recipe_Cross_Reference_Recipes {
     }
 
     /**
-     * Renders post cross reference meta box.
+     * Renders meta box.
      */
     public function render() {
 
