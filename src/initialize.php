@@ -15,9 +15,9 @@ WP_Recipe_Query::get_instance();
 WP_Recipe_Shortcode::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 WP_Recipe_Tips::get_instance();
+WP_Recipe_Yield::get_instance();
 
 require __DIR__ . '/admin/inc/meta-boxes/ingredients.php';
-require __DIR__ . '/admin/inc/meta-boxes/yield.php';
 require __DIR__ . '/admin/inc/post-type.php';
 require __DIR__ . '/admin/inc/post-type-columns.php';
 require __DIR__ . '/admin/inc/remove-default-discussion-meta-box.php';
