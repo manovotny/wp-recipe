@@ -42,14 +42,47 @@ class WP_Recipe_Id {
      */
     protected $slug = 'wp-recipe-id';
 
-    /**
-     * Getter method for id.
-     *
-     * @return string Recipe id slug.
-     */
-    public function get_slug() {
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
 
-        return $this->slug;
+    /**
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
+
+    }
+
+    /* Methods
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Adds post cross reference meta box to recipes.
+     */
+    public function add_meta_box() {
+
+        $wp_recipe = WP_Recipe::get_instance();
+
+        add_meta_box(
+            $this->slug,
+            'Recipe Id',
+            array( $this, 'render' ),
+            $wp_recipe->get_post_type(),
+            'side',
+            'high'
+        );
+
+    }
+
+    /**
+     * Renders meta box.
+     */
+    public function render() {
+
+        global $post;
+
+        echo '<p>' . $post->ID . '</p>';
 
     }
 
