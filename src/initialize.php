@@ -2,6 +2,7 @@
 
 WP_Recipe_Cross_Reference_Posts::get_instance();
 WP_Recipe_Cross_Reference_Recipes::get_instance();
+WP_Recipe_Description::get_instance();
 WP_Recipe_Enqueue_Admin_Scripts::get_instance();
 WP_Recipe_Enqueue_Admin_Styles::get_instance();
 WP_Recipe_Enqueue_Scripts::get_instance();
@@ -11,7 +12,6 @@ WP_Recipe_Query::get_instance();
 WP_Recipe_Shortcode::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 
-require __DIR__ . '/admin/inc/meta-boxes/description.php';
 require __DIR__ . '/admin/inc/meta-boxes/directions.php';
 require __DIR__ . '/admin/inc/meta-boxes/difficulty.php';
 require __DIR__ . '/admin/inc/meta-boxes/id.php';
