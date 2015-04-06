@@ -52,6 +52,7 @@ class WP_Recipe_Post_Type_Remove_Default_Views {
      */
     public function remove() {
 
+        remove_meta_box( 'commentsdiv', WP_Recipe::get_instance()->get_post_type(), 'advanced' );
         remove_meta_box( 'commentstatusdiv', WP_Recipe::get_instance()->get_post_type(), 'advanced' );
 
         remove_post_type_support( WP_Recipe::get_instance()->get_post_type(), 'editor' );
