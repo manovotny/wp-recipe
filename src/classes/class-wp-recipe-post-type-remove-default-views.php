@@ -1,6 +1,6 @@
 <?php
 
-class WP_Recipe_Post_Type_Remove_Default_Editor {
+class WP_Recipe_Post_Type_Remove_Default_Views {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -11,14 +11,14 @@ class WP_Recipe_Post_Type_Remove_Default_Editor {
     /**
      * Instance of the class.
      *
-     * @var WP_Recipe_Post_Type_Remove_Default_Editor
+     * @var WP_Recipe_Post_Type_Remove_Default_Views
      */
     protected static $instance = null;
 
     /**
      * Get accessor method for instance property.
      *
-     * @return WP_Recipe_Post_Type_Remove_Default_Editor Instance of the class.
+     * @return WP_Recipe_Post_Type_Remove_Default_Views Instance of the class.
      */
     public static function get_instance() {
 
@@ -48,9 +48,11 @@ class WP_Recipe_Post_Type_Remove_Default_Editor {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Removes editor from recipe post type.
+     * Removes discussion meta box from recipe post type.
      */
     public function remove() {
+
+        remove_meta_box( 'commentstatusdiv', WP_Recipe::get_instance()->get_post_type(), 'advanced' );
 
         remove_post_type_support( WP_Recipe::get_instance()->get_post_type(), 'editor' );
 
