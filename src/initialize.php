@@ -16,6 +16,7 @@ WP_Recipe_Post_Type::get_instance();
 WP_Recipe_Post_Type_Columns::get_instance();
 WP_Recipe_Post_Type_Remove_Default_Views::get_instance();
 WP_Recipe_Query::get_instance();
+WP_Recipe_Search_Results::get_instance();
 WP_Recipe_Shortcode::get_instance();
 WP_Recipe_Taxonomies::get_instance();
 WP_Recipe_Tips::get_instance();
