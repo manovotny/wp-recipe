@@ -83,16 +83,16 @@ class WP_Recipe_Directions {
 
         global $post;
 
-        wp_nonce_field( $this->slug, $this->get_nonce() );
+        wp_nonce_field( $this->slug, WP_Recipe_Util::get_instance()->get_nonce( $this->slug ) );
 
-        $directions = get_post_meta( $post->ID, $this->get_post_meta_key(), true );
+        $directions = get_post_meta( $post->ID, WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug ), true );
 
         $settings = array(
             'drag_drop_upload' => true,
             'textarea_rows' => 8
         );
 
-        wp_editor( $directions, $this->get_id(), $settings );
+        wp_editor( $directions, WP_Recipe_Util::get_instance()->get_id( $this->slug ), $settings );
 
     }
 
@@ -103,56 +103,9 @@ class WP_Recipe_Directions {
      */
     public function save( $post_id ) {
 
-        $wp_post_type_util = WP_Post_Type_Util::get_instance();
-        $wp_recipe = WP_Recipe::get_instance();
+        $post_type = WP_Recipe::get_instance()->get_post_type();
 
-        if ( ! $wp_post_type_util->is_post_type_saving_post_meta( $wp_recipe->get_post_type() ) ) {
-
-            return;
-
-        }
-
-        if ( $wp_post_type_util->can_save_post_meta( $post_id, $this->slug, $this->get_nonce() ) ) {
-
-            update_post_meta( $post_id, $this->get_post_meta_key(), $_POST[ $this->get_id() ] );
-
-        }
-
-    }
-
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Gets editor id.
-     *
-     * @return string Recipe directions id.
-     */
-    private function get_id() {
-
-        return str_replace( '-', '_', $this->slug );
-
-    }
-
-    /**
-     * Gets nonce.
-     *
-     * @return string Recipe directions nonce.
-     */
-    private function get_nonce() {
-
-        return $this->slug . '-nonce';
-
-    }
-
-    /**
-     * Gets post meta key.
-     *
-     * @return string Recipe directions post meta key.
-     */
-    private function get_post_meta_key() {
-
-        return '_' . $this->slug;
+        WP_Recipe_Util::get_instance()->save_meta_box( $post_type, $post_id, $this->slug );
 
     }
 

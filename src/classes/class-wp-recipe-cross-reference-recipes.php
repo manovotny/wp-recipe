@@ -74,24 +74,13 @@ class WP_Recipe_Cross_Reference_Recipes {
     }
 
     /**
-     * Gets post meta key.
-     *
-     * @return string Recipe cross reference recipes post meta key.
-     */
-    public function get_post_meta_key() {
-
-        return '_' . $this->slug;
-
-    }
-
-    /**
      * Renders meta box.
      */
     public function render() {
 
         global $post;
 
-        $recipe_references_meta = get_post_meta( $post->ID, $this->get_post_meta_key() );
+        $recipe_references_meta = get_post_meta( $post->ID, WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug ) );
 
         echo '<section class="' . $this->slug . '">';
             echo '<p>Below are a list of recipes who are referenced in this post.</p>';
@@ -128,34 +117,23 @@ class WP_Recipe_Cross_Reference_Recipes {
      */
     public function update( $post_id, $recipe_ids ) {
 
-        delete_post_meta( $post_id, $this->get_post_meta_key() );
+        $wp_recipe_util = WP_Recipe_Util::get_instance();
+
+        $post_meta_key = $wp_recipe_util->get_post_meta_key( $this->slug );
+
+        delete_post_meta( $post_id, $post_meta_key );
 
         $recipe_ids = array_unique( $recipe_ids );
 
         foreach ( $recipe_ids as $recipe_id ) {
 
-            if ( $this->post_exists( $recipe_id ) ) {
+            if ( $wp_recipe_util->post_exists( $recipe_id ) ) {
 
-                add_post_meta( $post_id, $this->get_post_meta_key(), $recipe_id );
+                add_post_meta( $post_id, $post_meta_key, $recipe_id );
 
             }
 
         }
-    }
-
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Determines if a post exists or not.
-     *
-     * @param string $post_id The post id to check for existence.
-     * @return boolean Whether or not the post exists.
-     */
-    private function post_exists( $post_id ) {
-
-        return is_string( get_post_status( $post_id ) );
-
     }
 
 }

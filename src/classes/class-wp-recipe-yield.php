@@ -83,15 +83,17 @@ class WP_Recipe_Yield {
 
         global $post;
 
-        wp_nonce_field( $this->slug, $this->get_nonce() );
+        wp_nonce_field( $this->slug, WP_Recipe_Util::get_instance()->get_nonce( $this->slug ) );
 
-        $yield = get_post_meta( $post->ID, $this->get_post_meta_key(), true );
+        $yield = get_post_meta( $post->ID, WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug ), true );
+
+        $id = WP_Recipe_Util::get_instance()->get_id( $this->slug );
 
         echo '<fieldset class="' . $this->slug . '">';
             echo '<ul class="list">';
                 echo '<li class="list-item">';
-                    echo '<label class="item-label" for="' . $this->get_id() . '">Yield</label>';
-                    echo '<input class="item-control" id="' . $this->get_id() . '" name="' . $this->get_id() . '" type="text" value="' . esc_attr( $yield ) . '" />';
+                    echo '<label class="item-label" for="' . $id . '">Yield</label>';
+                    echo '<input class="item-control" id="' . $id . '" name="' . $id . '" type="text" value="' . esc_attr( $yield ) . '" />';
                 echo '</li>';
             echo '</ul>';
         echo '</fieldset>';
@@ -105,56 +107,9 @@ class WP_Recipe_Yield {
      */
     public function save( $post_id ) {
 
-        $wp_post_type_util = WP_Post_Type_Util::get_instance();
-        $wp_recipe = WP_Recipe::get_instance();
+        $post_type = WP_Recipe::get_instance()->get_post_type();
 
-        if ( ! $wp_post_type_util->is_post_type_saving_post_meta( $wp_recipe->get_post_type() ) ) {
-
-            return;
-
-        }
-
-        if ( $wp_post_type_util->can_save_post_meta( $post_id, $this->slug, $this->get_nonce() ) ) {
-
-            update_post_meta( $post_id, $this->get_post_meta_key(), $_POST[ $this->get_id() ] );
-
-        }
-
-    }
-
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Gets editor id.
-     *
-     * @return string Recipe description id.
-     */
-    private function get_id() {
-
-        return str_replace( '-', '_', $this->slug );
-
-    }
-
-    /**
-     * Gets nonce.
-     *
-     * @return string Recipe description nonce.
-     */
-    private function get_nonce() {
-
-        return $this->slug . '-nonce';
-
-    }
-
-    /**
-     * Gets post meta key.
-     *
-     * @return string Recipe description post meta key.
-     */
-    private function get_post_meta_key() {
-
-        return '_' . $this->slug;
+        WP_Recipe_Util::get_instance()->save_meta_box( $post_type, $post_id, $this->slug );
 
     }
 

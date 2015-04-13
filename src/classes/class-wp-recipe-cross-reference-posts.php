@@ -82,7 +82,7 @@ class WP_Recipe_Cross_Reference_Posts {
 
         global $post;
 
-        $post_references_meta = get_post_meta( $post->ID, $this->get_post_meta_key() );
+        $post_references_meta = get_post_meta( $post->ID, WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug ) );
 
         echo '<section class="' . $this->slug . '">';
             echo '<p>Below are a list of posts who are referencing this recipe.</p>';
@@ -119,27 +119,29 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     public function update( $post_id, $recipe_ids ) {
 
-        $recipe_references = WP_Recipe_Cross_Reference_Recipes::get_instance();
+        $wp_recipe_util = WP_Recipe_Util::get_instance();
 
-        $previous_recipe_ids = get_post_meta( $post_id, $recipe_references->get_post_meta_key() );
+        $post_meta_key = $wp_recipe_util->get_post_meta_key( $this->slug );
+
+        $previous_recipe_ids = get_post_meta( $post_id, $post_meta_key );
 
         $recipe_ids_removed = array_diff( $previous_recipe_ids, $recipe_ids );
 
         foreach ( $recipe_ids_removed as $recipe_id ) {
 
-            delete_post_meta( $recipe_id, $this->get_post_meta_key(), $post_id );
+            delete_post_meta( $recipe_id, $post_meta_key, $post_id );
 
         }
 
         foreach ( $recipe_ids as $recipe_id ) {
 
-            if ( $this->post_exists( $recipe_id ) ) {
+            if ( $wp_recipe_util->post_exists( $recipe_id ) ) {
 
-                $post_references_meta = get_post_meta( $recipe_id, $this->get_post_meta_key() );
+                $post_references_meta = get_post_meta( $recipe_id, $post_meta_key );
 
                 if ( ! in_array( $post_id, $post_references_meta ) ) {
 
-                    add_post_meta( $recipe_id, $this->get_post_meta_key(), $post_id );
+                    add_post_meta( $recipe_id, $post_meta_key, $post_id );
 
                 }
 
@@ -148,29 +150,4 @@ class WP_Recipe_Cross_Reference_Posts {
         }
     }
 
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Gets post meta key.
-     *
-     * @return string Recipe cross reference posts post meta key.
-     */
-    private function get_post_meta_key() {
-
-        return '_' . $this->slug;
-
-    }
-
-    /**
-     * Determines if a post exists or not.
-     *
-     * @param string $post_id The post id to check for existence.
-     * @return boolean Whether or not the post exists.
-     */
-    private function post_exists( $post_id ) {
-
-        return is_string( get_post_status( $post_id ) );
-
-    }
 }
