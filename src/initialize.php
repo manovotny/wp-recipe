@@ -2,7 +2,7 @@
 
 WP_Recipe_Cross_Reference_Posts::get_instance();
 WP_Recipe_Cross_Reference_Recipes::get_instance();
-WP_Recipe_Cross_Reference_Save::get_instance();
+WP_Recipe_Cross_References::get_instance();
 WP_Recipe_Description::get_instance();
 WP_Recipe_Difficulty::get_instance();
 WP_Recipe_Directions::get_instance();

@@ -5,35 +5,12 @@ class WP_Recipe_Cross_Reference_Posts {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Cross_Reference_Posts
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Cross_Reference_Posts Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
-
-    /* Slug
-    ---------------------------------------------- */
 
     /**
      * Recipe post cross reference slug.
@@ -54,7 +31,40 @@ class WP_Recipe_Cross_Reference_Posts {
 
     }
 
-    /* Methods
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Cross_Reference_Posts Instance of the class.
+     */
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
+
+    }
+
+    /**
+     * Updates cross reference.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     */
+    public function update( $post_id, $recipe_ids_used_in_post ) {
+
+        $this->remove_post_reference_from_recipes_removed_from_post( $post_id, $recipe_ids_used_in_post );
+
+        $this->add_post_reference_to_recipes_used_in_post( $post_id, $recipe_ids_used_in_post );
+    }
+
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
@@ -110,42 +120,97 @@ class WP_Recipe_Cross_Reference_Posts {
     }
 
     /**
-     * Updates cross reference.
+     * Adds a post reference to a recipe.
      *
-     * @param $post_id
-     * @param $recipe_ids
+     * @param string $post_id Post id.
+     * @param string $recipe_id Recipe id.
      */
-    public function update( $post_id, $recipe_ids ) {
+    private function add_post_reference_to_recipe( $post_id, $recipe_id ) {
 
-        $wp_recipe_util = WP_Recipe_Util::get_instance();
+        add_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts', $post_id );
 
-        $post_meta_key = $wp_recipe_util->get_post_meta_key( $this->slug );
+    }
 
-        $previous_recipe_ids = get_post_meta( $post_id, $post_meta_key );
+    /**
+     * Adds a post referenced to recipes used in a post.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     */
+    private function add_post_reference_to_recipes_used_in_post( $post_id, $recipe_ids_used_in_post ) {
 
-        $recipe_ids_removed = array_diff( $previous_recipe_ids, $recipe_ids );
+        foreach ( $recipe_ids_used_in_post as $recipe_id ) {
 
-        foreach ( $recipe_ids_removed as $recipe_id ) {
+            if ( WP_Recipe_Util::get_instance()->recipe_exists( $recipe_id ) && ! $this->is_post_a_recipe_reference( $post_id, $recipe_id ) ) {
 
-            delete_post_meta( $recipe_id, $post_meta_key, $post_id );
-
-        }
-
-        foreach ( $recipe_ids as $recipe_id ) {
-
-            if ( $wp_recipe_util->post_exists( $recipe_id ) ) {
-
-                $post_references_meta = get_post_meta( $recipe_id, $post_meta_key );
-
-                if ( ! in_array( $post_id, $post_references_meta ) ) {
-
-                    add_post_meta( $recipe_id, $post_meta_key, $post_id );
-
-                }
+                $this->add_post_reference_to_recipe( $post_id, $recipe_id );
 
             }
 
         }
+
+    }
+
+    /**
+     * Gets recipes removed from post.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     *
+     * @return array Recipes removed from post.
+     */
+    private function get_recipes_removed_from_post( $post_id, $recipe_ids_used_in_post ) {
+
+        $previous_recipe_ids_used_in_post = get_post_meta( $post_id, '_wp-recipe-cross-reference-recipes' );
+
+        return array_diff( $previous_recipe_ids_used_in_post, $recipe_ids_used_in_post );
+
+    }
+
+    /**
+     * Determines whether a post is a reference on a recipe or not.
+     *
+     * @param string $post_id Post id.
+     * @param string $recipe_id Recipe id.
+     *
+     * @return boolean Whether a post is a reference on a recipe or not.
+     */
+    private function is_post_a_recipe_reference( $post_id, $recipe_id ) {
+
+        $posts_referencing_recipe = get_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts' );
+
+        return in_array( $post_id, $posts_referencing_recipe );
+
+    }
+
+    /**
+     * Removes a post reference from a recipe.
+     *
+     * @param string $post_id Post id.
+     * @param string $recipe_id Recipe id.
+     */
+    private function remove_post_reference_from_recipe( $recipe_id, $post_id ) {
+
+        delete_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts', $post_id );
+
+    }
+
+    /**
+     * Removes a post reference from recipes that were removed from the post.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     */
+    private function remove_post_reference_from_recipes_removed_from_post( $post_id, $recipe_ids_used_in_post ) {
+
+        $recipe_ids_removed_from_post = $this->get_recipes_removed_from_post( $post_id, $recipe_ids_used_in_post );
+
+        foreach ( $recipe_ids_removed_from_post as $recipe_id ) {
+
+            $this->remove_post_reference_from_recipe( $recipe_id, $post_id );
+
+        }
+
     }
 
 }

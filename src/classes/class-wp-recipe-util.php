@@ -162,6 +162,18 @@ class WP_Recipe_Util {
     }
 
     /**
+     * Determines if a recipe exists or not.
+     *
+     * @param string $recipe_id The recipe id to check for existence.
+     * @return boolean Whether or not the recipe exists.
+     */
+    public function recipe_exists( $recipe_id ) {
+
+        return $this->post_exists( $recipe_id );
+
+    }
+
+    /**
      * Saves meta box.
      *
      * @param string $post_type Post type to save for. 

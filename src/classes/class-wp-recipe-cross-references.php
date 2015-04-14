@@ -1,6 +1,6 @@
 <?php
 
-class WP_Recipe_Cross_Reference_Save {
+class WP_Recipe_Cross_References {
 
     /* Properties
     ---------------------------------------------------------------------------------- */
@@ -11,14 +11,14 @@ class WP_Recipe_Cross_Reference_Save {
     /**
      * Instance of the class.
      *
-     * @var WP_Recipe_Cross_Reference_Save
+     * @var WP_Recipe_Cross_References
      */
     protected static $instance = null;
 
     /**
      * Get accessor method for instance property.
      *
-     * @return WP_Recipe_Cross_Reference_Save Instance of the class.
+     * @return WP_Recipe_Cross_References Instance of the class.
      */
     public static function get_instance() {
 

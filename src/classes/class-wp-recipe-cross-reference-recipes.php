@@ -5,35 +5,12 @@ class WP_Recipe_Cross_Reference_Recipes {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Cross_Reference_Recipes
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Cross_Reference_Recipes Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
-
-    /* Slug
-    ---------------------------------------------- */
 
     /**
      * Recipe cross reference slug.
@@ -54,7 +31,27 @@ class WP_Recipe_Cross_Reference_Recipes {
 
     }
 
-    /* Methods
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Cross_Reference_Recipes Instance of the class.
+     */
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
+
+    }
+
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
@@ -112,28 +109,59 @@ class WP_Recipe_Cross_Reference_Recipes {
     /**
      * Updates cross reference.
      *
-     * @param $post_id
-     * @param $recipe_ids
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
      */
-    public function update( $post_id, $recipe_ids ) {
+    public function update( $post_id, $recipe_ids_used_in_post ) {
 
-        $wp_recipe_util = WP_Recipe_Util::get_instance();
+        $this->remove_all_recipe_references_from_post( $post_id );
 
-        $post_meta_key = $wp_recipe_util->get_post_meta_key( $this->slug );
+        $this->add_recipe_reference_to_posts_using_the_recipe( $post_id, $recipe_ids_used_in_post );
+    }
 
-        delete_post_meta( $post_id, $post_meta_key );
+    /**
+     * Adds a recipe reference to a post.
+     *
+     * @param string $post_id Post id.
+     * @param string $recipe_id Recipe id.
+     */
+    private function add_recipe_reference_to_post( $post_id, $recipe_id ) {
 
-        $recipe_ids = array_unique( $recipe_ids );
+        add_post_meta( $post_id, '_wp-recipe-cross-reference-recipes', $recipe_id );
 
-        foreach ( $recipe_ids as $recipe_id ) {
+    }
 
-            if ( $wp_recipe_util->post_exists( $recipe_id ) ) {
+    /**
+     * Adds a recipe reference to posts using the recipe.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     */
+    private function add_recipe_reference_to_posts_using_the_recipe( $post_id, $recipe_ids_used_in_post ) {
 
-                add_post_meta( $post_id, $post_meta_key, $recipe_id );
+        $recipe_ids_used_in_post = array_unique( $recipe_ids_used_in_post );
+
+        foreach ( $recipe_ids_used_in_post as $recipe_id ) {
+
+            if ( WP_Recipe_Util::get_instance()->recipe_exists( $recipe_id ) ) {
+
+                $this->add_recipe_reference_to_post( $post_id, $recipe_id );
 
             }
 
         }
+
+    }
+
+    /**
+     * Removes all recipe references fro ma post.
+     *
+     * @param string $post_id Post id.
+     */
+    private function remove_all_recipe_references_from_post( $post_id ) {
+
+        delete_post_meta( $post_id, '_wp-recipe-cross-reference-recipes' );
+
     }
 
 }
