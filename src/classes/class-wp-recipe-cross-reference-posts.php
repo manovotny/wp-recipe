@@ -62,13 +62,11 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     public function add_meta_box() {
 
-        $wp_recipe = WP_Recipe::get_instance();
-
         add_meta_box(
             $this->slug,
             'Post Cross References',
             array( $this, 'render' ),
-            $wp_recipe->get_post_type(),
+            WP_Recipe_Post_Type::get_instance()->get_post_type(),
             'normal',
             'high'
         );

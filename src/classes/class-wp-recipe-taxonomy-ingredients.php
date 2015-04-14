@@ -67,7 +67,7 @@ class WP_Recipe_Ingredients_Taxonomy {
             __( 'Ingredient', $wp_recipe->get_slug() ),
             __( 'Ingredients', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            $wp_recipe->get_post_type(),
+            WP_Recipe_Post_Type::get_instance()->get_post_type(),
             false
         );
 

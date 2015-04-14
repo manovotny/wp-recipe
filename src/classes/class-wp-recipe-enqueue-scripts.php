@@ -99,7 +99,9 @@ class WP_Recipe_Enqueue_Scripts {
             true
         );
 
-        $options->set_localization( $wp_recipe->get_localization_handle(), $data );
+        $localization_name = WP_Recipe_Util::get_instance()->get_id( $wp_recipe->get_slug() );
+
+        $options->set_localization( $localization_name, $data );
 
         $wp_enqueue_util->enqueue_script( $options );
 

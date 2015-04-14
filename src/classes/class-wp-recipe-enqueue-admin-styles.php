@@ -55,7 +55,9 @@ class WP_Recipe_Enqueue_Admin_Styles {
         $wp_post_type_util = WP_Post_Type_Util::get_instance();
         $wp_recipe = WP_Recipe::get_instance();
 
-        if ( $wp_post_type_util->is_post_type_add_or_edit_screen( $wp_recipe->get_post_type() ) ) {
+        $post_type = WP_Recipe_Post_Type::get_instance()->get_post_type();
+
+        if ( $wp_post_type_util->is_post_type_add_or_edit_screen( $post_type ) ) {
 
             $wp_enqueue_util = WP_Enqueue_Util::get_instance();
 

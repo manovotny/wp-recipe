@@ -67,7 +67,7 @@ class WP_Recipe_Occasions_Taxonomy {
             __( 'Occasion', $wp_recipe->get_slug() ),
             __( 'Occasions', $wp_recipe->get_slug() ),
             $this->get_slug(),
-            $wp_recipe->get_post_type()
+            WP_Recipe_Post_Type::get_instance()->get_post_type()
         );
 
     }

@@ -40,7 +40,9 @@ class WP_Recipe_Shortcode {
      */
     public function __construct() {
 
-        add_shortcode( WP_Recipe::get_instance()->get_shortcode(), array( $this, 'render' ) );
+        $shortcode = WP_Recipe_Util::get_instance()->get_shortcode( WP_Recipe::get_instance()->get_slug() );
+
+        add_shortcode( $shortcode, array( $this, 'render' ) );
 
     }
 

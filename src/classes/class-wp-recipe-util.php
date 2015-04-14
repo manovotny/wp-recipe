@@ -60,7 +60,7 @@ class WP_Recipe_Util {
     }
 
     /**
-     * Generates post meta key from supplied slug
+     * Generates post meta key from supplied slug.
      *
      * @param string $slug Slug to derive id from.
      * @return string Generated post meta key.
@@ -117,6 +117,19 @@ class WP_Recipe_Util {
         }
 
         return $values;
+
+    }
+
+
+    /**
+     * Generates shortcode from supplied slug.
+     *
+     * @param string $slug Slug to derive id from.
+     * @return string Recipe shortcode.
+     */
+    public function get_shortcode( $slug ) {
+
+        return str_replace( '-', '', $slug );
 
     }
 

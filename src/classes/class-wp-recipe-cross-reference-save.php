@@ -72,7 +72,8 @@ class WP_Recipe_Cross_Reference_Save {
          * the `global post` contains the existing post information and the `$_POST`
          * contains the new information being saved.
          */
-        $recipe_ids = $wp_recipe_util->get_shortcode_attribute_values( $_POST[ 'content' ], $wp_recipe->get_shortcode(), 'id' );
+        $shortcode = WP_Recipe_Util::get_instance()->get_shortcode( $wp_recipe->get_slug() );
+        $recipe_ids = $wp_recipe_util->get_shortcode_attribute_values( $_POST[ 'content' ], $shortcode, 'id' );
 
         $post_references->update( $post_id, $recipe_ids );
         $recipe_references->update( $post_id, $recipe_ids );
