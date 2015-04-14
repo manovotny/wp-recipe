@@ -68,7 +68,7 @@ class WP_Recipe_Description {
         add_meta_box(
             $this->slug,
             'Description',
-            array( $this, 'render' ),
+            array( $this, 'render_meta_box' ),
             $wp_recipe->get_post_type(),
             'normal',
             'high'
@@ -79,7 +79,7 @@ class WP_Recipe_Description {
     /**
      * Renders meta box.
      */
-    public function render() {
+    public function render_meta_box() {
 
         global $post;
 
@@ -93,6 +93,28 @@ class WP_Recipe_Description {
         );
 
         wp_editor( $description, WP_Recipe_Util::get_instance()->get_id( $this->slug ), $settings );
+
+    }
+
+    /**
+     * Renders shortcode.
+     *
+     * @param array $post_meta Recipe post meta.
+     */
+    public function render_shortcode( $post_meta ) {
+
+        $post_meta_key = WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
+
+        $value = $post_meta[ $post_meta_key ][ 0 ];
+
+        if ( ! empty( $value ) ) {
+
+            echo '<div class="recipe-description">';
+                echo '<h4>Description</h4>';
+                echo '<p>' . $value . '</p>';
+            echo '</div>';
+
+        }
 
     }
 

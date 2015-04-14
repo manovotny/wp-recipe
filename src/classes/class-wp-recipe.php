@@ -5,26 +5,6 @@ class WP_Recipe {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Actions
-    ---------------------------------------------- */
-
-    /**
-     * Gets recipe actions.
-     *
-     * @return array List of recipe actions.
-     */
-    public function get_actions() {
-
-        $action_prefix = $this->get_localization_handle() . '_';
-
-        $after_recipe = 'after_recipe';
-
-        return array(
-            $after_recipe => $action_prefix . $after_recipe
-        );
-
-    }
-
     /* Instance
     ---------------------------------------------- */
 

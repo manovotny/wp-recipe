@@ -79,7 +79,7 @@ class WP_Recipe_Ingredients {
         add_meta_box(
             $this->slug,
             'Ingredients',
-            array( $this, 'render' ),
+            array( $this, 'render_meta_box' ),
             $wp_recipe->get_post_type(),
             'normal',
             'high'
@@ -147,7 +147,7 @@ class WP_Recipe_Ingredients {
     /**
      * Renders meta box.
      */
-    public function render() {
+    public function render_meta_box() {
 
         global $post;
 
@@ -194,6 +194,46 @@ class WP_Recipe_Ingredients {
                 echo '</ul>';
             echo '</div>';
         echo '</fieldset>';
+
+    }
+
+    /**
+     * Renders shortcode.
+     *
+     * @param array $post_meta Recipe post meta.
+     */
+    public function render_shortcode( $post_meta ) {
+
+        $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
+
+        $post_meta_key = WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
+
+        $value = maybe_unserialize( $post_meta[ $post_meta_key ][ 0 ] );
+
+        if ( ! empty( $value ) ) {
+
+            echo '<section class="recipe-ingredients">';
+                echo '<h4>Ingredients</h4>';
+                echo '<ul>';
+
+                    foreach ( $value as $item ) {
+
+                        if ( is_array( $item ) ) {
+
+                            echo $wp_recipe_ingredients_group->generate_markup( $item );
+
+                        } else {
+
+                            echo $this->generate_markup( $item );
+
+                        }
+
+                    }
+
+                echo '</ul>';
+            echo '</section>';
+
+        }
 
     }
 
