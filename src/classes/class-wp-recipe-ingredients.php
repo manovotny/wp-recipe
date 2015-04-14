@@ -5,20 +5,6 @@ class WP_Recipe_Ingredients {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Id
-    ---------------------------------------------- */
-
-    /**
-     * Getter method for id.
-     *
-     * @return string Recipe ingredients id.
-     */
-    public function get_id() {
-
-        return $this->slug;
-
-    }
-
     /* Instance
     ---------------------------------------------- */
 
@@ -46,34 +32,6 @@ class WP_Recipe_Ingredients {
 
     }
 
-    /* Nonce
-    ---------------------------------------------- */
-
-    /**
-     * Getter method for nonce.
-     *
-     * @return string Recipe ingredients nonce.
-     */
-    public function get_nonce() {
-
-        return $this->slug . '-nonce';
-
-    }
-
-    /* Meta Slug
-    ---------------------------------------------- */
-
-    /**
-     * Getter method for meta slug.
-     *
-     * @return string Recipe ingredients meta slug.
-     */
-    public function get_meta_slug() {
-
-        return '_' . $this->slug;
-
-    }
-
     /* Slug
     ---------------------------------------------- */
 
@@ -95,8 +53,39 @@ class WP_Recipe_Ingredients {
 
     }
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
+        add_action( 'save_post_' . WP_Recipe::get_instance()->get_post_type(), array( $this, 'save' ) );
+
+    }
+
     /* Methods
     ---------------------------------------------------------------------------------- */
+
+    /**
+     * Adds post cross reference meta box to recipes.
+     */
+    public function add_meta_box() {
+
+        $wp_recipe = WP_Recipe::get_instance();
+
+        add_meta_box(
+            $this->slug,
+            'Ingredients',
+            array( $this, 'render' ),
+            $wp_recipe->get_post_type(),
+            'normal',
+            'high'
+        );
+
+    }
 
     /**
      * Generates admin markup for a given ingredient.
@@ -152,6 +141,72 @@ class WP_Recipe_Ingredients {
             'list'   => 'ingredients',
             'remove' => 'remove-ingredient'
         );
+
+    }
+
+    /**
+     * Renders meta box.
+     */
+    public function render() {
+
+        global $post;
+
+        $wp_recipe_ingredients_group = WP_Recipe_Ingredients_Group::get_instance();
+
+        wp_nonce_field( $this->slug, WP_Recipe_Util::get_instance()->get_nonce( $this->slug ) );
+
+        $ingredients = maybe_unserialize( get_post_meta( $post->ID, WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug ), true ) );
+        $ingredients_classes = $this->get_classes();
+        $ingredients_group_classes = $wp_recipe_ingredients_group->get_classes();
+
+        echo '<fieldset class="' . $this->slug . '">';
+            echo '<section class="toolbar">';
+                echo '<ul class="actions">';
+                    echo '<li class="action-item">';
+                        echo '<button class="' . $ingredients_classes[ 'add' ] . ' button">Add Ingredient</button>';
+                    echo '</li>';
+                    echo '<li class="action-item">';
+                        echo '<button class="' . $ingredients_group_classes[ 'add' ] . ' button">Add Group</button>';
+                    echo '</li>';
+                echo '</ul>';
+            echo '</section>';
+            echo '<div class="editor">';
+                echo '<ul class="list ' . $ingredients_classes[ 'list' ] . '">';
+
+                    if ( ! empty( $ingredients ) ) {
+
+                        foreach ( $ingredients as $item ) {
+
+                            if ( is_array( $item ) ) {
+
+                                echo $wp_recipe_ingredients_group->generate_admin_markup( $item );
+
+                            } else {
+
+                                echo $this->generate_admin_markup( $item );
+
+                            }
+
+                        }
+
+                    }
+
+                echo '</ul>';
+            echo '</div>';
+        echo '</fieldset>';
+
+    }
+
+    /**
+     * Saves meta box.
+     *
+     * @param string $post_id Post id.
+     */
+    public function save( $post_id ) {
+
+        $post_type = WP_Recipe::get_instance()->get_post_type();
+
+        WP_Recipe_Util::get_instance()->save_meta_box( $post_type, $post_id, $this->slug );
 
     }
 

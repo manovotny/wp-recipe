@@ -93,7 +93,7 @@ class WP_Recipe_Enqueue_Admin_Scripts {
                     'keys' => $group_keys,
                     'markup' => $wp_recipe_ingredients_group->generate_admin_markup( $new_group )
                 ),
-                'id' => $wp_recipe_ingredients->get_id(),
+                'id' => WP_Recipe_Util::get_instance()->get_id( $wp_recipe_ingredients->get_slug() ),
                 'markup' => $wp_recipe_ingredients->generate_admin_markup()
             )
         );
