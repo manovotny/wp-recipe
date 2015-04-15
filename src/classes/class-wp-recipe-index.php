@@ -5,9 +5,6 @@ class WP_Recipe_Index {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,11 @@ class WP_Recipe_Index {
      */
     protected static $instance = null;
 
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Gets instance of class.
      *
      * @return WP_Recipe_Index Instance of the class.
      */
@@ -32,13 +32,10 @@ class WP_Recipe_Index {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Displays the recipe index, broken into taxonomy sections and their terms.
+     * Renders recipe index.
      */
-    public function display() {
+    public function render() {
 
         $taxonomies = WP_Recipe_Taxonomies::get_instance()->get_taxonomies();
 
@@ -50,7 +47,7 @@ class WP_Recipe_Index {
 
     }
 
-    /* Helpers
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
@@ -58,7 +55,7 @@ class WP_Recipe_Index {
      *
      * @param $taxonomy_slug string Taxonomy slug to generate markup for.
      */
-    function generate_markup( $taxonomy_slug ) {
+    private function generate_markup( $taxonomy_slug ) {
 
         $terms = get_terms( $taxonomy_slug );
 

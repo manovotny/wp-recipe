@@ -5,9 +5,6 @@ class WP_Recipe_Search_Results {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Search_Results {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'pre_get_posts', array( $this, '__filter' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Search_Results Instance of the class.
      */
@@ -32,27 +44,15 @@ class WP_Recipe_Search_Results {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'pre_get_posts', array( $this, 'exclude_recipes_from_search_results' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Adds hook to modify the recipe query.
+     * Filters recipe query.
      *
      * @param $query WP_Query The pre recipe query.
      */
-    function exclude_recipes_from_search_results( $query ) {
+    function __filter( $query ) {
 
         if ( $query->is_search()  && $query->is_main_query() ) {
 

@@ -27,7 +27,7 @@ class WP_Recipe_Cross_Reference_Recipes {
      */
     public function __construct() {
 
-        add_action( 'add_meta_boxes_post', array( $this, 'add_meta_box' ) );
+        add_action( 'add_meta_boxes_post', array( $this, '__initialize' ) );
 
     }
 
@@ -51,18 +51,42 @@ class WP_Recipe_Cross_Reference_Recipes {
 
     }
 
+    /**
+     * Gets post meta key.
+     *
+     * @return string Post meta key.
+     */
+    public function get_post_meta_key() {
+
+        return WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
+
+    }
+
+    /**
+     * Updates cross reference.
+     *
+     * @param string $post_id Post id.
+     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
+     */
+    public function update( $post_id, $recipe_ids_used_in_post ) {
+
+        $this->remove_all_recipe_references_from_post( $post_id );
+
+        $this->add_recipe_reference_to_posts_using_the_recipe( $post_id, $recipe_ids_used_in_post );
+    }
+
     /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Adds post cross reference meta box to recipes.
+     * Initializes view.
      */
-    public function add_meta_box() {
+    public function __initialize() {
 
         add_meta_box(
             $this->slug,
             'Recipe Cross References',
-            array( $this, 'render' ),
+            array( $this, '__render' ),
             'post',
             'normal',
             'high'
@@ -71,9 +95,9 @@ class WP_Recipe_Cross_Reference_Recipes {
     }
 
     /**
-     * Renders meta box.
+     * Renders view.
      */
-    public function render() {
+    public function __render() {
 
         global $post;
 
@@ -107,19 +131,6 @@ class WP_Recipe_Cross_Reference_Recipes {
     }
 
     /**
-     * Updates cross reference.
-     *
-     * @param string $post_id Post id.
-     * @param array $recipe_ids_used_in_post Recipe ids used in the post.
-     */
-    public function update( $post_id, $recipe_ids_used_in_post ) {
-
-        $this->remove_all_recipe_references_from_post( $post_id );
-
-        $this->add_recipe_reference_to_posts_using_the_recipe( $post_id, $recipe_ids_used_in_post );
-    }
-
-    /**
      * Adds a recipe reference to a post.
      *
      * @param string $post_id Post id.
@@ -127,7 +138,7 @@ class WP_Recipe_Cross_Reference_Recipes {
      */
     private function add_recipe_reference_to_post( $post_id, $recipe_id ) {
 
-        add_post_meta( $post_id, '_wp-recipe-cross-reference-recipes', $recipe_id );
+        add_post_meta( $post_id, $this->get_post_meta_key(), $recipe_id );
 
     }
 
@@ -160,7 +171,7 @@ class WP_Recipe_Cross_Reference_Recipes {
      */
     private function remove_all_recipe_references_from_post( $post_id ) {
 
-        delete_post_meta( $post_id, '_wp-recipe-cross-reference-recipes' );
+        delete_post_meta( $post_id, $this->get_post_meta_key() );
 
     }
 

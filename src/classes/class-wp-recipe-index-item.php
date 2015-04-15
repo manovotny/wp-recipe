@@ -5,9 +5,6 @@ class WP_Recipe_Index_Item {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,11 @@ class WP_Recipe_Index_Item {
      */
     protected static $instance = null;
 
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Gets instance of class.
      *
      * @return WP_Recipe_Index_Item Instance of the class.
      */
@@ -32,28 +32,26 @@ class WP_Recipe_Index_Item {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Displays the recipe index item.
+     * Renders recipe index item.
      *
      * @param $recipe_id string Recipe id.
      */
-    public function display( $recipe_id ) {
+    public function render( $recipe_id ) {
 
         $wp_recipe = WP_Recipe::get_instance();
-        $post_references = WP_Recipe_Cross_Reference_Posts::get_instance();
 
-        $post_references_meta = get_post_meta( $recipe_id, $post_references->get_meta_slug() );
+        $post_meta_key = WP_Recipe_Cross_Reference_Posts::get_instance()->get_post_meta_key();
 
-        if ( empty( $post_references_meta ) ) {
+        $post_references = get_post_meta( $recipe_id, $post_meta_key );
+
+        if ( empty( $post_references ) ) {
 
             return;
 
         }
 
-        $permalink = get_permalink( $post_references_meta[ 0 ] );
+        $permalink = get_permalink( $post_references[ 0 ] );
         $title = get_the_title();
         $link_title = __( 'View recipe for', $wp_recipe->get_slug() ) . ' ' . $title;
 

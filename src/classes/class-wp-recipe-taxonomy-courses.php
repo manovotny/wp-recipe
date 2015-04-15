@@ -5,9 +5,6 @@ class WP_Recipe_Courses_Taxonomy {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -16,7 +13,17 @@ class WP_Recipe_Courses_Taxonomy {
     protected static $instance = null;
 
     /**
-     * Get accessor method for instance property.
+     * Recipe courses taxonomy slug.
+     *
+     * @var string
+     */
+    protected $slug = 'courses';
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Courses_Taxonomy Instance of the class.
      */
@@ -32,18 +39,8 @@ class WP_Recipe_Courses_Taxonomy {
 
     }
 
-    /* Slug
-    ---------------------------------------------- */
-
     /**
-     * Recipe courses taxonomy slug.
-     *
-     * @var string
-     */
-    protected $slug = 'courses';
-
-    /**
-     * Getter method for slug.
+     * Gets slug.
      *
      * @return string Recipe courses taxonomy slug.
      */
@@ -53,19 +50,16 @@ class WP_Recipe_Courses_Taxonomy {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Enqueues scripts.
+     * Gets taxonomy options.
      */
     public function get_taxonomy_options() {
 
-        $wp_recipe = WP_Recipe::get_instance();
+        $domain = WP_Recipe::get_instance()->get_slug();
 
         return new WP_Taxonomy_Options(
-            __( 'Course', $wp_recipe->get_slug() ),
-            __( 'Courses', $wp_recipe->get_slug() ),
+            __( 'Course', $domain ),
+            __( 'Courses', $domain ),
             $this->get_slug(),
             WP_Recipe_Post_Type::get_instance()->get_post_type()
         );

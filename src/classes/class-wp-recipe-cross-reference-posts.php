@@ -27,7 +27,7 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     public function __construct() {
 
-        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
+        add_action( 'add_meta_boxes_recipe', array( $this, '__initialize' ) );
 
     }
 
@@ -52,6 +52,17 @@ class WP_Recipe_Cross_Reference_Posts {
     }
 
     /**
+     * Gets post meta key.
+     *
+     * @return string Post meta key.
+     */
+    public function get_post_meta_key() {
+
+        return WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
+
+    }
+
+    /**
      * Updates cross reference.
      *
      * @param string $post_id Post id.
@@ -68,14 +79,14 @@ class WP_Recipe_Cross_Reference_Posts {
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Adds post cross reference meta box to recipes.
+     * Initializes view.
      */
-    public function add_meta_box() {
+    public function __initialize() {
 
         add_meta_box(
             $this->slug,
             'Post Cross References',
-            array( $this, 'render' ),
+            array( $this, '__render' ),
             WP_Recipe_Post_Type::get_instance()->get_post_type(),
             'normal',
             'high'
@@ -84,9 +95,9 @@ class WP_Recipe_Cross_Reference_Posts {
     }
 
     /**
-     * Renders meta box.
+     * Renders view.
      */
-    public function render() {
+    public function __render() {
 
         global $post;
 
@@ -127,7 +138,7 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     private function add_post_reference_to_recipe( $post_id, $recipe_id ) {
 
-        add_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts', $post_id );
+        add_post_meta( $recipe_id, $this->get_post_meta_key(), $post_id );
 
     }
 
@@ -161,7 +172,7 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     private function get_recipes_removed_from_post( $post_id, $recipe_ids_used_in_post ) {
 
-        $previous_recipe_ids_used_in_post = get_post_meta( $post_id, '_wp-recipe-cross-reference-recipes' );
+        $previous_recipe_ids_used_in_post = get_post_meta( $post_id, WP_Recipe_Cross_Reference_Recipes::get_instance()->get_post_meta_key() );
 
         return array_diff( $previous_recipe_ids_used_in_post, $recipe_ids_used_in_post );
 
@@ -177,7 +188,7 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     private function is_post_a_recipe_reference( $post_id, $recipe_id ) {
 
-        $posts_referencing_recipe = get_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts' );
+        $posts_referencing_recipe = get_post_meta( $recipe_id, $this->get_post_meta_key() );
 
         return in_array( $post_id, $posts_referencing_recipe );
 
@@ -191,7 +202,7 @@ class WP_Recipe_Cross_Reference_Posts {
      */
     private function remove_post_reference_from_recipe( $recipe_id, $post_id ) {
 
-        delete_post_meta( $recipe_id, '_wp-recipe-cross-reference-posts', $post_id );
+        delete_post_meta( $recipe_id, $this->get_post_meta_key(), $post_id );
 
     }
 

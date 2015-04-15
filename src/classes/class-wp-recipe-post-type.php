@@ -5,9 +5,6 @@ class WP_Recipe_Post_Type {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -16,7 +13,29 @@ class WP_Recipe_Post_Type {
     protected static $instance = null;
 
     /**
-     * Get accessor method for instance property.
+     * Recipe post type.
+     *
+     * @var string
+     */
+    protected $post_type = 'recipe';
+
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'init', array( $this, '__initialize' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Post_Type Instance of the class.
      */
@@ -32,18 +51,8 @@ class WP_Recipe_Post_Type {
 
     }
 
-    /* Post Type
-    ---------------------------------------------- */
-
     /**
-     * Recipe post type.
-     *
-     * @var string
-     */
-    protected $post_type = 'recipe';
-
-    /**
-     * Getter method for post type.
+     * Gets post type.
      *
      * @return string Recipe post type.
      */
@@ -52,31 +61,17 @@ class WP_Recipe_Post_Type {
         return $this->post_type;
 
     }
-
-    /* Constructor
+    
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
+     * Initializes view.
      */
-    public function __construct() {
+    public function __initialize() {
 
-        add_action( 'init', array( $this, 'create' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Creates recipe post type.
-     */
-    public function create() {
-
-        $wp_image_util = WP_Image_Util::get_instance();
-        $wp_recipe = WP_Recipe::get_instance();
-
-        $slug = $wp_recipe->get_slug();
+        $icon = WP_Image_Util::get_instance()->generate_datauri( realpath( __DIR__ . '/../admin/images/data/recipes.svg' ) );
+        $slug = WP_Recipe::get_instance()->get_slug();
 
         $labels = array(
             'add_new_item' => _x( 'Add New Recipe', 'recipe custom post type add new item', $slug ),
@@ -94,12 +89,12 @@ class WP_Recipe_Post_Type {
 
         $args = array(
             'description' => _x( 'A place to collect all your delicious recipes', 'recipe custom post type description', $slug ),
-            'hierarchical' =>  false,
-            'labels' =>  $labels,
-            'menu_icon' => $wp_image_util->generate_datauri( realpath( __DIR__ . '/../admin/images/data/recipes.svg' ) ),
-            'menu_position' =>  5,
-            'public' =>  true,
-            'supports' =>  array(
+            'hierarchical' => false,
+            'labels' => $labels,
+            'menu_icon' => $icon,
+            'menu_position' => 5,
+            'public' => true,
+            'supports' => array(
                 'comments',
                 'editor',
                 'revisions',

@@ -5,35 +5,12 @@ class WP_Recipe_Id {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Id
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Id Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
-
-    /* Slug
-    ---------------------------------------------- */
 
     /**
      * Recipe id slug.
@@ -50,22 +27,42 @@ class WP_Recipe_Id {
      */
     public function __construct() {
 
-        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
+        add_action( 'add_meta_boxes_recipe', array( $this, '__initialize' ) );
 
     }
 
-    /* Methods
+    /* Public
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Adds post cross reference meta box to recipes.
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Id Instance of the class.
      */
-    public function add_meta_box() {
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
+
+    }
+
+    /* Private
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initializes view.
+     */
+    public function __initialize() {
 
         add_meta_box(
             $this->slug,
             'Recipe Id',
-            array( $this, 'render' ),
+            array( $this, '__render' ),
             WP_Recipe_Post_Type::get_instance()->get_post_type(),
             'side',
             'high'
@@ -74,9 +71,9 @@ class WP_Recipe_Id {
     }
 
     /**
-     * Renders meta box.
+     * Renders view.
      */
-    public function render() {
+    public function __render() {
 
         global $post;
 

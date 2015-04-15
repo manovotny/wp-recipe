@@ -5,9 +5,6 @@ class WP_Recipe_Enqueue_Admin_Styles {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Enqueue_Admin_Styles {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'admin_enqueue_scripts', array( $this, '__enqueue_styles' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Enqueue_Admin_Styles Instance of the class.
      */
@@ -32,25 +44,13 @@ class WP_Recipe_Enqueue_Admin_Styles {
 
     }
 
-    /* Constructor
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-
-    }
-
-    /* Methods
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
      * Enqueues styles.
      */
-    public function enqueue_styles() {
+    public function __enqueue_styles() {
 
         $wp_post_type_util = WP_Post_Type_Util::get_instance();
         $wp_recipe = WP_Recipe::get_instance();

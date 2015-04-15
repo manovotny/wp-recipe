@@ -5,9 +5,6 @@ class WP_Recipe_Taxonomies {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Taxonomies {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'init', array( $this, '__initialize' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Taxonomies Instance of the class.
      */
@@ -32,11 +44,8 @@ class WP_Recipe_Taxonomies {
 
     }
 
-    /* Taxonomies
-    ---------------------------------------------- */
-
     /**
-     * Getter method for recipe taxonomies.
+     * Gets recipe taxonomies.
      *
      * @return array Recipe taxonomies.
      */
@@ -53,21 +62,6 @@ class WP_Recipe_Taxonomies {
 
     }
 
-    /* Constructor
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'init', array( $this, 'register_taxonomies' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
      * Determines if a recipe taxonomy is being used.
      *
@@ -75,21 +69,29 @@ class WP_Recipe_Taxonomies {
      */
     public function is_recipe_taxonomy() {
 
-        return (
-            is_tax( WP_Recipe_Cooking_Methods_Taxonomy::get_instance()->get_slug() )
-            || is_tax( WP_Recipe_Courses_Taxonomy::get_instance()->get_slug() )
-            || is_tax( WP_Recipe_Cuisines_Taxonomy::get_instance()->get_slug() )
-            || is_tax( WP_Recipe_Diets_Taxonomy::get_instance()->get_slug() )
-            || is_tax( WP_Recipe_Ingredients_Taxonomy::get_instance()->get_slug() )
-            || is_tax( WP_Recipe_Occasions_Taxonomy::get_instance()->get_slug() )
-        );
+        $recipe_taxonomies = $this->get_taxonomies();
+
+        foreach ( $recipe_taxonomies as $taxonomy ) {
+
+            if ( is_tax( $taxonomy ) ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
 
     }
 
+    /* Private
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Registers taxonomies.
+     * Initializes view.
      */
-    public function register_taxonomies() {
+    public function __initialize() {
 
         $taxonomies_options = array(
             WP_Recipe_Cooking_Methods_Taxonomy::get_instance()->get_taxonomy_options(),

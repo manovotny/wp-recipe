@@ -5,9 +5,6 @@ class WP_Recipe_Post_Type_Columns {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,25 @@ class WP_Recipe_Post_Type_Columns {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'manage_recipe_posts_custom_column', array( $this, '__render' ), 10, 2 );
+
+        add_filter( 'manage_recipe_posts_columns', array( $this, '__initialize' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Post_Type_Columns Instance of the class.
      */
@@ -32,30 +46,16 @@ class WP_Recipe_Post_Type_Columns {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'manage_recipe_posts_custom_column', array( $this, 'render' ), 10, 2 );
-
-        add_filter( 'manage_recipe_posts_columns', array( $this, 'create' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Creates recipe post type columns.
+     * Initializes view.
      *
      * @param $columns array Existing post type columns.
      * @return mixed Modified post type columns
      */
-    public function create( $columns ) {
+    public function __initialize( $columns ) {
 
         $wp_array_util = WP_Array_Util::get_instance();
 
@@ -68,12 +68,12 @@ class WP_Recipe_Post_Type_Columns {
     }
 
     /**
-     * Renders post type columns.
+     * Renders view.
      *
      * @param $column string Current column being rendered.
      * @param $post_id string Id of the post type.
      */
-    public function render( $column, $post_id ) {
+    public function __render( $column, $post_id ) {
 
         if ( $column == 'recipe_id' ) {
 

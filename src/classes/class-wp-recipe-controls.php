@@ -5,9 +5,6 @@ class WP_Recipe_Controls {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,11 @@ class WP_Recipe_Controls {
      */
     protected static $instance = null;
 
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Gets instance of class.
      *
      * @return WP_Recipe_Controls Instance of the class.
      */
@@ -32,13 +32,10 @@ class WP_Recipe_Controls {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
      * Renders shortcode.
      */
-    public function render_shortcode() {
+    public function render() {
 
         echo '<ul class="recipe-controls">';
 

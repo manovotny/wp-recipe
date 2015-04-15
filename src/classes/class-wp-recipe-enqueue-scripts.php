@@ -5,9 +5,6 @@ class WP_Recipe_Enqueue_Scripts {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Enqueue_Scripts {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'wp_enqueue_scripts', array( $this, '__enqueue_scripts' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Enqueue_Scripts Instance of the class.
      */
@@ -32,40 +44,22 @@ class WP_Recipe_Enqueue_Scripts {
 
     }
 
-    /* Constructor
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-    }
-
-    /* Methods
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
      * Enqueues scripts.
      */
-    public function enqueue_scripts() {
+    public function __enqueue_scripts() {
 
         $this->enqueue_default_scripts();
         $this->enqueue_bundled_scripts();
 
     }
 
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
-
-    private function enqueue_default_scripts() {
-
-        wp_enqueue_script( 'underscore' );
-
-    }
-
+    /**
+     * Enqueues bundled scripts.
+     */
     private function enqueue_bundled_scripts() {
 
         $wp_enqueue_util = WP_Enqueue_Util::get_instance();
@@ -104,6 +98,15 @@ class WP_Recipe_Enqueue_Scripts {
         $options->set_localization( $localization_name, $data );
 
         $wp_enqueue_util->enqueue_script( $options );
+
+    }
+
+    /**
+     * Enqueues default scripts.
+     */
+    private function enqueue_default_scripts() {
+
+        wp_enqueue_script( 'underscore' );
 
     }
 

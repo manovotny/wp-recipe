@@ -5,50 +5,12 @@ class WP_Recipe_Difficulty {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Difficulty
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Difficulty Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
-
-    /* Options
-    ---------------------------------------------- */
-
-    /**
-     * Recipe difficulty options.
-     *
-     * @var string
-     */
-    protected $options = array(
-        '' => '',
-        'easy' => 'Easy',
-        'medium' => 'Medium',
-        'hard' => 'Hard'
-    );
-
-    /* Slug
-    ---------------------------------------------- */
 
     /**
      * Recipe difficulty slug.
@@ -65,23 +27,43 @@ class WP_Recipe_Difficulty {
      */
     public function __construct() {
 
-        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
-        add_action( 'save_post_' . WP_Recipe_Post_Type::get_instance()->get_post_type(), array( $this, 'save' ) );
+        add_action( 'add_meta_boxes_recipe', array( $this, '__initialize' ) );
+        add_action( 'save_post_' . WP_Recipe_Post_Type::get_instance()->get_post_type(), array( $this, '__save' ) );
 
     }
 
-    /* Methods
+    /* Public
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Adds post cross reference meta box to recipes.
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Difficulty Instance of the class.
      */
-    public function add_meta_box() {
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
+
+    }
+
+    /* Private
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initializes view.
+     */
+    public function __initialize() {
 
         add_meta_box(
             $this->slug,
             'Difficulty',
-            array( $this, 'render' ),
+            array( $this, '__render' ),
             WP_Recipe_Post_Type::get_instance()->get_post_type(),
             'side',
             'high'
@@ -90,9 +72,9 @@ class WP_Recipe_Difficulty {
     }
 
     /**
-     * Renders meta box.
+     * Renders view.
      */
-    public function render() {
+    public function __render() {
 
         global $post;
 
@@ -103,10 +85,17 @@ class WP_Recipe_Difficulty {
         $id = WP_Recipe_Util::get_instance()->get_id( $this->slug );
 
         echo '<fieldset class="' . $this->slug . '">';
-        echo '<label class="item-label" for="' . $id . '">Difficulty</label>';
+            echo '<label class="item-label" for="' . $id . '">Difficulty</label>';
             echo '<select id="' . $id . '" class="item-control" name="' . $id . '">';
 
-                foreach ( $this->options as $key => $value )  {
+                $options = array(
+                    '' => '',
+                    'easy' => 'Easy',
+                    'medium' => 'Medium',
+                    'hard' => 'Hard'
+                );
+
+                foreach ( $options as $key => $value )  {
 
                     echo '<option value="' . $key . '" ' . selected( $difficulty, $key, false ) . '>';
                         echo $value;
@@ -120,11 +109,11 @@ class WP_Recipe_Difficulty {
     }
 
     /**
-     * Saves meta box.
+     * Saves data.
      *
      * @param string $post_id Post id.
      */
-    public function save( $post_id ) {
+    public function __save( $post_id ) {
 
         $post_type = WP_Recipe_Post_Type::get_instance()->get_post_type();
 

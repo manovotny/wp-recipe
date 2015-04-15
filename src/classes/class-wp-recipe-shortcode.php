@@ -5,9 +5,6 @@ class WP_Recipe_Shortcode {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,25 @@ class WP_Recipe_Shortcode {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        $shortcode = WP_Recipe_Util::get_instance()->get_shortcode( WP_Recipe::get_instance()->get_slug() );
+
+        add_shortcode( $shortcode, array( $this, '__render' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Shortcode Instance of the class.
      */
@@ -32,30 +46,16 @@ class WP_Recipe_Shortcode {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        $shortcode = WP_Recipe_Util::get_instance()->get_shortcode( WP_Recipe::get_instance()->get_slug() );
-
-        add_shortcode( $shortcode, array( $this, 'render' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Renders recipe shortcode.
+     * Renders view.
      *
      * @param array $attributes Shortcode attributes.
      * @return string Rendered shortcode.
      */
-    public function render( $attributes ) {
+    public function __render( $attributes ) {
 
         ob_start();
 
@@ -68,9 +68,6 @@ class WP_Recipe_Shortcode {
         return $html;
 
     }
-
-    /* Helpers
-    ---------------------------------------------------------------------------------- */
 
     /**
      * Gets recipe shortcode template.
@@ -105,14 +102,14 @@ class WP_Recipe_Shortcode {
 
         echo '<div class="recipe">';
 
-            WP_Recipe_Title::get_instance()->render_shortcode( $id );
-            WP_Recipe_Controls::get_instance()->render_shortcode();
-            WP_Recipe_Yield::get_instance()->render_shortcode( $post_meta );
-            WP_Recipe_Description::get_instance()->render_shortcode( $post_meta );
-            WP_Recipe_Ingredients::get_instance()->render_shortcode( $post_meta );
-            WP_Recipe_Directions::get_instance()->render_shortcode( $post_meta );
-            WP_Recipe_Tips::get_instance()->render_shortcode( $post_meta );
-            WP_Recipe_After::get_instance()->render_shortcode();
+            WP_Recipe_Title::get_instance()->render( $id );
+            WP_Recipe_Controls::get_instance()->render();
+            WP_Recipe_Yield::get_instance()->render( $post_meta );
+            WP_Recipe_Description::get_instance()->render( $post_meta );
+            WP_Recipe_Ingredients::get_instance()->render( $post_meta );
+            WP_Recipe_Directions::get_instance()->render( $post_meta );
+            WP_Recipe_Tips::get_instance()->render( $post_meta );
+            WP_Recipe_After::get_instance()->render();
 
         echo '</div>';
 

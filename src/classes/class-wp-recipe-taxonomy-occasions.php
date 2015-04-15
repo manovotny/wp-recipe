@@ -5,9 +5,6 @@ class WP_Recipe_Occasions_Taxonomy {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -16,7 +13,17 @@ class WP_Recipe_Occasions_Taxonomy {
     protected static $instance = null;
 
     /**
-     * Get accessor method for instance property.
+     * Recipe occasions taxonomy slug.
+     *
+     * @var string
+     */
+    protected $slug = 'occasions';
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Occasions_Taxonomy Instance of the class.
      */
@@ -32,18 +39,8 @@ class WP_Recipe_Occasions_Taxonomy {
 
     }
 
-    /* Slug
-    ---------------------------------------------- */
-
     /**
-     * Recipe occasions taxonomy slug.
-     *
-     * @var string
-     */
-    protected $slug = 'occasions';
-
-    /**
-     * Getter method for slug.
+     * Gets slug.
      *
      * @return string Recipe occasions taxonomy slug.
      */
@@ -53,19 +50,16 @@ class WP_Recipe_Occasions_Taxonomy {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Enqueues scripts.
+     * Gets taxonomy options.
      */
     public function get_taxonomy_options() {
 
-        $wp_recipe = WP_Recipe::get_instance();
+        $domain = WP_Recipe::get_instance()->get_slug();
 
         return new WP_Taxonomy_Options(
-            __( 'Occasion', $wp_recipe->get_slug() ),
-            __( 'Occasions', $wp_recipe->get_slug() ),
+            __( 'Occasion', $domain ),
+            __( 'Occasions', $domain ),
             $this->get_slug(),
             WP_Recipe_Post_Type::get_instance()->get_post_type()
         );

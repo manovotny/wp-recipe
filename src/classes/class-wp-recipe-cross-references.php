@@ -5,9 +5,6 @@ class WP_Recipe_Cross_References {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Cross_References {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'save_post_post', array( $this, '__save' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Cross_References Instance of the class.
      */
@@ -32,25 +44,13 @@ class WP_Recipe_Cross_References {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
+     * Saves data.
      */
-    public function __construct() {
-
-        add_action( 'save_post_post', array( $this, 'save' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Saves post and recipe cross references.
-     */
-    public function save() {
+    public function __save() {
 
         global $post;
 
@@ -72,7 +72,7 @@ class WP_Recipe_Cross_References {
          * the `global post` contains the existing post information and the `$_POST`
          * contains the new information being saved.
          */
-        $shortcode = WP_Recipe_Util::get_instance()->get_shortcode( $wp_recipe->get_slug() );
+        $shortcode = $wp_recipe_util->get_shortcode( $wp_recipe->get_slug() );
         $recipe_ids = $wp_recipe_util->get_shortcode_attribute_values( $_POST[ 'content' ], $shortcode, 'id' );
 
         $post_references->update( $post_id, $recipe_ids );

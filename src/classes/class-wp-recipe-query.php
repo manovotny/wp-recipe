@@ -5,9 +5,6 @@ class WP_Recipe_Query {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Query {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'pre_get_posts', array( $this, '__filter' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Query Instance of the class.
      */
@@ -32,27 +44,15 @@ class WP_Recipe_Query {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_action( 'pre_get_posts', array( $this, 'add_recipe_query_hook' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Adds hook to modify the recipe query.
+     * Filters recipe query.
      *
      * @param $query WP_Query The pre recipe query.
      */
-    function add_recipe_query_hook( $query ) {
+    function __filter( $query ) {
 
         $wp_recipe_taxonomies = WP_Recipe_Taxonomies::get_instance();
 

@@ -5,9 +5,6 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -16,7 +13,17 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
     protected static $instance = null;
 
     /**
-     * Get accessor method for instance property.
+     * Recipe cooking method taxonomy slug.
+     *
+     * @var string
+     */
+    protected $slug = 'cooking-methods';
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Cooking_Methods_Taxonomy Instance of the class.
      */
@@ -32,18 +39,8 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
 
     }
 
-    /* Slug
-    ---------------------------------------------- */
-
     /**
-     * Recipe cooking method taxonomy slug.
-     *
-     * @var string
-     */
-    protected $slug = 'cooking-methods';
-
-    /**
-     * Getter method for slug.
+     * Gets taxonomy slug.
      *
      * @return string Recipe cooking method taxonomy slug.
      */
@@ -53,19 +50,16 @@ class WP_Recipe_Cooking_Methods_Taxonomy {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Enqueues scripts.
+     * Gets taxonomy options.
      */
     public function get_taxonomy_options() {
 
-        $wp_recipe = WP_Recipe::get_instance();
+        $domain = WP_Recipe::get_instance()->get_slug();
 
         return new WP_Taxonomy_Options(
-            __( 'Cooking Method', $wp_recipe->get_slug() ),
-            __( 'Cooking Methods', $wp_recipe->get_slug() ),
+            __( 'Cooking Method', $domain ),
+            __( 'Cooking Methods', $domain ),
             $this->get_slug(),
             WP_Recipe_Post_Type::get_instance()->get_post_type()
         );

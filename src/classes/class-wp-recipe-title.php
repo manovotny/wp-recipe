@@ -5,9 +5,6 @@ class WP_Recipe_Title {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,11 @@ class WP_Recipe_Title {
      */
     protected static $instance = null;
 
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Gets instance of class.
      *
      * @return WP_Recipe_Title Instance of the class.
      */
@@ -32,15 +32,12 @@ class WP_Recipe_Title {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Renders shortcode.
+     * Renders view.
      *
      * @param string $recipe_id Recipe id.
      */
-    public function render_shortcode( $recipe_id ) {
+    public function render( $recipe_id ) {
 
         $title = get_the_title( $recipe_id );
 

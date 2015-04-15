@@ -5,9 +5,6 @@ class WP_Recipe_Grunticon {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Grunticon {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_filter( 'wp_grunticon_admin_enqueue_scripts', array( $this, '__enqueue_scripts' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Grunticon Instance of the class.
      */
@@ -32,28 +44,16 @@ class WP_Recipe_Grunticon {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
-     */
-    public function __construct() {
-
-        add_filter( 'wp_grunticon_admin_enqueue_scripts', array( $this, 'enqueue_grunticon_admin_scripts' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Queues Grunticon assets.
+     * Enqueues scripts.
      *
      * @param $queue array List of enqueued Grunticon assets.
      * @return array Filtered list of enqueued Grunticon assets.
      */
-    function enqueue_grunticon_admin_scripts( $queue ) {
+    function __enqueue_scripts( $queue ) {
 
         $wp_recipe = WP_Recipe::get_instance();
         $wp_url_util = WP_Url_Util::get_instance();

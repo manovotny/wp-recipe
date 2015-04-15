@@ -5,9 +5,6 @@ class WP_Recipe_Diets_Taxonomy {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -16,7 +13,17 @@ class WP_Recipe_Diets_Taxonomy {
     protected static $instance = null;
 
     /**
-     * Get accessor method for instance property.
+     * Recipe diets taxonomy slug.
+     *
+     * @var string
+     */
+    protected $slug = 'diets';
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Diets_Taxonomy Instance of the class.
      */
@@ -32,18 +39,8 @@ class WP_Recipe_Diets_Taxonomy {
 
     }
 
-    /* Slug
-    ---------------------------------------------- */
-
     /**
-     * Recipe diets taxonomy slug.
-     *
-     * @var string
-     */
-    protected $slug = 'diets';
-
-    /**
-     * Getter method for slug.
+     * Gets slug.
      *
      * @return string Recipe diets slug.
      */
@@ -53,19 +50,16 @@ class WP_Recipe_Diets_Taxonomy {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
-     * Enqueues scripts.
+     * Gets taxonomy options.
      */
     public function get_taxonomy_options() {
 
-        $wp_recipe = WP_Recipe::get_instance();
+        $domain = WP_Recipe::get_instance()->get_slug();
 
         return new WP_Taxonomy_Options(
-            __( 'Diet', $wp_recipe->get_slug() ),
-            __( 'Diets', $wp_recipe->get_slug() ),
+            __( 'Diet', $domain ),
+            __( 'Diets', $domain ),
             $this->get_slug(),
             WP_Recipe_Post_Type::get_instance()->get_post_type(),
             false

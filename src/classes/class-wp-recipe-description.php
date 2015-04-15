@@ -5,35 +5,12 @@ class WP_Recipe_Description {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Description
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Description Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
-
-    /* Slug
-    ---------------------------------------------- */
 
     /**
      * Recipe description slug.
@@ -50,23 +27,65 @@ class WP_Recipe_Description {
      */
     public function __construct() {
 
-        add_action( 'add_meta_boxes_recipe', array( $this, 'add_meta_box' ) );
-        add_action( 'save_post_' . WP_Recipe_Post_Type::get_instance()->get_post_type(), array( $this, 'save' ) );
+        add_action( 'add_meta_boxes_recipe', array( $this, '__initialize' ) );
+        add_action( 'save_post_' . WP_Recipe_Post_Type::get_instance()->get_post_type(), array( $this, '__save' ) );
 
     }
 
-    /* Methods
+    /* Public
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Adds post cross reference meta box to recipes.
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Description Instance of the class.
      */
-    public function add_meta_box() {
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
+
+    }
+
+    /**
+     * Renders view.
+     *
+     * @param array $post_meta Recipe post meta.
+     */
+    public function render( $post_meta ) {
+
+        $post_meta_key = WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
+
+        $value = $post_meta[ $post_meta_key ][ 0 ];
+
+        if ( ! empty( $value ) ) {
+
+            echo '<div class="recipe-description">';
+                echo '<h4>Description</h4>';
+                echo '<p>' . $value . '</p>';
+            echo '</div>';
+
+        }
+
+    }
+
+    /* Private
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Initializes view.
+     */
+    public function __initialize() {
 
         add_meta_box(
             $this->slug,
             'Description',
-            array( $this, 'render_meta_box' ),
+            array( $this, '__render' ),
             WP_Recipe_Post_Type::get_instance()->get_post_type(),
             'normal',
             'high'
@@ -75,9 +94,9 @@ class WP_Recipe_Description {
     }
 
     /**
-     * Renders meta box.
+     * Renders view.
      */
-    public function render_meta_box() {
+    public function __render() {
 
         global $post;
 
@@ -95,33 +114,11 @@ class WP_Recipe_Description {
     }
 
     /**
-     * Renders shortcode.
-     *
-     * @param array $post_meta Recipe post meta.
-     */
-    public function render_shortcode( $post_meta ) {
-
-        $post_meta_key = WP_Recipe_Util::get_instance()->get_post_meta_key( $this->slug );
-
-        $value = $post_meta[ $post_meta_key ][ 0 ];
-
-        if ( ! empty( $value ) ) {
-
-            echo '<div class="recipe-description">';
-                echo '<h4>Description</h4>';
-                echo '<p>' . $value . '</p>';
-            echo '</div>';
-
-        }
-
-    }
-
-    /**
-     * Saves meta box.
+     * Saves data.
      *
      * @param string $post_id Post id.
      */
-    public function save( $post_id ) {
+    public function __save( $post_id ) {
 
         $post_type = WP_Recipe_Post_Type::get_instance()->get_post_type();
 

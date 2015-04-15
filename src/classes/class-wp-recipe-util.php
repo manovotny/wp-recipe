@@ -5,32 +5,12 @@ class WP_Recipe_Util {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
      * @var WP_Recipe_Util
      */
     protected static $instance = null;
-
-    /**
-     * Get accessor method for instance property.
-     *
-     * @return WP_Recipe_Util Instance of the class.
-     */
-    public static function get_instance() {
-
-        if ( null == self::$instance ) {
-
-            self::$instance = new self;
-
-        }
-
-        return self::$instance;
-
-    }
 
     /* Public
     ---------------------------------------------------------------------------------- */
@@ -44,6 +24,23 @@ class WP_Recipe_Util {
     public function get_id( $slug ) {
 
         return str_replace( '-', '_', $slug );
+
+    }
+
+    /**
+     * Gets instance of class.
+     *
+     * @return WP_Recipe_Util Instance of the class.
+     */
+    public static function get_instance() {
+
+        if ( null == self::$instance ) {
+
+            self::$instance = new self;
+
+        }
+
+        return self::$instance;
 
     }
 

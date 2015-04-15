@@ -5,9 +5,6 @@ class WP_Recipe_Post_Type_Remove_Default_Views {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,23 @@ class WP_Recipe_Post_Type_Remove_Default_Views {
      */
     protected static $instance = null;
 
+    /* Constructor
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Initialize class.
+     */
+    public function __construct() {
+
+        add_action( 'admin_menu', array( $this, '__remove' ) );
+
+    }
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe_Post_Type_Remove_Default_Views Instance of the class.
      */
@@ -32,25 +44,13 @@ class WP_Recipe_Post_Type_Remove_Default_Views {
 
     }
 
-    /* Constructor
+    /* Private
     ---------------------------------------------------------------------------------- */
 
     /**
-     * Initialize class.
+     * Removes view.
      */
-    public function __construct() {
-
-        add_action( 'admin_menu', array( $this, 'remove' ) );
-
-    }
-
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
-    /**
-     * Removes discussion meta box from recipe post type.
-     */
-    public function remove() {
+    public function __remove() {
 
         remove_meta_box( 'commentsdiv', WP_Recipe_Post_Type::get_instance()->get_post_type(), 'advanced' );
         remove_meta_box( 'commentstatusdiv', WP_Recipe_Post_Type::get_instance()->get_post_type(), 'advanced' );

@@ -5,9 +5,6 @@ class WP_Recipe_After {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,11 @@ class WP_Recipe_After {
      */
     protected static $instance = null;
 
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
     /**
-     * Get accessor method for instance property.
+     * Gets instance of class.
      *
      * @return WP_Recipe_After Instance of the class.
      */
@@ -32,13 +32,10 @@ class WP_Recipe_After {
 
     }
 
-    /* Methods
-    ---------------------------------------------------------------------------------- */
-
     /**
      * Renders shortcode.
      */
-    public function render_shortcode() {
+    public function render() {
 
         echo '<section class="recipe-after">';
             do_action( 'wp_recipe_after_recipe' );

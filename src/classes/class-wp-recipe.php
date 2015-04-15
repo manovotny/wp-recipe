@@ -5,9 +5,6 @@ class WP_Recipe {
     /* Properties
     ---------------------------------------------------------------------------------- */
 
-    /* Instance
-    ---------------------------------------------- */
-
     /**
      * Instance of the class.
      *
@@ -15,8 +12,26 @@ class WP_Recipe {
      */
     protected static $instance = null;
 
+
     /**
-     * Get accessor method for instance property.
+     * Recipe slug.
+     *
+     * @var string
+     */
+    protected $slug = 'wp-recipe';
+
+    /**
+     * Plugin version, used for cache-busting of style and script file references.
+     *
+     * @var string
+     */
+    protected $version = '2.1.0';
+
+    /* Public
+    ---------------------------------------------------------------------------------- */
+
+    /**
+     * Gets instance of class.
      *
      * @return WP_Recipe Instance of the class.
      */
@@ -32,20 +47,10 @@ class WP_Recipe {
 
     }
 
-    /* Slug
-    ---------------------------------------------- */
-
     /**
-     * Recipe slug.
+     * Gets slug.
      *
-     * @var string
-     */
-    protected $slug = 'wp-recipe';
-
-    /**
-     * Getter method for slug.
-     *
-     * @return string Recipe slug.
+     * @return string Slug.
      */
     public function get_slug() {
 
@@ -53,20 +58,10 @@ class WP_Recipe {
 
     }
 
-    /* Version
-    ---------------------------------------------- */
-
     /**
-     * Plugin version, used for cache-busting of style and script file references.
+     * Gets version.
      *
-     * @var string
-     */
-    protected $version = '2.1.0';
-
-    /**
-     * Getter method for version.
-     *
-     * @return string Plugin version.
+     * @return string Version.
      */
     public function get_version() {
 
