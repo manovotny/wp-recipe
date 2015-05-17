@@ -4,14 +4,16 @@
 
     var data = require('./recipe-data'),
         iframePrint = require('./iframe-print'),
+        queryString = require('query-string'),
 
         recipeSelector = '.recipe',
-        recipeControlsSelector = '.recipe-controls',
-        recipePrintClass = 'recipe-print';
+        recipeControlsSelector = '.recipe-controls';
 
     function printRecipe(event) {
         var $recipe = $(event.currentTarget).closest(recipeSelector).clone(),
             options;
+
+        event.preventDefault();
 
         $recipe.find(recipeControlsSelector).remove();
 
@@ -24,25 +26,15 @@
         iframePrint.print(options);
     }
 
-    function addPrintButtons() {
-        var $controls = $(recipeControlsSelector),
-            $printButton,
-            $printControl;
-
-        $controls.each(function () {
-            $printButton = $('<button class="' + recipePrintClass + '">Print Recipe</button>');
-            $printControl = $('<li></li>');
-
-            $printControl.append($printButton);
-
-            $(this).append($printControl);
-
-            $printButton.click(printRecipe);
-        });
-    }
-
     function init() {
-        addPrintButtons();
+        var $printRecipe = $('.recipe-print'),
+            qs = queryString.parse(window.location.search.substring(1));
+
+        $printRecipe.click(printRecipe);
+
+        if (qs.hasOwnProperty('print-recipe')) {
+            $printRecipe.click();
+        }
     }
 
     init();

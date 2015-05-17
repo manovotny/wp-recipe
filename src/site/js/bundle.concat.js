@@ -1,4 +1,54 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+exports.parse = function (str) {
+	if (typeof str !== 'string') {
+		return {};
+	}
+
+	str = str.trim().replace(/^(\?|#)/, '');
+
+	if (!str) {
+		return {};
+	}
+
+	return str.trim().split('&').reduce(function (ret, param) {
+		var parts = param.replace(/\+/g, ' ').split('=');
+		var key = parts[0];
+		var val = parts[1];
+
+		key = decodeURIComponent(key);
+		// missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		val = val === undefined ? null : decodeURIComponent(val);
+
+		if (!ret.hasOwnProperty(key)) {
+			ret[key] = val;
+		} else if (Array.isArray(ret[key])) {
+			ret[key].push(val);
+		} else {
+			ret[key] = [ret[key], val];
+		}
+
+		return ret;
+	}, {});
+};
+
+exports.stringify = function (obj) {
+	return obj ? Object.keys(obj).sort().map(function (key) {
+		var val = obj[key];
+
+		if (Array.isArray(val)) {
+			return val.sort().map(function (val2) {
+				return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
+			}).join('&');
+		}
+
+		return encodeURIComponent(key) + '=' + encodeURIComponent(val);
+	}).join('&') : '';
+};
+
+},{}],2:[function(require,module,exports){
 (function ($) {
 
     'use strict';
@@ -84,21 +134,23 @@
 
 }(jQuery));
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 (function ($) {
 
     'use strict';
 
     var data = require('./recipe-data'),
         iframePrint = require('./iframe-print'),
+        queryString = require('query-string'),
 
         recipeSelector = '.recipe',
-        recipeControlsSelector = '.recipe-controls',
-        recipePrintClass = 'recipe-print';
+        recipeControlsSelector = '.recipe-controls';
 
     function printRecipe(event) {
         var $recipe = $(event.currentTarget).closest(recipeSelector).clone(),
             options;
+
+        event.preventDefault();
 
         $recipe.find(recipeControlsSelector).remove();
 
@@ -111,32 +163,22 @@
         iframePrint.print(options);
     }
 
-    function addPrintButtons() {
-        var $controls = $(recipeControlsSelector),
-            $printButton,
-            $printControl;
-
-        $controls.each(function () {
-            $printButton = $('<button class="' + recipePrintClass + '">Print Recipe</button>');
-            $printControl = $('<li></li>');
-
-            $printControl.append($printButton);
-
-            $(this).append($printControl);
-
-            $printButton.click(printRecipe);
-        });
-    }
-
     function init() {
-        addPrintButtons();
+        var $printRecipe = $('.recipe-print'),
+            qs = queryString.parse(window.location.search.substring(1));
+
+        $printRecipe.click(printRecipe);
+
+        if (qs.hasOwnProperty('print-recipe')) {
+            $printRecipe.click();
+        }
     }
 
     init();
 
 }(jQuery));
 
-},{"./iframe-print":1,"./recipe-data":3}],3:[function(require,module,exports){
+},{"./iframe-print":2,"./recipe-data":4,"query-string":1}],4:[function(require,module,exports){
 (function (global){
 (function (global) {
 
@@ -151,4 +193,4 @@
 }(global));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[1,2,3]);
+},{}]},{},[2,3,4]);
