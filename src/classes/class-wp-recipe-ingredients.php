@@ -180,7 +180,7 @@ class WP_Recipe_Ingredients {
     }
 
     /**
-     * Renders viewx.
+     * Renders view.
      */
     public function __render() {
 
