@@ -7,9 +7,7 @@ module.exports = function (grunt) {
     grunt.config('clean', {
         build: [
             config.paths.source + '/**/css',
-            config.paths.source + '/**/' + config.files.browserify + '.*.js',
-
-            'composer.lock'
+            config.paths.source + '/**/' + config.files.browserify + '.*.js'
         ],
         deploy: [
             '**/.DS_Store',
