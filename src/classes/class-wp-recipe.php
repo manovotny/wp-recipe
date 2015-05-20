@@ -25,7 +25,7 @@ class WP_Recipe {
      *
      * @var string
      */
-    protected $version = '3.0.0';
+    protected $version = '3.1.0';
 
     /* Public
     ---------------------------------------------------------------------------------- */
